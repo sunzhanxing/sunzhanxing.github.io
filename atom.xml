@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-07-29T07:23:23.334Z</updated>
+  <updated>2016-07-30T10:26:54.985Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,98 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="http://yoursite.com/2016/07/30/Objective%20-%20C%20%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%EF%BC%88%E5%AF%B9%E8%B1%A1%E5%92%8C%E7%B1%BB%EF%BC%89/"/>
+    <id>http://yoursite.com/2016/07/30/Objective - C 面向对象（对象和类）/</id>
+    <published>2016-07-30T10:26:54.913Z</published>
+    <updated>2016-07-30T10:26:54.985Z</updated>
+    
+    <content type="html"><![CDATA[<p>##对象和类的介绍</p>
+<p><strong>对象</strong>：是对客观事物的抽象，对象是类的实例。</p>
+<p><strong>类</strong>：则是对象的抽象，类是一种抽象的数据类型（类似int、double、float等基本数据类型）。打个比方，现实生活中的车分为很多种，（如汽车、卡车、自行车、bus等），他们是存在的，而车则是它们总体的抽象的概述，他们统称都可以称作为车。</p>
+<p>##类的声明和实现<br><strong>类的声明</strong>：用来声明对象的属性和行为。</p>
+<pre><code>@interface Car {
+    @public int _wheels; //Car轮子属性
+    int _speed; //Car速度属性
+    NSString *_color; //Car颜色属性
+}
+@end
+</code></pre><p>在以上代码中，<code>@interface</code>代表Car类的声明，而<code>@end</code>则表示Car类声明的结束，而在括号中的代码为类声明对象的属性(成员变量)。</p>
+<p><strong>类的实现</strong></p>
+<pre><code>@implementer Car: NSObject@end
+</code></pre><p>在以上代码中，<code>@implementer Car</code>代表Car类的实现，而<code>@end</code>则表示Car类实现的结束。<code>Car: NSObject</code>是Car继承NSObject，在后面的博文中会介绍。</p>
+<p>##对象的创建</p>
+<p>首先，我先说一下对象和类在下Xcode中的声明和实现，现在代码演示一下。</p>
+<pre><code>#import &quot;Car.h&quot;
+#import &lt;Foundation/Foundation.h&gt;
+int main () { 
+    Car *bike = [[Car alloc]init];
+    Car *bus = [[Car alloc]init]; 
+    Car *taix = [[Car alloc]init];
+    return 0 ;
+}
+</code></pre><p>在这三行代码中的alloc为在Car类型中分别给（bike、bus、taix）指针所指向的对象各分配一块内存空间，并创建<em> wheels，</em> speed， *_color属性。而init将为（bike、bus、taix）所指向的对象的属性进行初始化。（也可以理解bike等是Car的对象）。</p>
+<p>##成员变量的直接赋值</p>
+<pre><code>#import &quot;Car.h&quot;
+#import &lt;Foundation/Foundation.h&gt;
+int main () { 
+    Car *bike = [[Car alloc]init];
+    bike-&gt;_wheels = 2; 
+    bike-&gt;_speed = 20;
+    bike-&gt;_colour = @&quot;红色&quot;; 
+    NSlog(@&quot;自行车的轮子有%d个,自行车的速度为%d km/h,自行车的颜色为%@&quot;,bike-&gt;_wheels,bike-&gt;_speed,bike-&gt;_colour); 
+    return 0;
+}
+</code></pre><p>在<code>（bike-&gt;_ wheels = 2; bike-&gt;_ speed = 20; bike-&gt;_ colour = @&quot;红色&quot;;）</code>代码中，我让bike对象，间接的访问Car类型中对对象声明的属性并把它们复制（需要在声明代码中➕@pubilc，因为他们的成员变量是被保护的，在后期学类的三大属性的封装后，便不再这样去操作）。所以NSlog(@”自行车的轮子有%d个,自行车的速度为%d km/h,自行车的颜色 为%@”,bike-&gt;_wheels,bike-&gt;_speed,bike-&gt;_colour);将为系统打印出你在代码中所设置的属性，此处需要用手操作，方可得出结论～</p>
+<p>##对象的方法声明、实现和调用。</p>
+<p><strong>方法声明</strong><br>Objective－C中的方法类大体似函数，同样具有：<strong>方法名、参数、返回值类型。</strong></p>
+<pre><code>@interface Car { 
+    @public int _wheels; //Car轮子属性
+    int _speed; //Car速度属性 
+    NSString *_color; //Car颜色属性
+}
+- (void) run;
+@end
+</code></pre><p>上面代码中的<code>- (void) run;</code>是Objective－C中对象方法必须以”－”开头，(void)必须用括号括住。</p>
+<p><strong>方法实现</strong></p>
+<pre><code>@implementer Car: NSObject
+- (void) run { 
+    NSlog(@“速度为%d的bike跑起来了!!!&quot;,_speed);
+}
+@end
+</code></pre><p><strong>方法调用</strong></p>
+<pre><code>#import &quot;Car.h&quot;
+#import &lt;Foundation/Foundation.h&gt;
+int main () { 
+    Car *bike = [[Car alloc]init]; 
+    [bike run];
+    return 0 ;
+}
+</code></pre><p>代码中<code>[bike run];</code>[A B] A方法执行者，B方法。所以此代码理解为：bike指针对象中发送run消息（消息机制）。运行一下，看看会输出什么东西 ^_^。</p>
+<p>##匿名对象</p>
+<p><strong>个人理解：没有名字的对象</strong>。</p>
+<pre><code>#import &quot;Car.h
+#import &lt;Foundation/Foundation.h&gt;
+int main () { 
+    [[Car alloc]init]-&gt;_spped = 100;
+    [[[Car alloc]init]run]; 
+    return 0 ;
+}
+</code></pre><p>在上述代码<code>[[Car alloc]init]-&gt;_spped = 100;</code>中在Car类中创建并初始化一个对象，并且直接访问该对象中的 <code>_ speed</code>成员变量，并直接复制为100。而并没有指定某一个对象来进行此操作,<code>[[[Car alloc]init]run];</code>而此代码，给我们直观的角度时调用run方法，<strong>其实却不是我们的想要的结果300，而是0!</strong>原因是此时我们又重新创建并且初始化另一个对象，而这个对象的本身的_ speed的成员变量为0，和之前的我们所复制的300没有关系，原因很简单，它们两个并不是同一个对象，所以互不影响，所以第二个代码中调用的run方法，输出的结果会是0～</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;##对象和类的介绍&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;对象&lt;/strong&gt;：是对客观事物的抽象，对象是类的实例。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;类&lt;/strong&gt;：则是对象的抽象，类是一种抽象的数据类型（类似int、double、float等基本数据类型）。打个比方，现实生
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Hello World</title>
