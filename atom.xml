@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-07-30T10:26:54.985Z</updated>
+  <updated>2016-07-30T10:41:11.766Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,11 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
-    <link href="http://yoursite.com/2016/07/30/Objective%20-%20C%20%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%EF%BC%88%E5%AF%B9%E8%B1%A1%E5%92%8C%E7%B1%BB%EF%BC%89/"/>
-    <id>http://yoursite.com/2016/07/30/Objective - C 面向对象（对象和类）/</id>
-    <published>2016-07-30T10:26:54.913Z</published>
-    <updated>2016-07-30T10:26:54.985Z</updated>
+    <title>Objective-C 面向对象 (对象和类)</title>
+    <link href="http://yoursite.com/2016/07/30/Objective-C-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E5%AF%B9%E8%B1%A1%E5%92%8C%E7%B1%BB/"/>
+    <id>http://yoursite.com/2016/07/30/Objective-C-面向对象-对象和类/</id>
+    <published>2016-07-30T10:38:40.000Z</published>
+    <updated>2016-07-30T10:41:11.766Z</updated>
     
     <content type="html"><![CDATA[<p>##对象和类的介绍</p>
 <p><strong>对象</strong>：是对客观事物的抽象，对象是类的实例。</p>
@@ -104,6 +104,8 @@ int main () {
     
     </summary>
     
+    
+      <category term="Objective-C" scheme="http://yoursite.com/tags/Objective-C/"/>
     
   </entry>
   
