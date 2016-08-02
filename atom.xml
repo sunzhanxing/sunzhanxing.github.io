@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-08-02T11:22:54.734Z</updated>
+  <updated>2016-08-02T11:36:29.049Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,31 +20,20 @@
     <link href="http://yoursite.com/2016/08/02/Objective-C-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E5%AF%B9%E8%B1%A1%E5%92%8C%E7%B1%BB/"/>
     <id>http://yoursite.com/2016/08/02/Objective-C-面向对象-对象和类/</id>
     <published>2016-08-02T11:21:09.000Z</published>
-    <updated>2016-08-02T11:22:54.734Z</updated>
+    <updated>2016-08-02T11:36:29.049Z</updated>
     
     <content type="html"><![CDATA[<h2 id="对象和类的介绍"><a href="#对象和类的介绍" class="headerlink" title="对象和类的介绍"></a>对象和类的介绍</h2><p><strong>对象</strong>：是对客观事物的抽象，对象是类的实例。</p>
 <p><strong>类</strong>：则是对象的抽象，类是一种抽象的数据类型（类似int、double、float等基本数据类型）。打个比方，现实生活中的车分为很多种，（如汽车、卡车、自行车、bus等），他们是存在的，而车则是它们总体的抽象的概述，他们统称都可以称作为车。</p>
+<a id="more"></a>
 <h2 id="类的声明和实现"><a href="#类的声明和实现" class="headerlink" title="类的声明和实现"></a>类的声明和实现</h2><p><strong>类的声明</strong>：用来声明对象的属性和行为。</p>
-<pre><code>@interface Car {
-    @public int _wheels; //Car轮子属性
-    int _speed; //Car速度属性
-    NSString *_color; //Car颜色属性
-}
-@end
-</code></pre><p>在以上代码中，<code>@interface</code>代表Car类的声明，而<code>@end</code>则表示Car类声明的结束，而在括号中的代码为类声明对象的属性(成员变量)。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">@interface Car &#123;</div><div class="line">	@public int _wheels; //Car轮子属性</div><div class="line">    int _speed; //Car速度属性</div><div class="line">    NSString *_color; //Car颜色属性</div><div class="line">&#125;</div><div class="line">@end</div></pre></td></tr></table></figure>
+<p>在以上代码中，<code>@interface</code>代表Car类的声明，而<code>@end</code>则表示Car类声明的结束，而在括号中的代码为类声明对象的属性(成员变量)。</p>
 <p><strong> 类的实现</strong></p>
 <pre><code>@implementer Car: NSObject@end
 </code></pre><p>在以上代码中，<code>@implementer Car</code>代表Car类的实现，而<code>@end</code>则表示Car类实现的结束。<code>Car: NSObject</code>是Car继承NSObject，在后面的博文中会介绍。</p>
 <h2 id="对象的创建"><a href="#对象的创建" class="headerlink" title="对象的创建"></a>对象的创建</h2><p>首先，我先说一下对象和类在下Xcode中的声明和实现，现在代码演示一下。</p>
-<pre><code>#import &quot;Car.h&quot;
-#import &lt;Foundation/Foundation.h&gt;
-int main () { 
-    Car *bike = [[Car alloc]init];
-    Car *bus = [[Car alloc]init]; 
-    Car *taix = [[Car alloc]init];
-    return 0 ;
-}
-</code></pre><p>在这三行代码中的alloc为在Car类型中分别给（bike、bus、taix）指针所指向的对象各分配一块内存空间，并创建<em> wheels，</em> speed， *_color属性。而init将为（bike、bus、taix）所指向的对象的属性进行初始化。（也可以理解bike等是Car的对象）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">#import &quot;Car.h&quot;</div><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line">int main () &#123; </div><div class="line">    Car *bike = [[Car alloc]init];</div><div class="line">    Car *bus = [[Car alloc]init]; </div><div class="line">    Car *taix = [[Car alloc]init];</div><div class="line">    return 0 ;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在这三行代码中的alloc为在Car类型中分别给（bike、bus、taix）指针所指向的对象各分配一块内存空间，并创建<em> wheels，</em> speed， *_color属性。而init将为（bike、bus、taix）所指向的对象的属性进行初始化。（也可以理解bike等是Car的对象）。</p>
 <h2 id="成员变量的直接赋值"><a href="#成员变量的直接赋值" class="headerlink" title="成员变量的直接赋值"></a>成员变量的直接赋值</h2><pre><code>#import &quot;Car.h&quot;
 #import &lt;Foundation/Foundation.h&gt;
 int main () { 
@@ -94,7 +83,7 @@ int main () {
     <summary type="html">
     
       &lt;h2 id=&quot;对象和类的介绍&quot;&gt;&lt;a href=&quot;#对象和类的介绍&quot; class=&quot;headerlink&quot; title=&quot;对象和类的介绍&quot;&gt;&lt;/a&gt;对象和类的介绍&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;对象&lt;/strong&gt;：是对客观事物的抽象，对象是类的实例。&lt;/p&gt;
-&lt;p&gt;&lt;str
+&lt;p&gt;&lt;strong&gt;类&lt;/strong&gt;：则是对象的抽象，类是一种抽象的数据类型（类似int、double、float等基本数据类型）。打个比方，现实生活中的车分为很多种，（如汽车、卡车、自行车、bus等），他们是存在的，而车则是它们总体的抽象的概述，他们统称都可以称作为车。&lt;/p&gt;
     
     </summary>
     
