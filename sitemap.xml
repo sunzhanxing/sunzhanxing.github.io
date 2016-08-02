@@ -9,28 +9,28 @@
   </url>
   
   <url>
-    <loc>http://yoursite.com/about/css/base.css</loc>
+    <loc>http://yoursite.com/css/base.css</loc>
     
     <lastmod>2016-08-02T04:54:12.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/about/css/font-awesome.css</loc>
+    <loc>http://yoursite.com/css/font-awesome.css</loc>
     
     <lastmod>2016-08-02T04:54:12.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/about/css/layout.css</loc>
+    <loc>http://yoursite.com/css/skeleton.css</loc>
     
     <lastmod>2016-08-02T04:54:12.000Z</lastmod>
     
   </url>
   
   <url>
-    <loc>http://yoursite.com/about/css/skeleton.css</loc>
+    <loc>http://yoursite.com/css/layout.css</loc>
     
     <lastmod>2016-08-02T04:54:12.000Z</lastmod>
     
