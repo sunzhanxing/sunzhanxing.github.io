@@ -73,8 +73,6 @@
 
 
 
-  
-
 
   <link rel="alternate" href="/atom.xml" title="Sunnyzx's Notes" type="application/atom+xml" />
 
@@ -88,40 +86,28 @@
 
 
 
-<meta name="description" content="关于我HELLO 我是(@孙占兴)，在校大学生，故乡天津。崇尚技术，励志做名技术宅，通过自己微小的力量，能让世界变的有所不同是我的梦想。
-我的在线简历
-最近在做的事
-在找 iOS 开发实习生中…
-坚持自学 iOS 开发，深入学习中…
-在独立开发探索类 App 中…
-
-关于文章博客从 Ghots 迁移到了 Hexo，考虑到之前的文章写作的问题，近期将会在把原文章整理成有序系列文章，放在新博客中！
-联">
-<meta property="og:type" content="website">
-<meta property="og:title" content="关于">
-<meta property="og:url" content="http://yoursite.com/about/index.html">
+<meta name="description" content="对象和类的介绍对象：是对客观事物的抽象，对象是类的实例。
+类：则是对象的抽象，类是一种抽象的数据类型（类似int、double、float等基本数据类型）。打个比方，现实生活中的车分为很多种，（如汽车、卡车、自行车、bus等），他们是存在的，而车则是它们总体的抽象的概述，他们统称都可以称作为车。
+类的声明和实现类的声明：用来声明对象的属性和行为。
+@interface Car {
+    @pub">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Objective-C 面向对象(对象和类)">
+<meta property="og:url" content="http://yoursite.com/2016/08/02/Objective-C-面向对象-对象和类/index.html">
 <meta property="og:site_name" content="Sunnyzx's Notes">
-<meta property="og:description" content="关于我HELLO 我是(@孙占兴)，在校大学生，故乡天津。崇尚技术，励志做名技术宅，通过自己微小的力量，能让世界变的有所不同是我的梦想。
-我的在线简历
-最近在做的事
-在找 iOS 开发实习生中…
-坚持自学 iOS 开发，深入学习中…
-在独立开发探索类 App 中…
-
-关于文章博客从 Ghots 迁移到了 Hexo，考虑到之前的文章写作的问题，近期将会在把原文章整理成有序系列文章，放在新博客中！
-联">
-<meta property="og:updated_time" content="2016-08-02T08:25:00.532Z">
+<meta property="og:description" content="对象和类的介绍对象：是对客观事物的抽象，对象是类的实例。
+类：则是对象的抽象，类是一种抽象的数据类型（类似int、double、float等基本数据类型）。打个比方，现实生活中的车分为很多种，（如汽车、卡车、自行车、bus等），他们是存在的，而车则是它们总体的抽象的概述，他们统称都可以称作为车。
+类的声明和实现类的声明：用来声明对象的属性和行为。
+@interface Car {
+    @pub">
+<meta property="og:updated_time" content="2016-08-02T11:22:54.734Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="关于">
-<meta name="twitter:description" content="关于我HELLO 我是(@孙占兴)，在校大学生，故乡天津。崇尚技术，励志做名技术宅，通过自己微小的力量，能让世界变的有所不同是我的梦想。
-我的在线简历
-最近在做的事
-在找 iOS 开发实习生中…
-坚持自学 iOS 开发，深入学习中…
-在独立开发探索类 App 中…
-
-关于文章博客从 Ghots 迁移到了 Hexo，考虑到之前的文章写作的问题，近期将会在把原文章整理成有序系列文章，放在新博客中！
-联">
+<meta name="twitter:title" content="Objective-C 面向对象(对象和类)">
+<meta name="twitter:description" content="对象和类的介绍对象：是对客观事物的抽象，对象是类的实例。
+类：则是对象的抽象，类是一种抽象的数据类型（类似int、double、float等基本数据类型）。打个比方，现实生活中的车分为很多种，（如汽车、卡车、自行车、bus等），他们是存在的，而车则是它们总体的抽象的概述，他们统称都可以称作为车。
+类的声明和实现类的声明：用来声明对象的属性和行为。
+@interface Car {
+    @pub">
 
 
 
@@ -142,15 +128,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/about/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/08/02/Objective-C-面向对象-对象和类/"/>
 
-  <title>
-  
-
-  
-    关于 | Sunnyzx's Notes
-  
-</title>
+  <title> Objective-C 面向对象(对象和类) | Sunnyzx's Notes </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -171,7 +151,7 @@
     
   
 
-  <div class="container one-collumn sidebar-position-left  ">
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -281,18 +261,195 @@
 
   <div id="posts" class="posts-expand">
     
-    
-      <h1 id="关于我"><a href="#关于我" class="headerlink" title="关于我"></a>关于我</h1><p>HELLO 我是(@孙占兴)，在校大学生，故乡天津。崇尚技术，励志做名技术宅，通过自己微小的力量，能让世界变的有所不同是我的梦想。</p>
-<p><a href="http://sunnyzx.me/resume.html" target="_blank" rel="external">我的在线简历</a></p>
-<h2 id="最近在做的事"><a href="#最近在做的事" class="headerlink" title="最近在做的事"></a>最近在做的事</h2><ol>
-<li>在找 iOS 开发实习生中…</li>
-<li>坚持自学 iOS 开发，深入学习中…</li>
-<li>在独立开发探索类 App 中…</li>
-</ol>
-<h1 id="关于文章"><a href="#关于文章" class="headerlink" title="关于文章"></a>关于文章</h1><p>博客从 Ghots 迁移到了 Hexo，考虑到之前的文章写作的问题，近期将会在把原文章整理成有序系列文章，放在新博客中！</p>
-<h1 id="联系方式"><a href="#联系方式" class="headerlink" title="联系方式"></a>联系方式</h1><p>EMail： szx309016033@gmail.com<br>微信：309016033</p>
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
 
     
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                Objective-C 面向对象(对象和类)
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-02T19:21:09+08:00" content="2016-08-02">
+              2016-08-02
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/02/Objective-C-面向对象-对象和类/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/02/Objective-C-面向对象-对象和类/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/08/02/Objective-C-面向对象-对象和类/" class="leancloud_visitors" data-flag-title="Objective-C 面向对象(对象和类)">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="对象和类的介绍"><a href="#对象和类的介绍" class="headerlink" title="对象和类的介绍"></a>对象和类的介绍</h2><p><strong>对象</strong>：是对客观事物的抽象，对象是类的实例。</p>
+<p><strong>类</strong>：则是对象的抽象，类是一种抽象的数据类型（类似int、double、float等基本数据类型）。打个比方，现实生活中的车分为很多种，（如汽车、卡车、自行车、bus等），他们是存在的，而车则是它们总体的抽象的概述，他们统称都可以称作为车。</p>
+<h2 id="类的声明和实现"><a href="#类的声明和实现" class="headerlink" title="类的声明和实现"></a>类的声明和实现</h2><p><strong>类的声明</strong>：用来声明对象的属性和行为。</p>
+<pre><code>@interface Car {
+    @public int _wheels; //Car轮子属性
+    int _speed; //Car速度属性
+    NSString *_color; //Car颜色属性
+}
+@end
+</code></pre><p>在以上代码中，<code>@interface</code>代表Car类的声明，而<code>@end</code>则表示Car类声明的结束，而在括号中的代码为类声明对象的属性(成员变量)。</p>
+<p><strong> 类的实现</strong></p>
+<pre><code>@implementer Car: NSObject@end
+</code></pre><p>在以上代码中，<code>@implementer Car</code>代表Car类的实现，而<code>@end</code>则表示Car类实现的结束。<code>Car: NSObject</code>是Car继承NSObject，在后面的博文中会介绍。</p>
+<h2 id="对象的创建"><a href="#对象的创建" class="headerlink" title="对象的创建"></a>对象的创建</h2><p>首先，我先说一下对象和类在下Xcode中的声明和实现，现在代码演示一下。</p>
+<pre><code>#import &quot;Car.h&quot;
+#import &lt;Foundation/Foundation.h&gt;
+int main () { 
+    Car *bike = [[Car alloc]init];
+    Car *bus = [[Car alloc]init]; 
+    Car *taix = [[Car alloc]init];
+    return 0 ;
+}
+</code></pre><p>在这三行代码中的alloc为在Car类型中分别给（bike、bus、taix）指针所指向的对象各分配一块内存空间，并创建<em> wheels，</em> speed， *_color属性。而init将为（bike、bus、taix）所指向的对象的属性进行初始化。（也可以理解bike等是Car的对象）。</p>
+<h2 id="成员变量的直接赋值"><a href="#成员变量的直接赋值" class="headerlink" title="成员变量的直接赋值"></a>成员变量的直接赋值</h2><pre><code>#import &quot;Car.h&quot;
+#import &lt;Foundation/Foundation.h&gt;
+int main () { 
+    Car *bike = [[Car alloc]init];
+    bike-&gt;_wheels = 2; 
+    bike-&gt;_speed = 20;
+    bike-&gt;_colour = @&quot;红色&quot;; 
+    NSlog(@&quot;自行车的轮子有%d个,自行车的速度为%d km/h,自行车的颜色为%@&quot;,bike-&gt;_wheels,bike-&gt;_speed,bike-&gt;_colour); 
+    return 0;
+}
+</code></pre><p>在<code>（bike-&gt;_ wheels = 2; bike-&gt;_ speed = 20; bike-&gt;_ colour = @&quot;红色&quot;;）</code>代码中，我让bike对象，间接的访问Car类型中对对象声明的属性并把它们复制（需要在声明代码中➕@pubilc，因为他们的成员变量是被保护的，在后期学类的三大属性的封装后，便不再这样去操作）。所以NSlog(@”自行车的轮子有%d个,自行车的速度为%d km/h,自行车的颜色 为%@”,bike-&gt;_wheels,bike-&gt;_speed,bike-&gt;_colour);将为系统打印出你在代码中所设置的属性，此处需要用手操作，方可得出结论～</p>
+<h2 id="对象的方法声明、实现和调用。"><a href="#对象的方法声明、实现和调用。" class="headerlink" title="对象的方法声明、实现和调用。"></a>对象的方法声明、实现和调用。</h2><p><strong>方法声明</strong><br>Objective－C中的方法类大体似函数，同样具有：<strong>方法名、参数、返回值类型。</strong></p>
+<pre><code>@interface Car { 
+    @public int _wheels; //Car轮子属性
+    int _speed; //Car速度属性 
+    NSString *_color; //Car颜色属性
+}
+- (void) run;
+@end
+</code></pre><p>上面代码中的<code>- (void) run;</code>是Objective－C中对象方法必须以”－”开头，(void)必须用括号括住。</p>
+<p><strong>方法实现</strong></p>
+<pre><code>@implementer Car: NSObject
+- (void) run { 
+    NSlog(@“速度为%d的bike跑起来了!!!&quot;,_speed);
+}
+@end
+</code></pre><p><strong>方法调用</strong></p>
+<pre><code>#import &quot;Car.h&quot;
+#import &lt;Foundation/Foundation.h&gt;
+int main () { 
+    Car *bike = [[Car alloc]init]; 
+    [bike run];
+    return 0 ;
+}
+</code></pre><p>代码中<code>[bike run];</code>[A B] A方法执行者，B方法。所以此代码理解为：bike指针对象中发送run消息（消息机制）。运行一下，看看会输出什么东西 ^_^。</p>
+<h2 id="匿名对象"><a href="#匿名对象" class="headerlink" title="匿名对象"></a>匿名对象</h2><p><strong>个人理解：没有名字的对象</strong>。</p>
+<pre><code>#import &quot;Car.h
+#import &lt;Foundation/Foundation.h&gt;
+int main () { 
+    [[Car alloc]init]-&gt;_spped = 100;
+    [[[Car alloc]init]run]; 
+    return 0 ;
+}
+</code></pre><p>在上述代码<code>[[Car alloc]init]-&gt;_spped = 100;</code>中在Car类中创建并初始化一个对象，并且直接访问该对象中的 <code>_ speed</code>成员变量，并直接复制为100。而并没有指定某一个对象来进行此操作,<code>[[[Car alloc]init]run];</code>而此代码，给我们直观的角度时调用run方法，<strong>其实却不是我们的想要的结果300，而是0!</strong>原因是此时我们又重新创建并且初始化另一个对象，而这个对象的本身的_ speed的成员变量为0，和之前的我们所复制的300没有关系，原因很简单，它们两个并不是同一个对象，所以互不影响，所以第二个代码中调用的run方法，输出的结果会是0～</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/31/悟空和布玛为什么没有在一起？/" rel="next" title="悟空和布玛为什么没有在一起？">
+                <i class="fa fa-chevron-left"></i> 悟空和布玛为什么没有在一起？
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -303,8 +460,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="about/index.html"
-           data-title="关于" data-url="http://yoursite.com/about/index.html">
+      <div class="ds-thread" data-thread-key="2016/08/02/Objective-C-面向对象-对象和类/"
+           data-title="Objective-C 面向对象(对象和类)" data-url="http://yoursite.com/2016/08/02/Objective-C-面向对象-对象和类/">
       </div>
     
   </div>
@@ -328,8 +485,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <section class="site-overview sidebar-panel  sidebar-panel-active ">
+      <section class="site-overview sidebar-panel ">
         <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
           <img class="site-author-image" itemprop="image"
                src="/images/user_icon.jpg"
@@ -399,6 +565,17 @@
 
       </section>
 
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#对象和类的介绍"><span class="nav-number">1.</span> <span class="nav-text">对象和类的介绍</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#类的声明和实现"><span class="nav-number">2.</span> <span class="nav-text">类的声明和实现</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象的创建"><span class="nav-number">3.</span> <span class="nav-text">对象的创建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#成员变量的直接赋值"><span class="nav-number">4.</span> <span class="nav-text">成员变量的直接赋值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象的方法声明、实现和调用。"><span class="nav-number">5.</span> <span class="nav-text">对象的方法声明、实现和调用。</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#匿名对象"><span class="nav-number">6.</span> <span class="nav-text">匿名对象</span></a></li></ol></div>
+            
+          </div>
+        </section>
       
 
     </div>
@@ -502,6 +679,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
 
   
 
