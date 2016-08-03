@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-08-02T11:53:35.720Z</updated>
+  <updated>2016-08-03T23:27:42.035Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,13 +20,13 @@
     <link href="http://yoursite.com/2016/08/02/Objective-C-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1-%E5%AF%B9%E8%B1%A1%E5%92%8C%E7%B1%BB/"/>
     <id>http://yoursite.com/2016/08/02/Objective-C-面向对象-对象和类/</id>
     <published>2016-08-02T11:21:09.000Z</published>
-    <updated>2016-08-02T11:53:35.720Z</updated>
+    <updated>2016-08-03T23:27:42.035Z</updated>
     
     <content type="html"><![CDATA[<h2 id="对象和类的介绍"><a href="#对象和类的介绍" class="headerlink" title="对象和类的介绍"></a>对象和类的介绍</h2><p><strong>对象</strong>：是对客观事物的抽象，对象是类的实例。</p>
 <p><strong>类</strong>：则是对象的抽象，类是一种抽象的数据类型（类似int、double、float等基本数据类型）。打个比方，现实生活中的车分为很多种，（如汽车、卡车、自行车、bus等），他们是存在的，而车则是它们总体的抽象的概述，他们统称都可以称作为车。</p>
 <a id="more"></a>
 <h2 id="类的声明和实现"><a href="#类的声明和实现" class="headerlink" title="类的声明和实现"></a>类的声明和实现</h2><p><strong>类的声明</strong>：用来声明对象的属性和行为。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">@interface Car &#123;</div><div class="line">	@public int _wheels; //Car轮子属性</div><div class="line">    int _speed; //Car速度属性</div><div class="line">    NSString *_color; //Car颜色属性</div><div class="line">&#125;</div><div class="line">@end</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">@interface Car &#123;</div><div class="line">	@public</div><div class="line">	int _wheels; //Car轮子属性</div><div class="line">    int _speed; //Car速度属性</div><div class="line">    NSString *_color; //Car颜色属性</div><div class="line">&#125;</div><div class="line">@end</div></pre></td></tr></table></figure>
 <p>在以上代码中，<code>@interface</code>代表Car类的声明，而<code>@end</code>则表示Car类声明的结束，而在括号中的代码为类声明对象的属性(成员变量)。</p>
 <p><strong> 类的实现</strong></p>
 <pre><code>@implementer Car: NSObject@end
@@ -37,7 +37,7 @@
 <h2 id="成员变量的直接赋值"><a href="#成员变量的直接赋值" class="headerlink" title="成员变量的直接赋值"></a>成员变量的直接赋值</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">#import &quot;Car.h&quot;</div><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line">int main () &#123; </div><div class="line">    Car *bike = [[Car alloc]init];</div><div class="line">    bike-&gt;_wheels = 2; </div><div class="line">    bike-&gt;_speed = 20;</div><div class="line">    bike-&gt;_colour = @&quot;红色&quot;; </div><div class="line">    NSlog(@&quot;自行车的轮子有%d个,自行车的速度为%d km/h,自行车的颜色为%@&quot;,bike-&gt;_wheels,bike-&gt;_speed,bike-&gt;_colour); </div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>在<code>（bike-&gt;_ wheels = 2; bike-&gt;_ speed = 20; bike-&gt;_ colour = @&quot;红色&quot;;）</code>代码中，我让bike对象，间接的访问Car类型中对对象声明的属性并把它们复制（需要在声明代码中➕@pubilc，因为他们的成员变量是被保护的，在后期学类的三大属性的封装后，便不再这样去操作）。所以NSlog(@”自行车的轮子有%d个,自行车的速度为%d km/h,自行车的颜色 为%@”,bike-&gt;_wheels,bike-&gt;_speed,bike-&gt;_colour);将为系统打印出你在代码中所设置的属性，此处需要用手操作，方可得出结论～</p>
 <h2 id="对象的方法声明、实现和调用。"><a href="#对象的方法声明、实现和调用。" class="headerlink" title="对象的方法声明、实现和调用。"></a>对象的方法声明、实现和调用。</h2><p><strong>方法声明</strong><br>Objective－C中的方法类大体似函数，同样具有：<strong>方法名、参数、返回值类型。</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">@interface Car &#123; </div><div class="line">    @public int _wheels; //Car轮子属性</div><div class="line">    int _speed; //Car速度属性 </div><div class="line">    NSString *_color; //Car颜色属性</div><div class="line">&#125;</div><div class="line">- (void) run;</div><div class="line">@end</div></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">@interface Car &#123; </div><div class="line">    @public </div><div class="line">	int _wheels; //Car轮子属性</div><div class="line">    int _speed; //Car速度属性 </div><div class="line">    NSString *_color; //Car颜色属性</div><div class="line">&#125;</div><div class="line">- (void) run;</div><div class="line">@end</div></pre></td></tr></table></figure>
 <p>上面代码中的<code>- (void) run;</code>是Objective－C中对象方法必须以”－”开头，(void)必须用括号括住。</p>
 <p><strong>方法实现</strong></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">@implementer Car: NSObject</div><div class="line">- (void) run &#123; </div><div class="line">    NSlog(@“速度为%d的bike跑起来了!!!&quot;,_speed);</div><div class="line">&#125;</div><div class="line">@end</div></pre></td></tr></table></figure>
@@ -64,9 +64,9 @@
     <link href="http://yoursite.com/2016/07/31/%E6%82%9F%E7%A9%BA%E5%92%8C%E5%B8%83%E7%8E%9B%E4%B8%BA%E4%BB%80%E4%B9%88%E6%B2%A1%E6%9C%89%E5%9C%A8%E4%B8%80%E8%B5%B7%EF%BC%9F/"/>
     <id>http://yoursite.com/2016/07/31/悟空和布玛为什么没有在一起？/</id>
     <published>2016-07-31T03:28:31.000Z</published>
-    <updated>2016-08-02T03:45:28.262Z</updated>
+    <updated>2016-08-03T23:25:54.018Z</updated>
     
-    <content type="html"><![CDATA[<p><img src="https://www.teilim.com/content/images/photo/20160801.jpeg" alt="图片来源网络"></p>
+    <content type="html"><![CDATA[<p><img src="http://obcwlc71a.bkt.clouddn.com/20160731.jpeg" alt="图片来源网络"></p>
 <a id="more"></a>
 <p>碎碎念：鸟山明大师的力作《七龙珠》是众多80、90后共同的记忆。在我小的时候彩色电视还有放映，但是只放映到悟空和琪琪结婚后，后面的就不会再去放映了，当时每次都期盼着还会继续更新，可是却不尽人愿。后来得知 DVD 可以观看后面的剧情，就和发小小庞去镇子上的集市用仅有少数的零花钱去买了几张，都是挑着买，他买1、2、3，我就买4、5、6，就是用少数的钱看更多的动漫。至今我们还是龙珠的爱好者，为此我还收集了《七龙珠Z》全集的国语版，真的是陪我度过了我的童年。</p>
 <p>在《七龙珠》的故事中，不光是激烈的打斗，还教会了我们很多道理，心存善良、保护地球、坚持不懈…不都是我们向往的么？我是一个脑洞比较大的男生，喜欢思考一些奇怪的问题，也就有这篇文章的生成。</p>
@@ -88,7 +88,7 @@
     
     <summary type="html">
     
-      &lt;p&gt;&lt;img src=&quot;https://www.teilim.com/content/images/photo/20160801.jpeg&quot; alt=&quot;图片来源网络&quot;&gt;&lt;/p&gt;
+      &lt;p&gt;&lt;img src=&quot;http://obcwlc71a.bkt.clouddn.com/20160731.jpeg&quot; alt=&quot;图片来源网络&quot;&gt;&lt;/p&gt;
     
     </summary>
     
@@ -102,10 +102,10 @@
     <link href="http://yoursite.com/2016/07/29/hello-world/"/>
     <id>http://yoursite.com/2016/07/29/hello-world/</id>
     <published>2016-07-29T07:23:23.334Z</published>
-    <updated>2016-08-01T04:42:45.415Z</updated>
+    <updated>2016-08-03T23:25:24.098Z</updated>
     
     <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<p><img src="https://www.teilim.com/content/images/photo/helloWorld.png" alt="图片来源于网络"></p>
+<p><img src="http://obcwlc71a.bkt.clouddn.com/20160729.png" alt="图片来源于网络"></p>
 <a id="more"></a>
 <h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
@@ -120,7 +120,7 @@
     <summary type="html">
     
       &lt;p&gt;Welcome to &lt;a href=&quot;https://hexo.io/&quot;&gt;Hexo&lt;/a&gt;! This is your very first post. Check &lt;a href=&quot;https://hexo.io/docs/&quot;&gt;documentation&lt;/a&gt; for more info. If you get any problems when using Hexo, you can find the answer in &lt;a href=&quot;https://hexo.io/docs/troubleshooting.html&quot;&gt;troubleshooting&lt;/a&gt; or you can ask me on &lt;a href=&quot;https://github.com/hexojs/hexo/issues&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;https://www.teilim.com/content/images/photo/helloWorld.png&quot; alt=&quot;图片来源于网络&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://obcwlc71a.bkt.clouddn.com/20160729.png&quot; alt=&quot;图片来源于网络&quot;&gt;&lt;/p&gt;
     
     </summary>
     
