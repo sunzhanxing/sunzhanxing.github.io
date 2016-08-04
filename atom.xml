@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-08-04T03:14:42.885Z</updated>
+  <updated>2016-08-04T04:16:42.932Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,25 +16,11 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title></title>
-    <link href="http://yoursite.com/2016/08/04/Objective-C-%E4%B8%89%E5%A4%A7%E7%89%B9%E6%80%A7%EF%BC%88%E7%BB%A7%E6%89%BF%E3%80%81%E5%B0%81%E8%A3%85%E3%80%81%E5%A4%9A%E6%80%81%EF%BC%89/"/>
-    <id>http://yoursite.com/2016/08/04/Objective-C-三大特性（继承、封装、多态）/</id>
-    <published>2016-08-04T03:14:42.885Z</published>
-    <updated>2016-08-04T03:14:42.885Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>Objective-C 面向对象(对象和类)</title>
-    <link href="http://yoursite.com/2016/08/02/Objective-C-%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%EF%BC%88%E5%AF%B9%E8%B1%A1%E5%92%8C%E7%B1%BB%EF%BC%89/"/>
-    <id>http://yoursite.com/2016/08/02/Objective-C-面向对象（对象和类）/</id>
+    <title>Objective-C 面向对象 ~ 对象和类</title>
+    <link href="http://yoursite.com/2016/08/02/20160802/"/>
+    <id>http://yoursite.com/2016/08/02/20160802/</id>
     <published>2016-08-02T11:21:09.000Z</published>
-    <updated>2016-08-04T00:15:22.195Z</updated>
+    <updated>2016-08-04T04:16:42.932Z</updated>
     
     <content type="html"><![CDATA[<h2 id="对象和类的介绍"><a href="#对象和类的介绍" class="headerlink" title="对象和类的介绍"></a>对象和类的介绍</h2><p><strong>对象</strong>：是对客观事物的抽象，对象是类的实例。<br><strong>类</strong>：则是对象的抽象，类是一种抽象的数据类型（类似int、double、float等基本数据类型）。打个比方，现实生活中的车分为很多种，（如汽车、卡车、自行车、bus等），他们是存在的，而车则是它们总体的抽象的概述，他们统称都可以称作为车。</p>
 <a id="more"></a>
@@ -69,12 +55,14 @@
     </summary>
     
     
+      <category term="Objective-C" scheme="http://yoursite.com/tags/Objective-C/"/>
+    
   </entry>
   
   <entry>
     <title>悟空和布玛为什么没有在一起？</title>
-    <link href="http://yoursite.com/2016/07/31/%E6%82%9F%E7%A9%BA%E5%92%8C%E5%B8%83%E7%8E%9B%E4%B8%BA%E4%BB%80%E4%B9%88%E6%B2%A1%E6%9C%89%E5%9C%A8%E4%B8%80%E8%B5%B7%EF%BC%9F/"/>
-    <id>http://yoursite.com/2016/07/31/悟空和布玛为什么没有在一起？/</id>
+    <link href="http://yoursite.com/2016/07/31/20160731/"/>
+    <id>http://yoursite.com/2016/07/31/20160731/</id>
     <published>2016-07-31T03:28:31.000Z</published>
     <updated>2016-08-04T02:00:13.621Z</updated>
     
@@ -112,8 +100,8 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="http://yoursite.com/2016/07/29/hello-world/"/>
-    <id>http://yoursite.com/2016/07/29/hello-world/</id>
+    <link href="http://yoursite.com/2016/07/29/20160729/"/>
+    <id>http://yoursite.com/2016/07/29/20160729/</id>
     <published>2016-07-29T07:23:23.334Z</published>
     <updated>2016-08-03T23:41:02.697Z</updated>
     
