@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-08-04T04:16:42.932Z</updated>
+  <updated>2016-08-04T04:39:16.104Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,11 +16,33 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>Objective-C 面向对象 ~ 对象和类</title>
+    <title>Objective-C 三大特性：封装、继承、多态</title>
+    <link href="http://yoursite.com/2016/08/04/20160804/"/>
+    <id>http://yoursite.com/2016/08/04/20160804/</id>
+    <published>2016-08-04T04:24:17.000Z</published>
+    <updated>2016-08-04T04:39:16.104Z</updated>
+    
+    <content type="html"><![CDATA[<p>as打扫打扫</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;as打扫打扫&lt;/p&gt;
+
+    
+    </summary>
+    
+    
+      <category term="Objective-C" scheme="http://yoursite.com/tags/Objective-C/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Objective-C 面向对象：对象和类</title>
     <link href="http://yoursite.com/2016/08/02/20160802/"/>
     <id>http://yoursite.com/2016/08/02/20160802/</id>
     <published>2016-08-02T11:21:09.000Z</published>
-    <updated>2016-08-04T04:16:42.932Z</updated>
+    <updated>2016-08-04T04:41:53.316Z</updated>
     
     <content type="html"><![CDATA[<h2 id="对象和类的介绍"><a href="#对象和类的介绍" class="headerlink" title="对象和类的介绍"></a>对象和类的介绍</h2><p><strong>对象</strong>：是对客观事物的抽象，对象是类的实例。<br><strong>类</strong>：则是对象的抽象，类是一种抽象的数据类型（类似int、double、float等基本数据类型）。打个比方，现实生活中的车分为很多种，（如汽车、卡车、自行车、bus等），他们是存在的，而车则是它们总体的抽象的概述，他们统称都可以称作为车。</p>
 <a id="more"></a>
