@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-08-04T00:15:22.195Z</updated>
+  <updated>2016-08-04T03:14:42.885Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,20 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title></title>
+    <link href="http://yoursite.com/2016/08/04/Objective-C-%E4%B8%89%E5%A4%A7%E7%89%B9%E6%80%A7%EF%BC%88%E7%BB%A7%E6%89%BF%E3%80%81%E5%B0%81%E8%A3%85%E3%80%81%E5%A4%9A%E6%80%81%EF%BC%89/"/>
+    <id>http://yoursite.com/2016/08/04/Objective-C-三大特性（继承、封装、多态）/</id>
+    <published>2016-08-04T03:14:42.885Z</published>
+    <updated>2016-08-04T03:14:42.885Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
   
   <entry>
     <title>Objective-C 面向对象(对象和类)</title>
