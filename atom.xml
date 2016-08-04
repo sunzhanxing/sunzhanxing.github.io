@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-08-04T06:29:29.905Z</updated>
+  <updated>2016-08-04T06:37:44.279Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,11 +20,11 @@
     <link href="http://yoursite.com/2016/08/04/Objective-C-%E7%B1%BB%E6%96%B9%E6%B3%95/"/>
     <id>http://yoursite.com/2016/08/04/Objective-C-类方法/</id>
     <published>2016-08-04T06:24:40.000Z</published>
-    <updated>2016-08-04T06:29:29.905Z</updated>
+    <updated>2016-08-04T06:37:44.279Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="类方法"><a href="#类方法" class="headerlink" title="类方法"></a>类方法</h2><p><strong>1.类方法的概述</strong>：类的方法调用，不同于对象方法调用。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Car *bike = [[Car alloc]init];</div><div class="line">[bike setWheels:100];</div></pre></td></tr></table></figure>
+    <content type="html"><![CDATA[<h2 id="类方法"><a href="#类方法" class="headerlink" title="类方法"></a>类方法</h2><h3 id="1-类方法的概述：类的方法调用，不同于对象方法调用。"><a href="#1-类方法的概述：类的方法调用，不同于对象方法调用。" class="headerlink" title="1.类方法的概述：类的方法调用，不同于对象方法调用。"></a><strong>1.类方法的概述</strong>：类的方法调用，不同于对象方法调用。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Car *bike = [[Car alloc]init];</div><div class="line">[bike setWheels:100];</div></pre></td></tr></table></figure>
 <p>在上面代码中，<code>bike对象</code> 调用 <code>setWheels方法</code> 并赋值100，这是方法的调用，而类方法则是说，不用创建新的对象，直接使用类可以调用。</p>
+<a id="more"></a>
 <p>声明：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line">@interface Car : NSObject &#123;</div><div class="line"></div><div class="line">&#125;</div><div class="line">+ (void) printClassName;</div><div class="line">- (void) printClassName;</div><div class="line">@end</div></pre></td></tr></table></figure>
 <p>实现：#import “Car.h”</p>
@@ -32,21 +32,19 @@
 <p>主函数：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">#import &quot;Car.h&quot;</div><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    [Car printClassName];</div><div class="line">    return 0 ;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>此处答案需要自己动手运行得出～</p>
-<p><strong>2.类方法和对象方法的区别</strong>：类方法不同于对象方法的是：类方法都是以”+”开头。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">#import &quot;Car.h&quot;</div><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    Car *bike = [[Car alloc]init];</div><div class="line">    [Car printClassName]; </div><div class="line">    [bike printClassName];</div><div class="line">    return 0 ;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="2-类方法和对象方法的区别：类方法不同于对象方法的是：类方法都是以”-”开头。"><a href="#2-类方法和对象方法的区别：类方法不同于对象方法的是：类方法都是以”-”开头。" class="headerlink" title="2.类方法和对象方法的区别：类方法不同于对象方法的是：类方法都是以”+”开头。"></a><strong>2.类方法和对象方法的区别</strong>：类方法不同于对象方法的是：类方法都是以”+”开头。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">#import &quot;Car.h&quot;</div><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    Car *bike = [[Car alloc]init];</div><div class="line">    [Car printClassName]; </div><div class="line">    [bike printClassName];</div><div class="line">    return 0 ;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>运行一下上面代码，你会有意想不到的效果(继续使用文章开篇的 <code>Car.h</code> 和 <code>Car.m</code> )</p>
 <p>此处的代码在内存中模拟的分配为下图：</p>
 <p><img src="http://obcwlc71a.bkt.clouddn.com/2016080402.png" alt="alt"></p>
 <p>首先在Car类中创建并初始化一块对象，并使用bike指针去访问对象。而 <code>[bike printClassName];</code> ， <code>bike</code> 指向的对象将向 <code>printClassName</code> 方法发送消息，去访问这个方法，通过isa指针将访问Car类中的方法。</p>
-<p><strong>3.类方法使用注意</strong>：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">#import &quot;Car.h&quot;</div><div class="line">@implementation Car</div><div class="line">+ (void) printClassName &#123;</div><div class="line">    [Car printClassName]; </div><div class="line">    NSLog(@&quot;成功的调用Car的类方法!!!&quot;);</div><div class="line">&#125;</div><div class="line">- (void) printClassName &#123;</div><div class="line">    NSLog(@&quot;成功的调用bike对象方法!!!&quot;);</div><div class="line">&#125;</div><div class="line">@end</div></pre></td></tr></table></figure>
+<h3 id="3-类方法使用注意："><a href="#3-类方法使用注意：" class="headerlink" title="3.类方法使用注意："></a><strong>3.类方法使用注意</strong>：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">#import &quot;Car.h&quot;</div><div class="line">@implementation Car</div><div class="line">+ (void) printClassName &#123;</div><div class="line">    [Car printClassName]; </div><div class="line">    NSLog(@&quot;成功的调用Car的类方法!!!&quot;);</div><div class="line">&#125;</div><div class="line">- (void) printClassName &#123;</div><div class="line">    NSLog(@&quot;成功的调用bike对象方法!!!&quot;);</div><div class="line">&#125;</div><div class="line">@end</div></pre></td></tr></table></figure>
 <p>在之前的代码基础上在 <code>+ (void) printClassName;</code> 类方法中加上 <code>[Car printClassName];</code> 代码，运行下会出现什么情况，这个情况就是类方法使用注意的问题。</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;类方法&quot;&gt;&lt;a href=&quot;#类方法&quot; class=&quot;headerlink&quot; title=&quot;类方法&quot;&gt;&lt;/a&gt;类方法&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;1.类方法的概述&lt;/strong&gt;：类的方法调用，不同于对象方法调用。&lt;/p&gt;
-&lt;figure class=&quot;hig
+      &lt;h2 id=&quot;类方法&quot;&gt;&lt;a href=&quot;#类方法&quot; class=&quot;headerlink&quot; title=&quot;类方法&quot;&gt;&lt;/a&gt;类方法&lt;/h2&gt;&lt;h3 id=&quot;1-类方法的概述：类的方法调用，不同于对象方法调用。&quot;&gt;&lt;a href=&quot;#1-类方法的概述：类的方法调用，不同于对象方法调用。&quot; class=&quot;headerlink&quot; title=&quot;1.类方法的概述：类的方法调用，不同于对象方法调用。&quot;&gt;&lt;/a&gt;&lt;strong&gt;1.类方法的概述&lt;/strong&gt;：类的方法调用，不同于对象方法调用。&lt;/h3&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;Car *bike = [[Car alloc]init];&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;[bike setWheels:100];&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;在上面代码中，&lt;code&gt;bike对象&lt;/code&gt; 调用 &lt;code&gt;setWheels方法&lt;/code&gt; 并赋值100，这是方法的调用，而类方法则是说，不用创建新的对象，直接使用类可以调用。&lt;/p&gt;
     
     </summary>
     
@@ -57,13 +55,40 @@
   
   <entry>
     <title>Objective-C 三大特性：封装、继承、多态</title>
-    <link href="http://yoursite.com/2016/08/04/20160804/"/>
-    <id>http://yoursite.com/2016/08/04/20160804/</id>
+    <link href="http://yoursite.com/2016/08/04/Objective-C%20%E4%B8%89%E5%A4%A7%E7%89%B9%E6%80%A7%EF%BC%9A%E5%B0%81%E8%A3%85%E3%80%81%E7%BB%A7%E6%89%BF%E3%80%81%E5%A4%9A%E6%80%81/"/>
+    <id>http://yoursite.com/2016/08/04/Objective-C 三大特性：封装、继承、多态/</id>
     <published>2016-08-04T04:24:17.000Z</published>
-    <updated>2016-08-04T06:29:57.834Z</updated>
+    <updated>2016-08-04T07:33:13.025Z</updated>
     
     <content type="html"><![CDATA[<p>初学面向对象程序设计中的类有三大特性：继承，封装，多态，这个也是介绍类的时候，必须掌握的前提，所以今天来讲解下Objective－C中类的三大特性：</p>
-<h2 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h2>]]></content>
+<h2 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h2><h3 id="封装：隐藏内部（定义类、定义属性、定义方法。）实现，稳定外部接口。"><a href="#封装：隐藏内部（定义类、定义属性、定义方法。）实现，稳定外部接口。" class="headerlink" title="封装：隐藏内部（定义类、定义属性、定义方法。）实现，稳定外部接口。"></a>封装：隐藏内部（定义类、定义属性、定义方法。）实现，稳定外部接口。</h3><p><strong><code>@propert</code> 和 <code>@synthesize</code> （只是封装问题，<code>@property</code>详细后续会介绍）</strong></p>
+<p><code>@propert</code> 声明类的 <code>setter</code> <code>getter</code> 方法。（内部封装）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line">@interface Car : NSObject &#123;</div><div class="line">    int _wheels;   //Car轮子属性</div><div class="line">    int  _speed;   //Car速度属性</div><div class="line">&#125;</div><div class="line">@property int wheels,speed;</div><div class="line">- (void) print;</div><div class="line">@end</div></pre></td></tr></table></figure>
+<p><code>@property int wheels,speed;</code> <code>setter</code> 方法本身是返回 <code>void</code> 类型，并且是对象调用，所以会先出现 <code>-(void)</code> 而后，系统将在 <code>int类型</code> wheels中w大写，并且参数是 <code>int wheels</code> 。生成的详细代码如下。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">- (void) setWheels:(int) wheels &#123;</div><div class="line">    _wheels = wheels;</div><div class="line">&#125;</div><div class="line">- (int)wheels &#123;</div><div class="line">    return _wheels;</div><div class="line">&#125;</div><div class="line">- (void) setSpeed:(int) speed &#123;</div><div class="line">    _speed = speed;</div><div class="line">&#125;</div><div class="line">- (int)wheels &#123;</div><div class="line">    return _speed;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>@synthesize</code> 实现类的 <code>setter</code> <code>getter</code> 方法。代码如下。（在现在的Xcode中，可以省略，但不建议这样操作。）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">@synthesize wheels =_wheels ,speed = _speed;</div><div class="line">- (void) print &#123;</div><div class="line">    NSLog(@&quot;bike的轮子数量为%i, 速度为%i      !!!&quot;,_wheels,_speed);</div><div class="line">&#125;</div><div class="line">@end</div></pre></td></tr></table></figure>
+<p><code>@synthesize wheels =_wheels speed = _speed;</code>代码必须写在 <code>@implementation</code> 和 <code>@end</code> 之间，此代码的的意思是将 <code>@property wheels,speed,</code> 进行实现，而 <code>wheels =_wheels ,speed = _speed</code> 是将访问方法实现里面 <code>_wheels</code> 和 <code>_speed</code> 的成员变量并进行给赋值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">int main(int argc, const char * argv[]) &#123;  </div><div class="line">    Car *bike = [[Car alloc]init];</div><div class="line">    [bike setWheels:100];</div><div class="line">    [bike setSpeed:50];</div><div class="line">    [bike print];</div><div class="line">    return 0 ;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>此处答案需要自己动手运行得出～</p>
+<h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><h3 id="概念：继承是指一个对象直接使用另一对象的属性-非私有成员-和方法，使得子类具有父类的属性和方法。"><a href="#概念：继承是指一个对象直接使用另一对象的属性-非私有成员-和方法，使得子类具有父类的属性和方法。" class="headerlink" title="概念：继承是指一个对象直接使用另一对象的属性(非私有成员)和方法，使得子类具有父类的属性和方法。"></a>概念：继承是指一个对象直接使用另一对象的属性(非私有成员)和方法，使得子类具有父类的属性和方法。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">@interface Car : NSObject &#123;</div><div class="line">    int _wheels;   //Car轮子属性</div><div class="line">    int  _speed;   //Car速度属性</div><div class="line">&#125;</div><div class="line">@property int wheels,speed;</div><div class="line">- (void) print;</div></pre></td></tr></table></figure>
+<p>以上代码中，<code>Car</code> 表示子类，<code>NSObject</code> 表示夫类（超类或根类，它们没有夫类）。而我重新创建 <code>Bike</code> 和 <code>Bus</code> 类，继承 <code>Car</code> 类，也就是说，它们将拥有 <code>Car</code> 类的对象属性和行为在图中的反应：</p>
+<p><img src="http://obcwlc71a.bkt.clouddn.com/2016080401.png" alt="alt"></p>
+<p>上面的<code>Bike</code>和<code>Bus</code>只是简单的声明和实现，并没有具体的代码，给出主函数，放到你的Xcode跑一下，看看有什么效果～</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">@synthesize wheels =_wheels ,speed = _speed;</div><div class="line">- (void) print &#123;</div><div class="line">    NSLog(@&quot;Car的轮子数量为%i, 速度为%i      !!!&quot;,_wheels,_speed);</div><div class="line">&#125;</div><div class="line">@end</div></pre></td></tr></table></figure>
+<p>主函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    Bike *bike = [[Bike alloc]init];</div><div class="line">    [bike setWheels:2];</div><div class="line">    [bike setSpeed:10];</div><div class="line">    [bike wheels];</div><div class="line">    [bike print];</div><div class="line">    [bike retain];</div><div class="line">    return 0 ;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="继承中对问题的分析："><a href="#继承中对问题的分析：" class="headerlink" title="继承中对问题的分析："></a>继承中对问题的分析：</h3><p>1.在继承中，子类对象如何正确发送方法的机制</p>
+<p>每一个Objective－C对象都有一个隐藏的指针（<code>isa</code>）指向类的代码，当对象发送消息的时，当前的对象会首先在当前类里去查找对应的方法，如果找到的话，直接执行代码；如没有找到，则去父类里找对应的方法，如果找到的话，就会执行。如果找不到继续按照这样的原则，沿着继承链向上查找，直到根类NSObject（这个类是Objective - C所有类的根类<br>），如果在这个NSObject类中仍找不到相应的方法，那么程序直接崩溃掉。</p>
+<p>2.如何在子类里面，直接调用父类方法或者父类的实例变量。（后续会特意开一章介绍<code>Super</code>与<code>self</code>）</p>
+<p>采用<code>Super</code>关键字，需要注意的是，<code>Super</code> 是一个关键字，当你使用 <code>Super</code> 的时候，编译器知道，你现在的目的只是访问父类的一些元素。（这里的 <code>Super</code> 与 <code>self</code> 并不是一个概念：<code>super</code> 是一个关键字，而 <code>self</code> 只是一种调用机制，并不是关键字）</p>
+<h2 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h2><h3 id="多态：不同对象对同一消息的不同响应，子类可以重写父类的方法（父类指针指向子类对象）"><a href="#多态：不同对象对同一消息的不同响应，子类可以重写父类的方法（父类指针指向子类对象）" class="headerlink" title="多态：不同对象对同一消息的不同响应，子类可以重写父类的方法（父类指针指向子类对象）"></a>多态：不同对象对同一消息的不同响应，子类可以重写父类的方法（父类指针指向子类对象）</h3><p><strong>重写的概念</strong>:重写的概念，只存在于继承语法中。是指：父类声明一个方法，但是父类并没有真正意义的去实现这个方法（或者说实现了，向按照自己的想法再去实现下），而是在子类中真正的实现方法的功能，这种形式就叫做对这个方法的重写。（重写方法的目的是为了实现面向对象编程里的多态）。</p>
+<p>例如：假设车类<code>Car</code>都用有一个相同的 方法 <code>-(void)print;</code> ,那 <code>Bus</code> 属于车类，<code>Bike</code> 也属于车类，都继承了 <code>Car</code> 类后，实现各自的 <code>print</code> ，但是调用时我们只需调用各自的 <code>print</code> 方法。也就是不同的对象以自己的方式响应了相同的消息（响应了 <code>print</code> 这个方法）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">@implementation Bus</div><div class="line">- (void) print &#123;</div><div class="line">    NSLog(@&quot;Bus的轮子数量为%i, 速度为%i的车子跑起来    了!!!&quot;,_wheels,_speed);</div><div class="line">&#125;</div><div class="line"></div><div class="line">@interface Bus : Car</div><div class="line">- (void) print;</div></pre></td></tr></table></figure>
+<p>主函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">int main(int argc, const char * argv[]) &#123;   </div><div class="line">    Car *bus = [[Bus alloc]init];</div><div class="line">    [bus setWheels:4];</div><div class="line">    [bus setSpeed:100];</div><div class="line">    [bus wheels];</div><div class="line">    [bus print];</div><div class="line">    [Bus retain];</div><div class="line">    return 0 ;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>此处答案需要运行得出～</p>
+]]></content>
     
     <summary type="html">
     
@@ -79,8 +104,8 @@
   
   <entry>
     <title>Objective-C 面向对象：对象和类</title>
-    <link href="http://yoursite.com/2016/08/02/20160802/"/>
-    <id>http://yoursite.com/2016/08/02/20160802/</id>
+    <link href="http://yoursite.com/2016/08/02/Objective-C%20%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%EF%BC%9A%E5%AF%B9%E8%B1%A1%E5%92%8C%E7%B1%BB/"/>
+    <id>http://yoursite.com/2016/08/02/Objective-C 面向对象：对象和类/</id>
     <published>2016-08-02T11:21:09.000Z</published>
     <updated>2016-08-04T04:41:53.316Z</updated>
     
@@ -123,8 +148,8 @@
   
   <entry>
     <title>悟空和布玛为什么没有在一起？</title>
-    <link href="http://yoursite.com/2016/07/31/20160731/"/>
-    <id>http://yoursite.com/2016/07/31/20160731/</id>
+    <link href="http://yoursite.com/2016/07/31/%E6%82%9F%E7%A9%BA%E5%92%8C%E5%B8%83%E7%8E%9B%E4%B8%BA%E4%BB%80%E4%B9%88%E6%B2%A1%E6%9C%89%E5%9C%A8%E4%B8%80%E8%B5%B7%EF%BC%9F/"/>
+    <id>http://yoursite.com/2016/07/31/悟空和布玛为什么没有在一起？/</id>
     <published>2016-07-31T03:28:31.000Z</published>
     <updated>2016-08-04T02:00:13.621Z</updated>
     
@@ -162,8 +187,8 @@
   
   <entry>
     <title>Hello World</title>
-    <link href="http://yoursite.com/2016/07/29/20160729/"/>
-    <id>http://yoursite.com/2016/07/29/20160729/</id>
+    <link href="http://yoursite.com/2016/07/29/Hello%20World/"/>
+    <id>http://yoursite.com/2016/07/29/Hello World/</id>
     <published>2016-07-29T07:23:23.334Z</published>
     <updated>2016-08-03T23:41:02.697Z</updated>
     

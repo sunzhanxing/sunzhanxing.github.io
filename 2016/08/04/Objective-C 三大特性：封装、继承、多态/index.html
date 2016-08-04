@@ -99,18 +99,26 @@
 
 
 <meta name="description" content="初学面向对象程序设计中的类有三大特性：继承，封装，多态，这个也是介绍类的时候，必须掌握的前提，所以今天来讲解下Objective－C中类的三大特性：
-封装">
+封装封装：隐藏内部（定义类、定义属性、定义方法。）实现，稳定外部接口。@propert 和 @synthesize （只是封装问题，@property详细后续会介绍）
+@propert 声明类的 setter getter 方法。（内部封装）
+123">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Objective-C 三大特性：封装、继承、多态">
-<meta property="og:url" content="http://yoursite.com/2016/08/04/20160804/index.html">
+<meta property="og:url" content="http://yoursite.com/2016/08/04/Objective-C 三大特性：封装、继承、多态/index.html">
 <meta property="og:site_name" content="Sunnyzx's Notes">
 <meta property="og:description" content="初学面向对象程序设计中的类有三大特性：继承，封装，多态，这个也是介绍类的时候，必须掌握的前提，所以今天来讲解下Objective－C中类的三大特性：
-封装">
-<meta property="og:updated_time" content="2016-08-04T06:29:57.834Z">
+封装封装：隐藏内部（定义类、定义属性、定义方法。）实现，稳定外部接口。@propert 和 @synthesize （只是封装问题，@property详细后续会介绍）
+@propert 声明类的 setter getter 方法。（内部封装）
+123">
+<meta property="og:image" content="http://obcwlc71a.bkt.clouddn.com/2016080401.png">
+<meta property="og:updated_time" content="2016-08-04T07:33:13.025Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Objective-C 三大特性：封装、继承、多态">
 <meta name="twitter:description" content="初学面向对象程序设计中的类有三大特性：继承，封装，多态，这个也是介绍类的时候，必须掌握的前提，所以今天来讲解下Objective－C中类的三大特性：
-封装">
+封装封装：隐藏内部（定义类、定义属性、定义方法。）实现，稳定外部接口。@propert 和 @synthesize （只是封装问题，@property详细后续会介绍）
+@propert 声明类的 setter getter 方法。（内部封装）
+123">
+<meta name="twitter:image" content="http://obcwlc71a.bkt.clouddn.com/2016080401.png">
 
 
 
@@ -131,7 +139,7 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/08/04/20160804/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/08/04/Objective-C 三大特性：封装、继承、多态/"/>
 
   <title> Objective-C 三大特性：封装、继承、多态 | Sunnyzx's Notes </title>
 </head>
@@ -306,8 +314,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/08/04/20160804/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/04/20160804/" itemprop="commentsCount"></span>
+                <a href="/2016/08/04/Objective-C 三大特性：封装、继承、多态/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/04/Objective-C 三大特性：封装、继承、多态/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -317,7 +325,7 @@
 
           
           
-             <span id="/2016/08/04/20160804/" class="leancloud_visitors" data-flag-title="Objective-C 三大特性：封装、继承、多态">
+             <span id="/2016/08/04/Objective-C 三大特性：封装、继承、多态/" class="leancloud_visitors" data-flag-title="Objective-C 三大特性：封装、继承、多态">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -340,7 +348,34 @@
 
       
         <p>初学面向对象程序设计中的类有三大特性：继承，封装，多态，这个也是介绍类的时候，必须掌握的前提，所以今天来讲解下Objective－C中类的三大特性：</p>
-<h2 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h2>
+<h2 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h2><h3 id="封装：隐藏内部（定义类、定义属性、定义方法。）实现，稳定外部接口。"><a href="#封装：隐藏内部（定义类、定义属性、定义方法。）实现，稳定外部接口。" class="headerlink" title="封装：隐藏内部（定义类、定义属性、定义方法。）实现，稳定外部接口。"></a>封装：隐藏内部（定义类、定义属性、定义方法。）实现，稳定外部接口。</h3><p><strong><code>@propert</code> 和 <code>@synthesize</code> （只是封装问题，<code>@property</code>详细后续会介绍）</strong></p>
+<p><code>@propert</code> 声明类的 <code>setter</code> <code>getter</code> 方法。（内部封装）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line">@interface Car : NSObject &#123;</div><div class="line">    int _wheels;   //Car轮子属性</div><div class="line">    int  _speed;   //Car速度属性</div><div class="line">&#125;</div><div class="line">@property int wheels,speed;</div><div class="line">- (void) print;</div><div class="line">@end</div></pre></td></tr></table></figure>
+<p><code>@property int wheels,speed;</code> <code>setter</code> 方法本身是返回 <code>void</code> 类型，并且是对象调用，所以会先出现 <code>-(void)</code> 而后，系统将在 <code>int类型</code> wheels中w大写，并且参数是 <code>int wheels</code> 。生成的详细代码如下。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">- (void) setWheels:(int) wheels &#123;</div><div class="line">    _wheels = wheels;</div><div class="line">&#125;</div><div class="line">- (int)wheels &#123;</div><div class="line">    return _wheels;</div><div class="line">&#125;</div><div class="line">- (void) setSpeed:(int) speed &#123;</div><div class="line">    _speed = speed;</div><div class="line">&#125;</div><div class="line">- (int)wheels &#123;</div><div class="line">    return _speed;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>@synthesize</code> 实现类的 <code>setter</code> <code>getter</code> 方法。代码如下。（在现在的Xcode中，可以省略，但不建议这样操作。）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">@synthesize wheels =_wheels ,speed = _speed;</div><div class="line">- (void) print &#123;</div><div class="line">    NSLog(@&quot;bike的轮子数量为%i, 速度为%i      !!!&quot;,_wheels,_speed);</div><div class="line">&#125;</div><div class="line">@end</div></pre></td></tr></table></figure>
+<p><code>@synthesize wheels =_wheels speed = _speed;</code>代码必须写在 <code>@implementation</code> 和 <code>@end</code> 之间，此代码的的意思是将 <code>@property wheels,speed,</code> 进行实现，而 <code>wheels =_wheels ,speed = _speed</code> 是将访问方法实现里面 <code>_wheels</code> 和 <code>_speed</code> 的成员变量并进行给赋值。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">int main(int argc, const char * argv[]) &#123;  </div><div class="line">    Car *bike = [[Car alloc]init];</div><div class="line">    [bike setWheels:100];</div><div class="line">    [bike setSpeed:50];</div><div class="line">    [bike print];</div><div class="line">    return 0 ;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>此处答案需要自己动手运行得出～</p>
+<h2 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h2><h3 id="概念：继承是指一个对象直接使用另一对象的属性-非私有成员-和方法，使得子类具有父类的属性和方法。"><a href="#概念：继承是指一个对象直接使用另一对象的属性-非私有成员-和方法，使得子类具有父类的属性和方法。" class="headerlink" title="概念：继承是指一个对象直接使用另一对象的属性(非私有成员)和方法，使得子类具有父类的属性和方法。"></a>概念：继承是指一个对象直接使用另一对象的属性(非私有成员)和方法，使得子类具有父类的属性和方法。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">@interface Car : NSObject &#123;</div><div class="line">    int _wheels;   //Car轮子属性</div><div class="line">    int  _speed;   //Car速度属性</div><div class="line">&#125;</div><div class="line">@property int wheels,speed;</div><div class="line">- (void) print;</div></pre></td></tr></table></figure>
+<p>以上代码中，<code>Car</code> 表示子类，<code>NSObject</code> 表示夫类（超类或根类，它们没有夫类）。而我重新创建 <code>Bike</code> 和 <code>Bus</code> 类，继承 <code>Car</code> 类，也就是说，它们将拥有 <code>Car</code> 类的对象属性和行为在图中的反应：</p>
+<p><img src="http://obcwlc71a.bkt.clouddn.com/2016080401.png" alt="alt"></p>
+<p>上面的<code>Bike</code>和<code>Bus</code>只是简单的声明和实现，并没有具体的代码，给出主函数，放到你的Xcode跑一下，看看有什么效果～</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">@synthesize wheels =_wheels ,speed = _speed;</div><div class="line">- (void) print &#123;</div><div class="line">    NSLog(@&quot;Car的轮子数量为%i, 速度为%i      !!!&quot;,_wheels,_speed);</div><div class="line">&#125;</div><div class="line">@end</div></pre></td></tr></table></figure>
+<p>主函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    Bike *bike = [[Bike alloc]init];</div><div class="line">    [bike setWheels:2];</div><div class="line">    [bike setSpeed:10];</div><div class="line">    [bike wheels];</div><div class="line">    [bike print];</div><div class="line">    [bike retain];</div><div class="line">    return 0 ;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="继承中对问题的分析："><a href="#继承中对问题的分析：" class="headerlink" title="继承中对问题的分析："></a>继承中对问题的分析：</h3><p>1.在继承中，子类对象如何正确发送方法的机制</p>
+<p>每一个Objective－C对象都有一个隐藏的指针（<code>isa</code>）指向类的代码，当对象发送消息的时，当前的对象会首先在当前类里去查找对应的方法，如果找到的话，直接执行代码；如没有找到，则去父类里找对应的方法，如果找到的话，就会执行。如果找不到继续按照这样的原则，沿着继承链向上查找，直到根类NSObject（这个类是Objective - C所有类的根类<br>），如果在这个NSObject类中仍找不到相应的方法，那么程序直接崩溃掉。</p>
+<p>2.如何在子类里面，直接调用父类方法或者父类的实例变量。（后续会特意开一章介绍<code>Super</code>与<code>self</code>）</p>
+<p>采用<code>Super</code>关键字，需要注意的是，<code>Super</code> 是一个关键字，当你使用 <code>Super</code> 的时候，编译器知道，你现在的目的只是访问父类的一些元素。（这里的 <code>Super</code> 与 <code>self</code> 并不是一个概念：<code>super</code> 是一个关键字，而 <code>self</code> 只是一种调用机制，并不是关键字）</p>
+<h2 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h2><h3 id="多态：不同对象对同一消息的不同响应，子类可以重写父类的方法（父类指针指向子类对象）"><a href="#多态：不同对象对同一消息的不同响应，子类可以重写父类的方法（父类指针指向子类对象）" class="headerlink" title="多态：不同对象对同一消息的不同响应，子类可以重写父类的方法（父类指针指向子类对象）"></a>多态：不同对象对同一消息的不同响应，子类可以重写父类的方法（父类指针指向子类对象）</h3><p><strong>重写的概念</strong>:重写的概念，只存在于继承语法中。是指：父类声明一个方法，但是父类并没有真正意义的去实现这个方法（或者说实现了，向按照自己的想法再去实现下），而是在子类中真正的实现方法的功能，这种形式就叫做对这个方法的重写。（重写方法的目的是为了实现面向对象编程里的多态）。</p>
+<p>例如：假设车类<code>Car</code>都用有一个相同的 方法 <code>-(void)print;</code> ,那 <code>Bus</code> 属于车类，<code>Bike</code> 也属于车类，都继承了 <code>Car</code> 类后，实现各自的 <code>print</code> ，但是调用时我们只需调用各自的 <code>print</code> 方法。也就是不同的对象以自己的方式响应了相同的消息（响应了 <code>print</code> 这个方法）。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">@implementation Bus</div><div class="line">- (void) print &#123;</div><div class="line">    NSLog(@&quot;Bus的轮子数量为%i, 速度为%i的车子跑起来    了!!!&quot;,_wheels,_speed);</div><div class="line">&#125;</div><div class="line"></div><div class="line">@interface Bus : Car</div><div class="line">- (void) print;</div></pre></td></tr></table></figure>
+<p>主函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">int main(int argc, const char * argv[]) &#123;   </div><div class="line">    Car *bus = [[Bus alloc]init];</div><div class="line">    [bus setWheels:4];</div><div class="line">    [bus setSpeed:100];</div><div class="line">    [bus wheels];</div><div class="line">    [bus print];</div><div class="line">    [Bus retain];</div><div class="line">    return 0 ;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>此处答案需要运行得出～</p>
+
       
     </div>
 
@@ -371,7 +406,7 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/02/20160802/" rel="next" title="Objective-C 面向对象：对象和类">
+              <a href="/2016/08/02/Objective-C 面向对象：对象和类/" rel="next" title="Objective-C 面向对象：对象和类">
                 <i class="fa fa-chevron-left"></i> Objective-C 面向对象：对象和类
               </a>
             
@@ -407,8 +442,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/08/04/20160804/"
-           data-title="Objective-C 三大特性：封装、继承、多态" data-url="http://yoursite.com/2016/08/04/20160804/">
+      <div class="ds-thread" data-thread-key="2016/08/04/Objective-C 三大特性：封装、继承、多态/"
+           data-title="Objective-C 三大特性：封装、继承、多态" data-url="http://yoursite.com/2016/08/04/Objective-C 三大特性：封装、继承、多态/">
       </div>
     
   </div>
@@ -533,7 +568,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#封装"><span class="nav-number">1.</span> <span class="nav-text">封装</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#封装"><span class="nav-number">1.</span> <span class="nav-text">封装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#封装：隐藏内部（定义类、定义属性、定义方法。）实现，稳定外部接口。"><span class="nav-number">1.1.</span> <span class="nav-text">封装：隐藏内部（定义类、定义属性、定义方法。）实现，稳定外部接口。</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#继承"><span class="nav-number">2.</span> <span class="nav-text">继承</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#概念：继承是指一个对象直接使用另一对象的属性-非私有成员-和方法，使得子类具有父类的属性和方法。"><span class="nav-number">2.1.</span> <span class="nav-text">概念：继承是指一个对象直接使用另一对象的属性(非私有成员)和方法，使得子类具有父类的属性和方法。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#继承中对问题的分析："><span class="nav-number">2.2.</span> <span class="nav-text">继承中对问题的分析：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#多态"><span class="nav-number">3.</span> <span class="nav-text">多态</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#多态：不同对象对同一消息的不同响应，子类可以重写父类的方法（父类指针指向子类对象）"><span class="nav-number">3.1.</span> <span class="nav-text">多态：不同对象对同一消息的不同响应，子类可以重写父类的方法（父类指针指向子类对象）</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
