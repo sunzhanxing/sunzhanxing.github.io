@@ -98,21 +98,26 @@
 
 
 
-<meta name="description" content="类方法类方法的概述：类的方法调用，不同于对象方法调用。12Car *bike = [[Car alloc]init];[bike setWheels:100];
-在上面代码中，bike对象 调用 setWheels方法 并赋值100，这是方法的调用，而类方法则是说，不用创建新的对象，直接使用类可以调用。">
+<meta name="description" content="本文是我的初识 Objective-C 中的内存管理（上） 中的一篇，涉及相关的有：
+初识 Objective-C 中的内存管理（上）
+set 时内存管理及注意问题为了考虑页面排版的美化性，故将代码写在 Xcode 中用截图的方式展示，方便朋友们的阅读。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Objective-C 类方法">
-<meta property="og:url" content="http://yoursite.com/2016/08/04/Objective-C-类方法/index.html">
+<meta property="og:title" content="初识 Objective-C 中的内存管理（中）">
+<meta property="og:url" content="http://yoursite.com/2016/08/06/初识 Objective-C 中的内存管理（中）/index.html">
 <meta property="og:site_name" content="Sunnyzx's Notes">
-<meta property="og:description" content="类方法类方法的概述：类的方法调用，不同于对象方法调用。12Car *bike = [[Car alloc]init];[bike setWheels:100];
-在上面代码中，bike对象 调用 setWheels方法 并赋值100，这是方法的调用，而类方法则是说，不用创建新的对象，直接使用类可以调用。">
-<meta property="og:image" content="http://obcwlc71a.bkt.clouddn.com/2016080402.png">
-<meta property="og:updated_time" content="2016-08-04T08:12:27.706Z">
+<meta property="og:description" content="本文是我的初识 Objective-C 中的内存管理（上） 中的一篇，涉及相关的有：
+初识 Objective-C 中的内存管理（上）
+set 时内存管理及注意问题为了考虑页面排版的美化性，故将代码写在 Xcode 中用截图的方式展示，方便朋友们的阅读。">
+<meta property="og:image" content="http://obcwlc71a.bkt.clouddn.com/2016080701.png">
+<meta property="og:image" content="http://obcwlc71a.bkt.clouddn.com/2016080702.png">
+<meta property="og:image" content="http://obcwlc71a.bkt.clouddn.com/2016080703.png">
+<meta property="og:updated_time" content="2016-08-06T14:07:35.734Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Objective-C 类方法">
-<meta name="twitter:description" content="类方法类方法的概述：类的方法调用，不同于对象方法调用。12Car *bike = [[Car alloc]init];[bike setWheels:100];
-在上面代码中，bike对象 调用 setWheels方法 并赋值100，这是方法的调用，而类方法则是说，不用创建新的对象，直接使用类可以调用。">
-<meta name="twitter:image" content="http://obcwlc71a.bkt.clouddn.com/2016080402.png">
+<meta name="twitter:title" content="初识 Objective-C 中的内存管理（中）">
+<meta name="twitter:description" content="本文是我的初识 Objective-C 中的内存管理（上） 中的一篇，涉及相关的有：
+初识 Objective-C 中的内存管理（上）
+set 时内存管理及注意问题为了考虑页面排版的美化性，故将代码写在 Xcode 中用截图的方式展示，方便朋友们的阅读。">
+<meta name="twitter:image" content="http://obcwlc71a.bkt.clouddn.com/2016080701.png">
 
 
 
@@ -133,9 +138,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/08/04/Objective-C-类方法/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/08/06/初识 Objective-C 中的内存管理（中）/"/>
 
-  <title> Objective-C 类方法 | Sunnyzx's Notes </title>
+  <title> 初识 Objective-C 中的内存管理（中） | Sunnyzx's Notes </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -265,7 +270,7 @@
             
             
               
-                Objective-C 类方法
+                初识 Objective-C 中的内存管理（中）
               
             
           </h1>
@@ -277,8 +282,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-04T14:24:40+08:00" content="2016-08-04">
-              2016-08-04
+            <time itemprop="dateCreated" datetime="2016-08-06T17:22:39+08:00" content="2016-08-06">
+              2016-08-06
             </time>
           </span>
 
@@ -288,8 +293,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/08/04/Objective-C-类方法/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/04/Objective-C-类方法/" itemprop="commentsCount"></span>
+                <a href="/2016/08/06/初识 Objective-C 中的内存管理（中）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/06/初识 Objective-C 中的内存管理（中）/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -299,7 +304,7 @@
 
           
           
-             <span id="/2016/08/04/Objective-C-类方法/" class="leancloud_visitors" data-flag-title="Objective-C 类方法">
+             <span id="/2016/08/06/初识 Objective-C 中的内存管理（中）/" class="leancloud_visitors" data-flag-title="初识 Objective-C 中的内存管理（中）">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -321,23 +326,35 @@
       
 
       
-        <h2 id="类方法"><a href="#类方法" class="headerlink" title="类方法"></a>类方法</h2><h3 id="类方法的概述：类的方法调用，不同于对象方法调用。"><a href="#类方法的概述：类的方法调用，不同于对象方法调用。" class="headerlink" title="类方法的概述：类的方法调用，不同于对象方法调用。"></a><strong>类方法的概述</strong>：类的方法调用，不同于对象方法调用。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Car *bike = [[Car alloc]init];</div><div class="line">[bike setWheels:100];</div></pre></td></tr></table></figure>
-<p>在上面代码中，<code>bike对象</code> 调用 <code>setWheels方法</code> 并赋值100，这是方法的调用，而类方法则是说，不用创建新的对象，直接使用类可以调用。</p>
+        <p>本文是我的初识 Objective-C 中的内存管理（上） 中的一篇，涉及相关的有：</p>
+<p><a href="http://sunnyzx.me/2016/08/06/%E5%88%9D%E8%AF%86-Objective-C-%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%EF%BC%88%E4%B8%80%EF%BC%89/" target="_blank" rel="external"><strong>初识 Objective-C 中的内存管理（上）</strong></a></p>
+<h2 id="set-时内存管理及注意问题"><a href="#set-时内存管理及注意问题" class="headerlink" title="set 时内存管理及注意问题"></a>set 时内存管理及注意问题</h2><p>为了考虑页面排版的美化性，故将代码写在 Xcode 中用截图的方式展示，方便朋友们的阅读。</p>
+<p><img src="http://obcwlc71a.bkt.clouddn.com/2016080701.png" alt="图片来源于截图"></p>
+<p><img src="http://obcwlc71a.bkt.clouddn.com/2016080702.png" alt="图片来源于截图"></p>
 <a id="more"></a>
-<p>声明：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line">@interface Car : NSObject &#123;</div><div class="line"></div><div class="line">&#125;</div><div class="line">+ (void) printClassName;</div><div class="line">- (void) printClassName;</div><div class="line">@end</div></pre></td></tr></table></figure>
-<p>实现：#import “Car.h”</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">@implementation Car</div><div class="line">+ (void) printClassName &#123;</div><div class="line">    NSLog(@&quot;成功的调用Car的类方法!!!&quot;);</div><div class="line">&#125;</div><div class="line">- (void) printClassName &#123;</div><div class="line">    NSLog(@&quot;成功的调用bike对象方法!!!&quot;);</div><div class="line">&#125;</div><div class="line">@end</div></pre></td></tr></table></figure>
-<p>主函数：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">#import &quot;Car.h&quot;</div><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    [Car printClassName];</div><div class="line">    return 0 ;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>此处答案需要自己动手运行得出～</p>
-<h3 id="类方法和对象方法的区别：类方法不同于对象方法的是：类方法都是以”-”开头。"><a href="#类方法和对象方法的区别：类方法不同于对象方法的是：类方法都是以”-”开头。" class="headerlink" title="类方法和对象方法的区别：类方法不同于对象方法的是：类方法都是以”+”开头。"></a><strong>类方法和对象方法的区别</strong>：类方法不同于对象方法的是：类方法都是以”+”开头。</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">#import &quot;Car.h&quot;</div><div class="line">#import &lt;Foundation/Foundation.h&gt;</div><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    Car *bike = [[Car alloc]init];</div><div class="line">    [Car printClassName]; </div><div class="line">    [bike printClassName];</div><div class="line">    return 0 ;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>运行一下上面代码，你会有意想不到的效果(继续使用文章开篇的 <code>Car.h</code> 和 <code>Car.m</code> )</p>
-<p>此处的代码在内存中模拟的分配为下图：</p>
-<p><img src="http://obcwlc71a.bkt.clouddn.com/2016080402.png" alt="alt"></p>
-<p>首先在Car类中创建并初始化一块对象，并使用bike指针去访问对象。而 <code>[bike printClassName];</code> ， <code>bike</code> 指向的对象将向 <code>printClassName</code> 方法发送消息，去访问这个方法，通过isa指针将访问Car类中的方法。</p>
-<h3 id="类方法使用注意："><a href="#类方法使用注意：" class="headerlink" title="类方法使用注意："></a><strong>类方法使用注意</strong>：</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">#import &quot;Car.h&quot;</div><div class="line">@implementation Car</div><div class="line">+ (void) printClassName &#123;</div><div class="line">    [Car printClassName]; </div><div class="line">    NSLog(@&quot;成功的调用Car的类方法!!!&quot;);</div><div class="line">&#125;</div><div class="line">- (void) printClassName &#123;</div><div class="line">    NSLog(@&quot;成功的调用bike对象方法!!!&quot;);</div><div class="line">&#125;</div><div class="line">@end</div></pre></td></tr></table></figure>
-<p>在之前的代码基础上在 <code>+ (void) printClassName;</code> 类方法中加上 <code>[Car printClassName];</code> 代码，运行下会出现什么情况，这个情况就是类方法使用注意的问题。</p>
+<p>main.m主函数：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">int main(int argc, const char * argv[]) &#123;   </div><div class="line">    Person *person = [[Person alloc] init]; </div><div class="line">    Home *home1 =  [[Home alloc] init];</div><div class="line">    home1.number = 21; </div><div class="line">    person.home = home1;</div><div class="line">    Home *home2 =  [[Home alloc] init];</div><div class="line">    home2.number = 19;   </div><div class="line">    person.home = home2;</div><div class="line">    [home1 release];</div><div class="line">    home1  = NULL;</div><div class="line">    [home2 release];</div><div class="line">    home2  = NULL;</div><div class="line">    [person release];</div><div class="line">    person = NULL;</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>在主函数 <code>home2.number = 19;</code> 代码前，对象计数器分别为： <code>personretainCount = 1</code> , <code>home1retainCount = 2</code> , <code>home2retainCount = 1</code> ，且代码内存中分配情况如下图所示（部分方法没有写）：</p>
+<p><img src="http://obcwlc71a.bkt.clouddn.com/2016080703.png" alt="图片来源与截图"></p>
+<p>当 <code>person.home = home2;</code> 代码过后，Person对象中的_ home不在指向home1指向的 <code>Home</code> 对象，而是指向home2指向的对象，图不再给，就是把左边的线移动到右边。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">- (void)setHome:(Home *)home &#123;</div><div class="line">    _home = [home retain];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<p>而在上面的代码中，给<code>setHome</code>方法传入的home也不再是 <code>_number = 21</code> ，因为是将home2传入，此时的对象计数器分别为：<code>personretainCount = 1</code> , <code>home1retainCount = 2</code> , <code>home2retainCount = 2</code> </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">[home1 release];</div><div class="line">home1  = NULL;</div><div class="line">[home2 release];</div><div class="line">home2  = NULL;</div><div class="line">[person release];</div><div class="line">person = NULL;</div></pre></td></tr></table></figure>
+<p>接下来的代码时我们造作内存管理，前四句过后home1指向对象的计数器：<code>retainCount = 1</code>,home1指向对象的计数器：<code>retainCount = 1</code> ，<br> <code>person</code> 对指向的对象此时的 <code>retainCount = 1</code> ，当它在 <code>release</code> 后，此时的 <code>retainCount = 0</code> ，并且调用<code>dealloc</code>代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">- (void)dealloc &#123;</div><div class="line">    [_home release];</div><div class="line">    NSLog(@&quot;Person对象被释放&quot;);</div><div class="line">    [super dealloc];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>代码块的第一句是让_ home指向的对象 <code>retainCount</code> -1, 此时的对指向的对象是谁？恩，没错，就是 <code>home2</code> 所指向对象，故计数器将从1变成0。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">- (void)dealloc &#123;</div><div class="line">    NSLog(@&quot;home对象被释放:%d&quot;,_number);</div><div class="line">    [super dealloc];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>调用Home对象中 <code>dealloc</code> 方法，并打印此时的_number。</p>
+<p>现在 <code>set</code> 的内存管理会有泄漏，现在知不知道问题出在了哪里？思考3分钟…<br>3分钟过去了，是的，你想的没有错，就是出现在换房间的地方，当home2传递进来时，我们并没有将他以前home1所指向对象<code>release</code>下，造成的内存泄漏。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">- (void)setHome:(Home *)home &#123;</div><div class="line">    [_home release];</div><div class="line">    _home = [home retain];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>所以将 <code>setHome</code> 修改成如上代码，进入代码块，先对当前<em> home所指向的对象 <code>release</code> ,然后再将新传入值所指向的对象 <code>retain</code> ，并且让此时的</em> home指向。</p>
+<p>可能你会说，现在的代码应该很完善了吧？其实还有一个小bug，就是多次相同对象的调用发生僵尸对象错误。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    Person *person = [[Person alloc] init]; </div><div class="line">    Home *home1 =  [[Home alloc] init]; </div><div class="line">    home1.number = 21;  </div><div class="line">    person.home = home1; </div><div class="line">    [home1 release];</div><div class="line">    person.home = home1; </div><div class="line">    [person release];</div><div class="line">    person = NULL;</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>先运行上面所给代码，观察其结果是否出错，如果出错，思考解决方法～</p>
+<p>上面代码中，<code>[home1 release];</code> 过后此时home1所指向Home对象计数器为1，此时 <code>person.home = home1;</code>用进行调用上面写过的 <code>setHome</code> ，执行 <code>[_home release];</code> 方法，此时的_ home还指向home1所指向的对象，所以其计数器减为0，此时_home所指向的对象销毁，不能在执行 <code>_home = [home retain];</code> 。所以修改的代码为如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">- (void)setHome:(Home *)home &#123;</div><div class="line">    if(_home != home) &#123;</div><div class="line">        [_home release];</div><div class="line">        _home = [home retain];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>先对传入的对象进行判断，是否与当前传入的对象相同，如果不同将执行其if代码，将修改后的代码前些到你的Xcode中编译，观察程序现在的运行结果。</p>
 
       
     </div>
@@ -369,17 +386,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/04/Objective-C 三大特性：封装、继承、多态/" rel="next" title="Objective-C 三大特性：封装、继承、多态">
-                <i class="fa fa-chevron-left"></i> Objective-C 三大特性：封装、继承、多态
+              <a href="/2016/08/06/初识 Objective-C 中的内存管理（上）/" rel="next" title="初识 iOS 中的内存管理之三部曲（上）">
+                <i class="fa fa-chevron-left"></i> 初识 iOS 中的内存管理之三部曲（上）
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/08/05/栀子花开，又是一年夏天/" rel="prev" title="栀子花开，又是一年夏天">
-                栀子花开，又是一年夏天 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -405,8 +418,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/08/04/Objective-C-类方法/"
-           data-title="Objective-C 类方法" data-url="http://yoursite.com/2016/08/04/Objective-C-类方法/">
+      <div class="ds-thread" data-thread-key="2016/08/06/初识 Objective-C 中的内存管理（中）/"
+           data-title="初识 Objective-C 中的内存管理（中）" data-url="http://yoursite.com/2016/08/06/初识 Objective-C 中的内存管理（中）/">
       </div>
     
   </div>
@@ -531,7 +544,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#类方法"><span class="nav-number">1.</span> <span class="nav-text">类方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#类方法的概述：类的方法调用，不同于对象方法调用。"><span class="nav-number">1.1.</span> <span class="nav-text">类方法的概述：类的方法调用，不同于对象方法调用。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类方法和对象方法的区别：类方法不同于对象方法的是：类方法都是以”-”开头。"><span class="nav-number">1.2.</span> <span class="nav-text">类方法和对象方法的区别：类方法不同于对象方法的是：类方法都是以”+”开头。</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#类方法使用注意："><span class="nav-number">1.3.</span> <span class="nav-text">类方法使用注意：</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#set-时内存管理及注意问题"><span class="nav-number">1.</span> <span class="nav-text">set 时内存管理及注意问题</span></a></li></ol></div>
             
           </div>
         </section>
