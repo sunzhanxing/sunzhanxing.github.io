@@ -321,48 +321,15 @@
 
       
         
-          
-            <p>鄙人抱着初学者的态度来介绍内存管理，还望看官多担待（首先关闭Xcode中的Automatic Referencing Counting）<br>问：什么是内存？</p>
+          <p>鄙人抱着初学者的态度来介绍内存管理，还望看官多担待（首先关闭Xcode中的Automatic Referencing Counting）<br>问：什么是内存？</p>
 <p>答：程序运行时在计算机内存中进行资源的分配和使用，因此内存的性能对计算机的影响非常大。</p>
 <p>问：为什么要管理内存？</p>
 <p>答：提高程序效率，在合理的时刻分配和回收内存。</p>
-<h2 id="引用计数器"><a href="#引用计数器" class="headerlink" title="引用计数器"></a>引用计数器</h2><h3 id="retainCount、retain、release、野指针、空指针"><a href="#retainCount、retain、release、野指针、空指针" class="headerlink" title="retainCount、retain、release、野指针、空指针"></a><code>retainCount</code>、<code>retain</code>、<code>release</code>、野指针、空指针</h3><p><strong>retainCount</strong>：当使用alloc、new、copy（目前不会用2333）时，对象引用记数器加1，获取当前计数器的次数。</p>
-<p><code>－ (void)dealloc;</code>：当计数器为0时，系统会自动调用回收方法。<br>注：<code>在- (void)dealloc;</code>中，<code>[super dealloc];</code>要放在最后面。</p>
-<p><strong>retain</strong>:对象计数器＋1（返回值是对象本身）</p>
-<p><strong>release</strong>:对象计数器－1</p>
-<p>直接看代码：</p>
-<p>Car.h</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">@interface Car : NSObject</div><div class="line">- (void) dealloc;</div><div class="line">@end</div></pre></td></tr></table></figure>
-<p>Car.m</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">@implementation Car</div><div class="line">- (void) dealloc &#123;</div><div class="line">    NSLog(@&quot;Car对象被自动回收&quot;);</div><div class="line">    [super dealloc];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>main.m</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    Car *bus = [[Car alloc]init]; </div><div class="line">    [bus retain];</div><div class="line">    NSUInteger number = [bus retainCount];</div><div class="line">    NSLog(@&quot;计数器：%ld&quot;,number);</div><div class="line">    [bus release];</div><div class="line">    [bus release];</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>运行结果需要手动得知～</p>
-<p>野指针：指向不可用对象的地址</p>
-<p>首先逐行分析代码在内存中的情况：</p>
-<p><code>Car *bus = [[Car alloc]init];</code>过后Car对象的计数器变成1：<br><img src="http://obcwlc71a.bkt.clouddn.com/2016080602.png" alt="图片来源于截图"><br><code>[bus retain];</code>过后Car对象通过<code>retain</code>计数器从上图的1变成2。</p>
-<p><code>NSUInteger number = [bus retainCount];</code><br> <code>NSLog(@&quot;计数器：%ld&quot;,number);</code>获取Car对象计数器，赋值给NSUInteger类型number变量，并且打印。</p>
-<p><code>[bus release];</code>、<code>[bus release];</code>分别将对象计数器－1，此时对象计数器为0。</p>
-<p>那么问题来了，此时如果在这两句后面加上一句<code>[bus release];</code>，会有什么结果？</p>
-<p>其实当前面的两个<code>[bus release];</code>过后，Car对象在堆内存中已经销毁，所以当再次使用<code>[bus release];</code>时，bus指针在发送消息<code>release</code>时指向的事Car对象的地址,但Car对象已经是僵尸对象。所以会出错，此时应该使用空指针，将bus指向的地址清空<code>bus = nil;</code>。所以你在后面在加上多少个<code>[bus release];</code>也不会有问题，但会警告。</p>
-<p>可能有的朋友会想，那我在两个<code>[bus release];</code>后面加上一句<code>[bus retain];</code>，让bus指向的Car对象计数器变成1不久好了吗？但是你想，你在前面的两个代码中已经将Car对象变成僵尸对象，当你在使用<code>[bus retain];</code>时，bus指向的地址被销毁，无法发送消息，因此不能使用。</p>
-<h3 id="多对象内存管理"><a href="#多对象内存管理" class="headerlink" title="多对象内存管理"></a>多对象内存管理</h3><p>多对象内存管理顾名思义：多个对象相互联系，存在一定的关系。</p>
-<p>例如：小A想开Car车这辆车，小B也想开Car车这辆车。换成内存管理多角度来看，此时Car对象的计数器为2。</p>
-<p>这里要设计两个对象，玩家Person对象和房间Home对象。贴一下代码：</p>
-<p><strong>Home对象</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">@interface Home : NSObject &#123;</div><div class="line">    int _number;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)setNumber:(int)number;</div><div class="line">- (int)number;</div><div class="line">@end</div><div class="line"></div><div class="line">@implementation Home</div><div class="line">- (void)setNumber:(int)number &#123;</div><div class="line">    _number = number;</div><div class="line">&#125;</div><div class="line">- (int)number &#123;</div><div class="line">    return _number;</div><div class="line">&#125;</div><div class="line">- (void)dealloc &#123;</div><div class="line">    NSLog(@&quot;home对象被释放&quot;);</div><div class="line">    [super dealloc];</div><div class="line">&#125;</div><div class="line">@end</div></pre></td></tr></table></figure>
-<p><strong>Person对象</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">@interface Person : NSObject &#123;</div><div class="line">    Home *_home;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)setHome:(Home *)home;</div><div class="line">- (Home *)home;</div><div class="line">@end</div><div class="line"></div><div class="line">@implementation Person</div><div class="line">- (void)setHome:(Home *)home &#123;</div><div class="line">    _home = home;</div><div class="line">&#125;</div><div class="line">- (Home *)home&#123;</div><div class="line">    return _home;</div><div class="line">&#125;</div><div class="line">- (void)dealloc &#123;</div><div class="line">    [_home release];</div><div class="line">    NSLog(@&quot;Person对象被释放&quot;);</div><div class="line">    [super dealloc];</div><div class="line">&#125;</div><div class="line">@end</div></pre></td></tr></table></figure>
-<p>main.m</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    Home *home =  [[Home alloc] init]; </div><div class="line">    Person *person = [[Person alloc] init]; </div><div class="line">    [person setHome:home]; </div><div class="line">    [home release];</div><div class="line">    home  = NULL;</div><div class="line">    [person release];</div><div class="line">    person = NULL;</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>代码在内存中的反应：<br><img src="http://obcwlc71a.bkt.clouddn.com/2016080602.png" alt="图片来源于截图"></p>
-<p>当我创建了一个房间对象Home时，Home对象自身的计数器将会＋1，同样创建Person对象，自身计数器也会＋1。代码如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Home *home =  [[Home alloc] init]; </div><div class="line">Person *person = [[Person alloc] init];</div></pre></td></tr></table></figure>
-<p>但是这个房间要有房主对吧？要有使用的人，所以我让Person对象中存在一个Home类型的成员变量<em> home来去指向Home对象。并把home传递给</em> home。<br><code>[person setHome:home];</code>，此<code>- (void)setHome:(Home *)homeHome</code>方法，对象计数器应该为2。但其实还是为1，因为你没有让Home对象＋1，所以要在<code>setHome</code>代码中修改，如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">- (void)setHome:(Home *)home &#123;</div><div class="line">    _home = [home retain];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>也就是说将home所指向动对象计数器＋1（之前说过<code>retain</code>返回的是对象），。略过后面几行代码，当<code>[person release];</code>代码过后，因之前声明了Person的<code>dealloc</code>方法，所以系统将自动调用<code>dealloc</code>方法，将会执行<code>[_home release];</code>，Home对象计数器将－1，为0，同时调用Home对象的<code>dealloc</code>方法此处程序运行结果需要自己获取。</p>
-
-          
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/08/06/初识-Objective-C-中的内存管理（一）/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
