@@ -80,7 +80,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="七龙珠," />
+  <meta name="keywords" content="Objective-C," />
 
 
 
@@ -98,18 +98,31 @@
 
 
 
-<meta name="description" content="碎碎念：鸟山明大师的力作《七龙珠》是众多80、90后共同的记忆。在我小的时候彩色电视还有放映，但是只放映到悟空和琪琪结婚后，后面的就不会再去放映了，当时每次都期盼着还会继续更新，可是却不尽人愿。后来得知因为天朝的一些问题，只有 DVD 才可以观看后面的剧情，就和小庞去镇子上的集市用仅有少数的零花钱去买了几张，还都是挑着买，他买1、2、3，我就买4、5、6，就是为了用少数的钱看更多的动漫。至今我们">
+<meta name="description" content="鄙人抱着初学者的态度来介绍内存管理，还望看官多担待（首先关闭Xcode中的Automatic Referencing Counting）问：什么是内存？
+答：程序运行时在计算机内存中进行资源的分配和使用，因此内存的性能对计算机的影响非常大。
+问：为什么要管理内存？
+答：提高程序效率，在合理的时刻分配和回收内存。
+引用计数器retainCount、retain、release、野指针、空指针reta">
 <meta property="og:type" content="article">
-<meta property="og:title" content="悟空和布玛为什么没有在一起？">
-<meta property="og:url" content="http://yoursite.com/2016/07/31/悟空和布玛为什么没有在一起？/index.html">
+<meta property="og:title" content="初识 Objective-C 中的内存管理（一）">
+<meta property="og:url" content="http://yoursite.com/2016/08/06/初识-Objective-C-中的内存管理（一）/index.html">
 <meta property="og:site_name" content="Sunnyzx's Notes">
-<meta property="og:description" content="碎碎念：鸟山明大师的力作《七龙珠》是众多80、90后共同的记忆。在我小的时候彩色电视还有放映，但是只放映到悟空和琪琪结婚后，后面的就不会再去放映了，当时每次都期盼着还会继续更新，可是却不尽人愿。后来得知因为天朝的一些问题，只有 DVD 才可以观看后面的剧情，就和小庞去镇子上的集市用仅有少数的零花钱去买了几张，还都是挑着买，他买1、2、3，我就买4、5、6，就是为了用少数的钱看更多的动漫。至今我们">
-<meta property="og:image" content="http://obcwlc71a.bkt.clouddn.com/20160731.jpeg">
-<meta property="og:updated_time" content="2016-08-04T02:00:13.621Z">
+<meta property="og:description" content="鄙人抱着初学者的态度来介绍内存管理，还望看官多担待（首先关闭Xcode中的Automatic Referencing Counting）问：什么是内存？
+答：程序运行时在计算机内存中进行资源的分配和使用，因此内存的性能对计算机的影响非常大。
+问：为什么要管理内存？
+答：提高程序效率，在合理的时刻分配和回收内存。
+引用计数器retainCount、retain、release、野指针、空指针reta">
+<meta property="og:image" content="http://obcwlc71a.bkt.clouddn.com/2016080602.png">
+<meta property="og:image" content="http://obcwlc71a.bkt.clouddn.com/2016080602.png">
+<meta property="og:updated_time" content="2016-08-06T08:41:44.780Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="悟空和布玛为什么没有在一起？">
-<meta name="twitter:description" content="碎碎念：鸟山明大师的力作《七龙珠》是众多80、90后共同的记忆。在我小的时候彩色电视还有放映，但是只放映到悟空和琪琪结婚后，后面的就不会再去放映了，当时每次都期盼着还会继续更新，可是却不尽人愿。后来得知因为天朝的一些问题，只有 DVD 才可以观看后面的剧情，就和小庞去镇子上的集市用仅有少数的零花钱去买了几张，还都是挑着买，他买1、2、3，我就买4、5、6，就是为了用少数的钱看更多的动漫。至今我们">
-<meta name="twitter:image" content="http://obcwlc71a.bkt.clouddn.com/20160731.jpeg">
+<meta name="twitter:title" content="初识 Objective-C 中的内存管理（一）">
+<meta name="twitter:description" content="鄙人抱着初学者的态度来介绍内存管理，还望看官多担待（首先关闭Xcode中的Automatic Referencing Counting）问：什么是内存？
+答：程序运行时在计算机内存中进行资源的分配和使用，因此内存的性能对计算机的影响非常大。
+问：为什么要管理内存？
+答：提高程序效率，在合理的时刻分配和回收内存。
+引用计数器retainCount、retain、release、野指针、空指针reta">
+<meta name="twitter:image" content="http://obcwlc71a.bkt.clouddn.com/2016080602.png">
 
 
 
@@ -130,9 +143,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/07/31/悟空和布玛为什么没有在一起？/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/08/06/初识-Objective-C-中的内存管理（一）/"/>
 
-  <title> 悟空和布玛为什么没有在一起？ | Sunnyzx's Notes </title>
+  <title> 初识 Objective-C 中的内存管理（一） | Sunnyzx's Notes </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -262,7 +275,7 @@
             
             
               
-                悟空和布玛为什么没有在一起？
+                初识 Objective-C 中的内存管理（一）
               
             
           </h1>
@@ -274,8 +287,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-31T11:28:31+08:00" content="2016-07-31">
-              2016-07-31
+            <time itemprop="dateCreated" datetime="2016-08-06T16:14:47+08:00" content="2016-08-06">
+              2016-08-06
             </time>
           </span>
 
@@ -285,8 +298,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/07/31/悟空和布玛为什么没有在一起？/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/31/悟空和布玛为什么没有在一起？/" itemprop="commentsCount"></span>
+                <a href="/2016/08/06/初识-Objective-C-中的内存管理（一）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/06/初识-Objective-C-中的内存管理（一）/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -296,7 +309,7 @@
 
           
           
-             <span id="/2016/07/31/悟空和布玛为什么没有在一起？/" class="leancloud_visitors" data-flag-title="悟空和布玛为什么没有在一起？">
+             <span id="/2016/08/06/初识-Objective-C-中的内存管理（一）/" class="leancloud_visitors" data-flag-title="初识 Objective-C 中的内存管理（一）">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -318,25 +331,46 @@
       
 
       
-        <p><img src="http://obcwlc71a.bkt.clouddn.com/20160731.jpeg" alt="图片来源网络"></p>
-<p>碎碎念：鸟山明大师的力作《七龙珠》是众多80、90后共同的记忆。在我小的时候彩色电视还有放映，但是只放映到悟空和琪琪结婚后，后面的就不会再去放映了，当时每次都期盼着还会继续更新，可是却不尽人愿。后来得知因为天朝的一些问题，只有 DVD 才可以观看后面的剧情，就和小庞去镇子上的集市用仅有少数的零花钱去买了几张，还都是挑着买，他买1、2、3，我就买4、5、6，就是为了用少数的钱看更多的动漫。至今我们还是龙珠的爱好者，为此我还收集了《七龙珠Z》全集的国语版，真的是陪我度过了我的童年。</p>
-<a id="more"></a>
-<p>在《七龙珠》的故事中，不光是激烈的打斗，还教会了我们很多道理，心存善良、保护地球、坚持不懈…不都是我们向往的么？我是一个脑洞比较大的男生，喜欢思考一些奇怪的问题，也就有这篇文章的生成。</p>
-<p>我不懂日本人的恋爱观，只是给我的感觉就是，孙悟空是男一号，而布玛是女一号。不料，之后，悟空娶的却是琪琪，而布玛，还不是嫁给了雅木茶（按照最早版的称呼），而是当初要征服地球的达尔，当时觉得这样的安排有些荒唐，明明布玛带着悟空走出了包子山，最后一步步成为了每次都在关键时刻保护地球的那个男人。</p>
-<p>好了，小弟就此发表一下我的YY，看官勿喷。</p>
-<h2 id="一、布玛和悟空之间存在感情吗？"><a href="#一、布玛和悟空之间存在感情吗？" class="headerlink" title="一、布玛和悟空之间存在感情吗？"></a>一、布玛和悟空之间存在感情吗？</h2><p>布玛和悟空的相遇是因为七龙珠。 她从少女时代看着悟空长大，在漫长的冒险中，可以说她是最了解悟空的一个人。在悟空从神殿回来参加与魔二代<br>的那天下第一武道大会的哪次，还记得一个小女孩的气球挂到了树上，布玛踮起脚尖没有抓到，此时悟空帮她拿了下来，悟空和他相认了，她说：悟空长的好帅，当时脸也是红了，可以看出她对悟空有了爱意。</p>
-<p>故事剧情顺延，悟空和达尔的对战弄得伤痕累累，但是抱着悟饭就哭，也不管一旁的悟空，但是还是有龟仙人和布玛去问了悟空的伤势，可能说琪琪结婚有孩子了就更爱孩子一些了把，我也只能想到这点了，不然不能圆场。</p>
-<h2 id="二、布玛为什么又没有选择雅木茶？"><a href="#二、布玛为什么又没有选择雅木茶？" class="headerlink" title="二、布玛为什么又没有选择雅木茶？"></a>二、布玛为什么又没有选择雅木茶？</h2><p>布玛爱悟空是他的人品，看过七龙珠的人也都很清楚悟空的性格。布玛了解悟空，既然他结婚，总不能还等人家离婚吧？</p>
-<p>这里就要说说雅木茶了，虽然他最开始也算是一个BOSS把，但是后来也成了悟空团队中不可缺少的一员，虽然到了人造人后，几乎就没有了战斗，但是他和悟空比差了太多，当初在悟空和琪琪相认的时候，琪琪还对雅木茶说过，虽然你曾经喜欢过我，但是我现在已经是悟空的妻子了。虽然这句话是雅木茶对琪琪小时候说的，但是也能从这一点看出他比如悟空，为此布玛还和雅木茶发了火，或许老鸟就在这里埋下了伏笔吧。</p>
-<p>所以能和悟空相提并论的就只有后来改邪归正的贝吉塔了。他们两个人都属于那种高傲的，布玛从小生活富有，是万能胶囊公司董事长布里夫斯博士的女儿，可以说公主类型的。而达尔则是贝吉塔行星的王子，也可谓是门当户对。虽然外表冰冷，却也有七情六欲。不然为什么会接受布玛？后来还有了特南克斯。</p>
-<p>达尔可以说内心越关心的东西，表面上越不在乎，为什么？毕竟他可是贝吉塔行星的王子，关心这一点在现在老鸟最新的作品《龙珠超》中也有提现，当破坏神比鲁斯要摧毁达尔的时候，布玛打了比鲁斯一巴掌，比鲁斯结果把布玛给打了，此时达尔真的是比悟空的超三还恐怖，居然和比鲁斯打了起来。为什么我会说比悟空的超三还恐怖呢？比鲁斯到达北界王星的时候，悟空曾变身超三和比鲁斯对抗过，可谓是不堪比鲁斯的一击。这也就是我为什么会说比悟空超三还要可怕了。</p>
-<p>如果换成悟空的话，他也许会真的无所谓！假若当年琪琪不去找他的话，他决不会去找她。可以说琪琪和悟空一开始也是稀里糊涂的，琪琪当年和悟空的婚约其实就像小孩子过家家一样，悟空根本不知道什么是爱情，在他们相遇的时候也有说过，他以为爱情是一个很好吃的东西。</p>
-<p>总之，悟空是一个为“和平”而被牺牲了个人生活的男人，而琪琪是一个为了虚无想象中的爱情而牺牲了自己一生的女人。 其实对于悟空来说他是幸福的家里的事他不用操心，可以一心一意修练武功。不然怎么能保护那个多次外来者攻击的地球呢</p>
-<h2 id="三、爱过吗？"><a href="#三、爱过吗？" class="headerlink" title="三、爱过吗？"></a>三、爱过吗？</h2><p>布玛经常对悟饭说他和你父亲一样不挣钱，他和你父亲一样不干活，他和你父亲一样大饭量，云云。在说这些话时，布玛是微笑着的，没有一点抱怨，是沉浸在对某人的回忆中吧。</p>
-<p>贝吉塔在吃饭时、练功时、身材上、发型上都酷似孙悟空。布玛每时每刻都仿佛透过贝吉塔看到悟空的影子。布玛总是说，贝吉塔比孙悟空强多了、帅多了，特兰克斯一定比悟饭悟天强，内心不断这么念着。也许只有这样，布玛才能忘掉她心底的声音，才能告诉自己，忘掉心中那个忘不掉的人。</p>
-<p>年幼的经历都能证明小悟空和布玛的缘分和感情。布玛是悟空见的第一个女子，也是跟他关系最近的人。悟空每次出生入死，布玛都会挂念他的安危（琪琪这里再次表示无懈悟空）；布玛梦中能感应到悟空的危险，悟空做噩梦醒来时叫的也是布玛；在猫仙人的坛子里见到布玛时悟空会开心地笑；在天下第一武道会上看见乐平和其他同伴时，会马上兴冲冲地去找布玛；最后离开龙珠世界时，在他心底留恋的也惟有和他初见的布玛。</p>
-<p>那真的是一种深深的遗憾类似的遗憾，我们的生命中也或多或少曾经出现过。有的，是发生在我们自己身上，有的，是发生在我们身边。</p>
-<h2 id="其实，想开了，也就是了。因为生命本就是不完美的。。。不是么？"><a href="#其实，想开了，也就是了。因为生命本就是不完美的。。。不是么？" class="headerlink" title="其实，想开了，也就是了。因为生命本就是不完美的。。。不是么？"></a>其实，想开了，也就是了。因为生命本就是不完美的。。。不是么？</h2>
+        <p>鄙人抱着初学者的态度来介绍内存管理，还望看官多担待（首先关闭Xcode中的Automatic Referencing Counting）<br>问：什么是内存？</p>
+<p>答：程序运行时在计算机内存中进行资源的分配和使用，因此内存的性能对计算机的影响非常大。</p>
+<p>问：为什么要管理内存？</p>
+<p>答：提高程序效率，在合理的时刻分配和回收内存。</p>
+<h2 id="引用计数器"><a href="#引用计数器" class="headerlink" title="引用计数器"></a>引用计数器</h2><h3 id="retainCount、retain、release、野指针、空指针"><a href="#retainCount、retain、release、野指针、空指针" class="headerlink" title="retainCount、retain、release、野指针、空指针"></a><code>retainCount</code>、<code>retain</code>、<code>release</code>、野指针、空指针</h3><p><strong>retainCount</strong>：当使用alloc、new、copy（目前不会用2333）时，对象引用记数器加1，获取当前计数器的次数。</p>
+<p><code>－ (void)dealloc;</code>：当计数器为0时，系统会自动调用回收方法。<br>注：<code>在- (void)dealloc;</code>中，<code>[super dealloc];</code>要放在最后面。</p>
+<p><strong>retain</strong>:对象计数器＋1（返回值是对象本身）</p>
+<p><strong>release</strong>:对象计数器－1</p>
+<p>直接看代码：</p>
+<p>Car.h</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">@interface Car : NSObject</div><div class="line">- (void) dealloc;</div><div class="line">@end</div></pre></td></tr></table></figure>
+<p>Car.m</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">@implementation Car</div><div class="line">- (void) dealloc &#123;</div><div class="line">    NSLog(@&quot;Car对象被自动回收&quot;);</div><div class="line">    [super dealloc];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>main.m</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    Car *bus = [[Car alloc]init]; </div><div class="line">    [bus retain];</div><div class="line">    NSUInteger number = [bus retainCount];</div><div class="line">    NSLog(@&quot;计数器：%ld&quot;,number);</div><div class="line">    [bus release];</div><div class="line">    [bus release];</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>运行结果需要手动得知～</p>
+<p>野指针：指向不可用对象的地址</p>
+<p>首先逐行分析代码在内存中的情况：</p>
+<p><code>Car *bus = [[Car alloc]init];</code>过后Car对象的计数器变成1：<br><img src="http://obcwlc71a.bkt.clouddn.com/2016080602.png" alt="图片来源于截图"><br><code>[bus retain];</code>过后Car对象通过<code>retain</code>计数器从上图的1变成2。</p>
+<p><code>NSUInteger number = [bus retainCount];</code><br> <code>NSLog(@&quot;计数器：%ld&quot;,number);</code>获取Car对象计数器，赋值给NSUInteger类型number变量，并且打印。</p>
+<p><code>[bus release];</code>、<code>[bus release];</code>分别将对象计数器－1，此时对象计数器为0。</p>
+<p>那么问题来了，此时如果在这两句后面加上一句<code>[bus release];</code>，会有什么结果？</p>
+<p>其实当前面的两个<code>[bus release];</code>过后，Car对象在堆内存中已经销毁，所以当再次使用<code>[bus release];</code>时，bus指针在发送消息<code>release</code>时指向的事Car对象的地址,但Car对象已经是僵尸对象。所以会出错，此时应该使用空指针，将bus指向的地址清空<code>bus = nil;</code>。所以你在后面在加上多少个<code>[bus release];</code>也不会有问题，但会警告。</p>
+<p>可能有的朋友会想，那我在两个<code>[bus release];</code>后面加上一句<code>[bus retain];</code>，让bus指向的Car对象计数器变成1不久好了吗？但是你想，你在前面的两个代码中已经将Car对象变成僵尸对象，当你在使用<code>[bus retain];</code>时，bus指向的地址被销毁，无法发送消息，因此不能使用。</p>
+<h3 id="多对象内存管理"><a href="#多对象内存管理" class="headerlink" title="多对象内存管理"></a>多对象内存管理</h3><p>多对象内存管理顾名思义：多个对象相互联系，存在一定的关系。</p>
+<p>例如：小A想开Car车这辆车，小B也想开Car车这辆车。换成内存管理多角度来看，此时Car对象的计数器为2。</p>
+<p>这里要设计两个对象，玩家Person对象和房间Home对象。贴一下代码：</p>
+<p><strong>Home对象</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">@interface Home : NSObject &#123;</div><div class="line">    int _number;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)setNumber:(int)number;</div><div class="line">- (int)number;</div><div class="line">@end</div><div class="line"></div><div class="line">@implementation Home</div><div class="line">- (void)setNumber:(int)number &#123;</div><div class="line">    _number = number;</div><div class="line">&#125;</div><div class="line">- (int)number &#123;</div><div class="line">    return _number;</div><div class="line">&#125;</div><div class="line">- (void)dealloc &#123;</div><div class="line">    NSLog(@&quot;home对象被释放&quot;);</div><div class="line">    [super dealloc];</div><div class="line">&#125;</div><div class="line">@end</div></pre></td></tr></table></figure>
+<p><strong>Person对象</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">@interface Person : NSObject &#123;</div><div class="line">    Home *_home;</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)setHome:(Home *)home;</div><div class="line">- (Home *)home;</div><div class="line">@end</div><div class="line"></div><div class="line">@implementation Person</div><div class="line">- (void)setHome:(Home *)home &#123;</div><div class="line">    _home = home;</div><div class="line">&#125;</div><div class="line">- (Home *)home&#123;</div><div class="line">    return _home;</div><div class="line">&#125;</div><div class="line">- (void)dealloc &#123;</div><div class="line">    [_home release];</div><div class="line">    NSLog(@&quot;Person对象被释放&quot;);</div><div class="line">    [super dealloc];</div><div class="line">&#125;</div><div class="line">@end</div></pre></td></tr></table></figure>
+<p>main.m</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">int main(int argc, const char * argv[]) &#123;</div><div class="line">    Home *home =  [[Home alloc] init]; </div><div class="line">    Person *person = [[Person alloc] init]; </div><div class="line">    [person setHome:home]; </div><div class="line">    [home release];</div><div class="line">    home  = NULL;</div><div class="line">    [person release];</div><div class="line">    person = NULL;</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>代码在内存中的反应：<br><img src="http://obcwlc71a.bkt.clouddn.com/2016080602.png" alt="图片来源于截图"></p>
+<p>当我创建了一个房间对象Home时，Home对象自身的计数器将会＋1，同样创建Person对象，自身计数器也会＋1。代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">Home *home =  [[Home alloc] init]; </div><div class="line">Person *person = [[Person alloc] init];</div></pre></td></tr></table></figure>
+<p>但是这个房间要有房主对吧？要有使用的人，所以我让Person对象中存在一个Home类型的成员变量<em> home来去指向Home对象。并把home传递给</em> home。<br><code>[person setHome:home];</code>，此<code>- (void)setHome:(Home *)homeHome</code>方法，对象计数器应该为2。但其实还是为1，因为你没有让Home对象＋1，所以要在<code>setHome</code>代码中修改，如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">- (void)setHome:(Home *)home &#123;</div><div class="line">    _home = [home retain];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>也就是说将home所指向动对象计数器＋1（之前说过<code>retain</code>返回的是对象），。略过后面几行代码，当<code>[person release];</code>代码过后，因之前声明了Person的<code>dealloc</code>方法，所以系统将自动调用<code>dealloc</code>方法，将会执行<code>[_home release];</code>，Home对象计数器将－1，为0，同时调用Home对象的<code>dealloc</code>方法此处程序运行结果需要自己获取。</p>
+
       
     </div>
 
@@ -358,7 +392,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/七龙珠/" rel="tag">#七龙珠</a>
+            <a href="/tags/Objective-C/" rel="tag">#Objective-C</a>
           
         </div>
       
@@ -367,17 +401,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/07/29/Hello World/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
+              <a href="/2016/08/05/栀子花开，又是一年夏天/" rel="next" title="栀子花开，又是一年夏天">
+                <i class="fa fa-chevron-left"></i> 栀子花开，又是一年夏天
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/08/02/Objective-C 面向对象：对象和类/" rel="prev" title="Objective-C 面向对象：对象和类">
-                Objective-C 面向对象：对象和类 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -403,8 +433,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/07/31/悟空和布玛为什么没有在一起？/"
-           data-title="悟空和布玛为什么没有在一起？" data-url="http://yoursite.com/2016/07/31/悟空和布玛为什么没有在一起？/">
+      <div class="ds-thread" data-thread-key="2016/08/06/初识-Objective-C-中的内存管理（一）/"
+           data-title="初识 Objective-C 中的内存管理（一）" data-url="http://yoursite.com/2016/08/06/初识-Objective-C-中的内存管理（一）/">
       </div>
     
   </div>
@@ -529,7 +559,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#一、布玛和悟空之间存在感情吗？"><span class="nav-number">1.</span> <span class="nav-text">一、布玛和悟空之间存在感情吗？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二、布玛为什么又没有选择雅木茶？"><span class="nav-number">2.</span> <span class="nav-text">二、布玛为什么又没有选择雅木茶？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#三、爱过吗？"><span class="nav-number">3.</span> <span class="nav-text">三、爱过吗？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其实，想开了，也就是了。因为生命本就是不完美的。。。不是么？"><span class="nav-number">4.</span> <span class="nav-text">其实，想开了，也就是了。因为生命本就是不完美的。。。不是么？</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#引用计数器"><span class="nav-number">1.</span> <span class="nav-text">引用计数器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#retainCount、retain、release、野指针、空指针"><span class="nav-number">1.1.</span> <span class="nav-text">retainCount、retain、release、野指针、空指针</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#多对象内存管理"><span class="nav-number">1.2.</span> <span class="nav-text">多对象内存管理</span></a></li></ol></li></ol></div>
             
           </div>
         </section>
