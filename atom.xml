@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-08-07T00:35:05.561Z</updated>
+  <updated>2016-08-07T00:55:34.991Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,17 +16,63 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>初识 Objective-C 中的内存管理（下）</title>
+    <link href="http://yoursite.com/2016/08/07/%E5%88%9D%E8%AF%86%20Objective-C-%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%EF%BC%88%E4%B8%8B%EF%BC%89/"/>
+    <id>http://yoursite.com/2016/08/07/初识 Objective-C-中的内存管理（下）/</id>
+    <published>2016-08-07T00:46:20.000Z</published>
+    <updated>2016-08-07T00:55:34.991Z</updated>
+    
+    <content type="html"><![CDATA[<p>本文是我的  Objective-C 中的内存管理 笔记中的一篇，涉及相关的有：</p>
+<p>   <a href="http://sunnyzx.me/2016/08/06/%E5%88%9D%E8%AF%86%20Objective-C%20%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%EF%BC%88%E4%B8%8A%EF%BC%89/" target="_blank" rel="external"><strong>初识 Objective-C 中的内存管理（上）</strong></a></p>
+<p>   <a href="http://sunnyzx.me/2016/08/06/%E5%88%9D%E8%AF%86%20Objective-C%20%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%EF%BC%88%E4%B8%AD%EF%BC%89/" target="_blank" rel="external"><strong>初识 Objective-C 中的内存管理（下）</strong></a></p>
+<h2 id="property"><a href="#property" class="headerlink" title="@property"></a>@property</h2><p>在上篇介绍内存管理中的set时，你可能会想到，两个对象还行，如果5个呢？10个呢？是不是都要管理set里面的代码呢？恩是的，所以为了代码的简洁我们以后要采取 <code>@property</code> 来管理。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">- (void)setHome:(Home) *home &#123;</div><div class="line">    if(home != _home) &#123;</div><div class="line">        [_home release];</div><div class="line">        _home = [home retain];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>等等，我们不是说好的用 <code>@property</code> 在管理嘛，上面怎么用写set里注意的问题了？恩，写它主要是让你在加强一下影响和用 <code>@property</code> 实现所上代码相同的功能。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">@property Home *home;</div></pre></td></tr></table></figure>
+<p>上面代码再熟悉不过了，用 <code>@property</code> 来实现set和get方法，但是我们要怎么去管理呢？这时候需要在 <code>@property</code> 后加上参数 <code>retain</code> ，让它在内部调用get时实现 <code>set</code> 里面的操作。你可能说：什么鬼？怎么可能这么简单呢？不妨动手试试～</p>
+<p>例：（在Preson和Home对象中各声明两个对象，在Person中调用setHome方法并把home传入，输出此时home所指向对象的计数器）</p>
+<h2 id="autorelease"><a href="#autorelease" class="headerlink" title="@autorelease"></a>@autorelease</h2><p>可能你会发现，在很多时候我们都是小心翼翼的在对象声明并初始化对象时，马上就写对象的release，生怕内存管理不妥当，但是有时可能因为手滑造成如下情况：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Person *person = [[Person alloc]init];</div><div class="line">[person release];</div><div class="line">person.age = 10;</div></pre></td></tr></table></figure>
+<p>没错，就是野指针的问题。所以对这样的问题我们将会采用 <code>autorelease</code> 来解决。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">Person *person = [[Person alloc]init]autorelease];</div></pre></td></tr></table></figure>
+<p>给Person对象发送一条autorelease消息，会将Person对象加到一个自动释放池中，当自动释放池销毁时，会给池子里面的所有对象发送一条release消息。所以我们不会担心什么时候release了。</p>
+<p>好吧，你肯定又会说了，我按照你这样操作了，为什么不行呢？上面的知识给Person对象发送一条autorelease的消息，并没有放进池子中。来下图放池子：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">@autoreleasepool &#123;</div><div class="line">    Person *person = [[[Person alloc]init]autorelease];</div><div class="line">    Home *home = [[[Home alloc]init]autorelease];</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><code>@autoreleasepool</code> 在我们创建一个新的main.m的时是自带的，在代码块之间即为自动释放出，还有自动释放池的嵌套，其实也是同样道理。每个代码块操作自己的释放池。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">@autoreleasepool &#123;</div><div class="line">    Person *person = [[[Person alloc]init]autorelease];</div><div class="line">    @autoreleasepool &#123;</div><div class="line">            Home *home = [[[Home alloc]init]autorelease];</div><div class="line">    &#125;</div><div class="line">&#125;</div><div class="line">return 0;</div></pre></td></tr></table></figure>
+<p>内存中自动释放池处在栈区中的情况：<br><img src="http://obcwlc71a.bkt.clouddn.com/2016080705.png" alt="图片来源与截图"></p>
+<p>在哪里释放还是你自己在Xcode里面操作，将代码块给予断点，并且看输出的值。多个对象不要使用 <code>@autorelease</code> ，性能低，不利于内存的即时操作。</p>
+<p><code>@autorelease</code> 实际只是把对release调用延迟了，对于每一次 <code>autorelease</code> ，系统只是把该对象放入了当前的 <code>autoreleasepool</code> 中，当该pool被释放时，该pool中的所有对象会被调用 <code>Release</code> </p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本文是我的  Objective-C 中的内存管理 笔记中的一篇，涉及相关的有：&lt;/p&gt;
+&lt;p&gt;   &lt;a href=&quot;http://sunnyzx.me/2016/08/06/%E5%88%9D%E8%AF%86%20Objective-C%20%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%EF%BC%88%E4%B8%8A%EF%BC%89/&quot;&gt;&lt;strong&gt;初识 Objective-C 中的内存管理（上）&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;   &lt;a href=&quot;http://sunnyzx.me/2016/08/06/%E5%88%9D%E8%AF%86%20Objective-C%20%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%EF%BC%88%E4%B8%AD%EF%BC%89/&quot;&gt;&lt;strong&gt;初识 Objective-C 中的内存管理（下）&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&quot;property&quot;&gt;&lt;a href=&quot;#property&quot; class=&quot;headerlink&quot; title=&quot;@property&quot;&gt;&lt;/a&gt;@property&lt;/h2&gt;&lt;p&gt;在上篇介绍内存管理中的set时，你可能会想到，两个对象还行，如果5个呢？10个呢？是不是都要管理set里面的代码呢？恩是的，所以为了代码的简洁我们以后要采取 &lt;code&gt;@property&lt;/code&gt; 来管理。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;3&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;4&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;5&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;6&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;- (void)setHome:(Home) *home &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    if(home != _home) &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        [_home release];&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;        _home = [home retain];&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+    
+      <category term="Objective-C" scheme="http://yoursite.com/tags/Objective-C/"/>
+    
+  </entry>
+  
+  <entry>
     <title>初识 Objective-C 中的内存管理（中）</title>
     <link href="http://yoursite.com/2016/08/06/%E5%88%9D%E8%AF%86%20Objective-C%20%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%EF%BC%88%E4%B8%AD%EF%BC%89/"/>
     <id>http://yoursite.com/2016/08/06/初识 Objective-C 中的内存管理（中）/</id>
     <published>2016-08-06T09:22:39.000Z</published>
-    <updated>2016-08-07T00:35:05.561Z</updated>
+    <updated>2016-08-07T00:50:13.845Z</updated>
     
-    <content type="html"><![CDATA[<p>本文是我的初识 Objective-C 中的内存管理（上） 中的一篇，涉及相关的有：</p>
+    <content type="html"><![CDATA[<p>本文是我的初识 Objective-C 中的内存管理 中的一篇，涉及相关的有：</p>
 <p><a href="http://sunnyzx.me/2016/08/06/%E5%88%9D%E8%AF%86-Objective-C-%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%EF%BC%88%E4%B8%80%EF%BC%89/" target="_blank" rel="external"><strong>初识 Objective-C 中的内存管理（上）</strong></a></p>
 <h2 id="set-时内存管理及注意问题"><a href="#set-时内存管理及注意问题" class="headerlink" title="set 时内存管理及注意问题"></a>set 时内存管理及注意问题</h2><p>为了考虑页面排版的美化性，故将代码写在 Xcode 中用截图的方式展示，方便朋友们的阅读。</p>
-<p>===============================</p>
-<h2 id="type-“picture”"><a href="#type-“picture”" class="headerlink" title="type: “picture”"></a>type: “picture”</h2><h1 id=""><a href="#" class="headerlink" title=""></a><div class="group-picture"><div class="group-picture-container"><div class="group-picture-row"><div class="group-picture-column" style="width: 100%;"><img src="http://obcwlc71a.bkt.clouddn.com/2016080701.png" alt="图片来源于截图"></div></div><div class="group-picture-row"><div class="group-picture-column" style="width: 50%;"><img src="http://obcwlc71a.bkt.clouddn.com/2016080702.png" alt="图片来源于截图"></div><div class="group-picture-column" style="width: 50%;"><img src="http://obcwlc71a.bkt.clouddn.com/2016080704.png" alt="图片来源于截图"></div></div></div></div></h1><a id="more"></a>
+<hr>
+<h1 id=""><a href="#" class="headerlink" title=""></a><div class="group-picture"><div class="group-picture-container"><div class="group-picture-row"><div class="group-picture-column" style="width: 100%;"><img src="http://obcwlc71a.bkt.clouddn.com/2016080701.png" alt="图片来源于截图"></div></div><div class="group-picture-row"><div class="group-picture-column" style="width: 50%;"><img src="http://obcwlc71a.bkt.clouddn.com/2016080702.png" alt="图片来源于截图"></div><div class="group-picture-column" style="width: 50%;"><img src="http://obcwlc71a.bkt.clouddn.com/2016080704.png" alt="图片来源于截图"></div></div></div></div></h1><a id="more"></a>
 <p>在主函数 <code>home2.number = 19;</code> 代码前，对象计数器分别为： <code>personretainCount = 1</code> , <code>home1retainCount = 2</code> , <code>home2retainCount = 1</code> ，且代码内存中分配情况如下图所示（部分方法没有写）：</p>
 <p><img src="http://obcwlc71a.bkt.clouddn.com/2016080703.jpg" alt="图片来源与截图"></p>
 <p>当 <code>person.home = home2;</code> 代码过后，Person对象中的_ home不在指向home1指向的 <code>Home</code> 对象，而是指向home2指向的对象，图不再给，就是把左边的线移动到右边。</p>
@@ -52,11 +98,11 @@
     
     <summary type="html">
     
-      &lt;p&gt;本文是我的初识 Objective-C 中的内存管理（上） 中的一篇，涉及相关的有：&lt;/p&gt;
+      &lt;p&gt;本文是我的初识 Objective-C 中的内存管理 中的一篇，涉及相关的有：&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;http://sunnyzx.me/2016/08/06/%E5%88%9D%E8%AF%86-Objective-C-%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%EF%BC%88%E4%B8%80%EF%BC%89/&quot;&gt;&lt;strong&gt;初识 Objective-C 中的内存管理（上）&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&quot;set-时内存管理及注意问题&quot;&gt;&lt;a href=&quot;#set-时内存管理及注意问题&quot; class=&quot;headerlink&quot; title=&quot;set 时内存管理及注意问题&quot;&gt;&lt;/a&gt;set 时内存管理及注意问题&lt;/h2&gt;&lt;p&gt;为了考虑页面排版的美化性，故将代码写在 Xcode 中用截图的方式展示，方便朋友们的阅读。&lt;/p&gt;
-&lt;p&gt;===============================&lt;/p&gt;
-&lt;h2 id=&quot;type-“picture”&quot;&gt;&lt;a href=&quot;#type-“picture”&quot; class=&quot;headerlink&quot; title=&quot;type: “picture”&quot;&gt;&lt;/a&gt;type: “picture”&lt;/h2&gt;&lt;h1 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title=&quot;&quot;&gt;&lt;/a&gt;&lt;div class=&quot;group-picture&quot;&gt;&lt;div class=&quot;group-picture-container&quot;&gt;&lt;div class=&quot;group-picture-row&quot;&gt;&lt;div class=&quot;group-picture-column&quot;  style=&quot;width: 100%;&quot;&gt;&lt;img src=&quot;http://obcwlc71a.bkt.clouddn.com/2016080701.png&quot; alt=&quot;图片来源于截图&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;group-picture-row&quot;&gt;&lt;div class=&quot;group-picture-column&quot;  style=&quot;width: 50%;&quot;&gt;&lt;img src=&quot;http://obcwlc71a.bkt.clouddn.com/2016080702.png&quot; alt=&quot;图片来源于截图&quot;&gt;&lt;/div&gt;&lt;div class=&quot;group-picture-column&quot;  style=&quot;width: 50%;&quot;&gt;&lt;img src=&quot;http://obcwlc71a.bkt.clouddn.com/2016080704.png&quot; alt=&quot;图片来源于截图&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/h1&gt;
+&lt;hr&gt;
+&lt;h1 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title=&quot;&quot;&gt;&lt;/a&gt;&lt;div class=&quot;group-picture&quot;&gt;&lt;div class=&quot;group-picture-container&quot;&gt;&lt;div class=&quot;group-picture-row&quot;&gt;&lt;div class=&quot;group-picture-column&quot;  style=&quot;width: 100%;&quot;&gt;&lt;img src=&quot;http://obcwlc71a.bkt.clouddn.com/2016080701.png&quot; alt=&quot;图片来源于截图&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;group-picture-row&quot;&gt;&lt;div class=&quot;group-picture-column&quot;  style=&quot;width: 50%;&quot;&gt;&lt;img src=&quot;http://obcwlc71a.bkt.clouddn.com/2016080702.png&quot; alt=&quot;图片来源于截图&quot;&gt;&lt;/div&gt;&lt;div class=&quot;group-picture-column&quot;  style=&quot;width: 50%;&quot;&gt;&lt;img src=&quot;http://obcwlc71a.bkt.clouddn.com/2016080704.png&quot; alt=&quot;图片来源于截图&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/h1&gt;
     
     </summary>
     
@@ -66,11 +112,11 @@
   </entry>
   
   <entry>
-    <title>初识 iOS 中的内存管理之三部曲（上）</title>
+    <title>初识 Objective-C 中的内存管理（上）</title>
     <link href="http://yoursite.com/2016/08/06/%E5%88%9D%E8%AF%86%20Objective-C%20%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%EF%BC%88%E4%B8%8A%EF%BC%89/"/>
     <id>http://yoursite.com/2016/08/06/初识 Objective-C 中的内存管理（上）/</id>
     <published>2016-08-06T08:14:47.000Z</published>
-    <updated>2016-08-06T09:27:55.847Z</updated>
+    <updated>2016-08-07T00:42:23.475Z</updated>
     
     <content type="html"><![CDATA[<p>鄙人抱着初学者的态度来介绍内存管理，还望看官多担待（首先关闭Xcode中的Automatic Referencing Counting）<br>问：什么是内存？</p>
 <p>答：程序运行时在计算机内存中进行资源的分配和使用，因此内存的性能对计算机的影响非常大。</p>
