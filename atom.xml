@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-08-06T14:07:35.734Z</updated>
+  <updated>2016-08-07T00:35:05.561Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,18 +20,15 @@
     <link href="http://yoursite.com/2016/08/06/%E5%88%9D%E8%AF%86%20Objective-C%20%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%EF%BC%88%E4%B8%AD%EF%BC%89/"/>
     <id>http://yoursite.com/2016/08/06/初识 Objective-C 中的内存管理（中）/</id>
     <published>2016-08-06T09:22:39.000Z</published>
-    <updated>2016-08-06T14:07:35.734Z</updated>
+    <updated>2016-08-07T00:35:05.561Z</updated>
     
     <content type="html"><![CDATA[<p>本文是我的初识 Objective-C 中的内存管理（上） 中的一篇，涉及相关的有：</p>
 <p><a href="http://sunnyzx.me/2016/08/06/%E5%88%9D%E8%AF%86-Objective-C-%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%EF%BC%88%E4%B8%80%EF%BC%89/" target="_blank" rel="external"><strong>初识 Objective-C 中的内存管理（上）</strong></a></p>
 <h2 id="set-时内存管理及注意问题"><a href="#set-时内存管理及注意问题" class="headerlink" title="set 时内存管理及注意问题"></a>set 时内存管理及注意问题</h2><p>为了考虑页面排版的美化性，故将代码写在 Xcode 中用截图的方式展示，方便朋友们的阅读。</p>
-<p><img src="http://obcwlc71a.bkt.clouddn.com/2016080701.png" alt="图片来源于截图"></p>
-<p><img src="http://obcwlc71a.bkt.clouddn.com/2016080702.png" alt="图片来源于截图"></p>
-<a id="more"></a>
-<p>main.m主函数：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">int main(int argc, const char * argv[]) &#123;   </div><div class="line">    Person *person = [[Person alloc] init]; </div><div class="line">    Home *home1 =  [[Home alloc] init];</div><div class="line">    home1.number = 21; </div><div class="line">    person.home = home1;</div><div class="line">    Home *home2 =  [[Home alloc] init];</div><div class="line">    home2.number = 19;   </div><div class="line">    person.home = home2;</div><div class="line">    [home1 release];</div><div class="line">    home1  = NULL;</div><div class="line">    [home2 release];</div><div class="line">    home2  = NULL;</div><div class="line">    [person release];</div><div class="line">    person = NULL;</div><div class="line">    return 0;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>===============================</p>
+<h2 id="type-“picture”"><a href="#type-“picture”" class="headerlink" title="type: “picture”"></a>type: “picture”</h2><h1 id=""><a href="#" class="headerlink" title=""></a><div class="group-picture"><div class="group-picture-container"><div class="group-picture-row"><div class="group-picture-column" style="width: 100%;"><img src="http://obcwlc71a.bkt.clouddn.com/2016080701.png" alt="图片来源于截图"></div></div><div class="group-picture-row"><div class="group-picture-column" style="width: 50%;"><img src="http://obcwlc71a.bkt.clouddn.com/2016080702.png" alt="图片来源于截图"></div><div class="group-picture-column" style="width: 50%;"><img src="http://obcwlc71a.bkt.clouddn.com/2016080704.png" alt="图片来源于截图"></div></div></div></div></h1><a id="more"></a>
 <p>在主函数 <code>home2.number = 19;</code> 代码前，对象计数器分别为： <code>personretainCount = 1</code> , <code>home1retainCount = 2</code> , <code>home2retainCount = 1</code> ，且代码内存中分配情况如下图所示（部分方法没有写）：</p>
-<p><img src="http://obcwlc71a.bkt.clouddn.com/2016080703.png" alt="图片来源与截图"></p>
+<p><img src="http://obcwlc71a.bkt.clouddn.com/2016080703.jpg" alt="图片来源与截图"></p>
 <p>当 <code>person.home = home2;</code> 代码过后，Person对象中的_ home不在指向home1指向的 <code>Home</code> 对象，而是指向home2指向的对象，图不再给，就是把左边的线移动到右边。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">- (void)setHome:(Home *)home &#123;</div><div class="line">    _home = [home retain];</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <hr>
@@ -58,8 +55,8 @@
       &lt;p&gt;本文是我的初识 Objective-C 中的内存管理（上） 中的一篇，涉及相关的有：&lt;/p&gt;
 &lt;p&gt;&lt;a href=&quot;http://sunnyzx.me/2016/08/06/%E5%88%9D%E8%AF%86-Objective-C-%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%EF%BC%88%E4%B8%80%EF%BC%89/&quot;&gt;&lt;strong&gt;初识 Objective-C 中的内存管理（上）&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id=&quot;set-时内存管理及注意问题&quot;&gt;&lt;a href=&quot;#set-时内存管理及注意问题&quot; class=&quot;headerlink&quot; title=&quot;set 时内存管理及注意问题&quot;&gt;&lt;/a&gt;set 时内存管理及注意问题&lt;/h2&gt;&lt;p&gt;为了考虑页面排版的美化性，故将代码写在 Xcode 中用截图的方式展示，方便朋友们的阅读。&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://obcwlc71a.bkt.clouddn.com/2016080701.png&quot; alt=&quot;图片来源于截图&quot;&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&quot;http://obcwlc71a.bkt.clouddn.com/2016080702.png&quot; alt=&quot;图片来源于截图&quot;&gt;&lt;/p&gt;
+&lt;p&gt;===============================&lt;/p&gt;
+&lt;h2 id=&quot;type-“picture”&quot;&gt;&lt;a href=&quot;#type-“picture”&quot; class=&quot;headerlink&quot; title=&quot;type: “picture”&quot;&gt;&lt;/a&gt;type: “picture”&lt;/h2&gt;&lt;h1 id=&quot;&quot;&gt;&lt;a href=&quot;#&quot; class=&quot;headerlink&quot; title=&quot;&quot;&gt;&lt;/a&gt;&lt;div class=&quot;group-picture&quot;&gt;&lt;div class=&quot;group-picture-container&quot;&gt;&lt;div class=&quot;group-picture-row&quot;&gt;&lt;div class=&quot;group-picture-column&quot;  style=&quot;width: 100%;&quot;&gt;&lt;img src=&quot;http://obcwlc71a.bkt.clouddn.com/2016080701.png&quot; alt=&quot;图片来源于截图&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;group-picture-row&quot;&gt;&lt;div class=&quot;group-picture-column&quot;  style=&quot;width: 50%;&quot;&gt;&lt;img src=&quot;http://obcwlc71a.bkt.clouddn.com/2016080702.png&quot; alt=&quot;图片来源于截图&quot;&gt;&lt;/div&gt;&lt;div class=&quot;group-picture-column&quot;  style=&quot;width: 50%;&quot;&gt;&lt;img src=&quot;http://obcwlc71a.bkt.clouddn.com/2016080704.png&quot; alt=&quot;图片来源于截图&quot;&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/div&gt;&lt;/h1&gt;
     
     </summary>
     
