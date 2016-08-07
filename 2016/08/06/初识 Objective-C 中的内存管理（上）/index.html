@@ -116,7 +116,7 @@
 初">
 <meta property="og:image" content="http://obcwlc71a.bkt.clouddn.com/2016080602.png">
 <meta property="og:image" content="http://obcwlc71a.bkt.clouddn.com/2016080602.png">
-<meta property="og:updated_time" content="2016-08-07T01:28:27.563Z">
+<meta property="og:updated_time" content="2016-08-07T02:37:39.057Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="初识 Objective-C 中的内存管理（上）">
 <meta name="twitter:description" content="鄙人抱着初学者的态度来介绍内存管理，还望看官多担待（首先关闭Xcode中的Automatic Referencing Counting）问：什么是内存？
@@ -367,7 +367,8 @@
 <p>运行结果需要手动得知～</p>
 <p>野指针：指向不可用对象的地址</p>
 <p>首先逐行分析代码在内存中的情况：</p>
-<p><code>Car *bus = [[Car alloc]init];</code>过后Car对象的计数器变成1：<br><img src="http://obcwlc71a.bkt.clouddn.com/2016080602.png" alt="图片来源于截图"></p>
+<p><code>Car *bus = [[Car alloc]init];</code>过后Car对象的计数器变成1：</p>
+<p><img src="http://obcwlc71a.bkt.clouddn.com/2016080602.png" alt="图片来源于截图"></p>
 <p><code>[bus retain];</code>过后Car对象通过<code>retain</code>计数器从上图的1变成2。</p>
 <p><code>NSUInteger number = [bus retainCount];</code><br> <code>NSLog(@&quot;计数器：%ld&quot;,number);</code>获取Car对象计数器，赋值给NSUInteger类型number变量，并且打印。</p>
 <p><code>[bus release];</code>、<code>[bus release];</code>分别将对象计数器－1，此时对象计数器为0。</p>
