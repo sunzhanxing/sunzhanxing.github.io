@@ -98,29 +98,20 @@
 
 
 
-<meta name="description" content="本文是我 初识 Objective-C 中的内存管理 中的一篇，涉及的相关文章有：
-初识 Objective-C 中的内存管理（上）
-初识 Objective-C 中的内存管理（中）
-初识 Objective-C 中的内存管理（下）
-@property在上篇介绍内存管理中的set时，你可能会想到，两个对象还行，如果5个呢？10个呢？是不是都要管理set里面的代码呢？恩是的，所以为了代码的简洁我们以">
+<meta name="description" content="在上篇介绍内存管理中的set时，你可能会想到，两个对象还行，如果5个呢？10个呢？是不是都要管理set里面的代码呢？恩是的，所以为了代码的简洁我们以后要采取 @property 来管理。
+123456- (void)setHome:(Home) *home &amp;#123;    if(home != _home) &amp;#123;        [_home release];        _home">
 <meta property="og:type" content="article">
 <meta property="og:title" content="初识 Objective-C 中的内存管理（下）">
 <meta property="og:url" content="http://yoursite.com/2016/08/07/初识 Objective-C-中的内存管理（下）/index.html">
 <meta property="og:site_name" content="Sunnyzx's Notes">
-<meta property="og:description" content="本文是我 初识 Objective-C 中的内存管理 中的一篇，涉及的相关文章有：
-初识 Objective-C 中的内存管理（上）
-初识 Objective-C 中的内存管理（中）
-初识 Objective-C 中的内存管理（下）
-@property在上篇介绍内存管理中的set时，你可能会想到，两个对象还行，如果5个呢？10个呢？是不是都要管理set里面的代码呢？恩是的，所以为了代码的简洁我们以">
+<meta property="og:description" content="在上篇介绍内存管理中的set时，你可能会想到，两个对象还行，如果5个呢？10个呢？是不是都要管理set里面的代码呢？恩是的，所以为了代码的简洁我们以后要采取 @property 来管理。
+123456- (void)setHome:(Home) *home &amp;#123;    if(home != _home) &amp;#123;        [_home release];        _home">
 <meta property="og:image" content="http://obcwlc71a.bkt.clouddn.com/2016080705.png">
-<meta property="og:updated_time" content="2016-08-07T01:29:15.799Z">
+<meta property="og:updated_time" content="2016-08-09T23:06:14.369Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="初识 Objective-C 中的内存管理（下）">
-<meta name="twitter:description" content="本文是我 初识 Objective-C 中的内存管理 中的一篇，涉及的相关文章有：
-初识 Objective-C 中的内存管理（上）
-初识 Objective-C 中的内存管理（中）
-初识 Objective-C 中的内存管理（下）
-@property在上篇介绍内存管理中的set时，你可能会想到，两个对象还行，如果5个呢？10个呢？是不是都要管理set里面的代码呢？恩是的，所以为了代码的简洁我们以">
+<meta name="twitter:description" content="在上篇介绍内存管理中的set时，你可能会想到，两个对象还行，如果5个呢？10个呢？是不是都要管理set里面的代码呢？恩是的，所以为了代码的简洁我们以后要采取 @property 来管理。
+123456- (void)setHome:(Home) *home &amp;#123;    if(home != _home) &amp;#123;        [_home release];        _home">
 <meta name="twitter:image" content="http://obcwlc71a.bkt.clouddn.com/2016080705.png">
 
 
@@ -340,11 +331,7 @@
       
 
       
-        <p>本文是我 初识 Objective-C 中的内存管理 中的一篇，涉及的相关文章有：</p>
-<p><a href="http://sunnyzx.me/2016/08/06/%E5%88%9D%E8%AF%86%20Objective-C%20%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%EF%BC%88%E4%B8%8A%EF%BC%89/" target="_blank" rel="external"><strong>初识 Objective-C 中的内存管理（上）</strong></a></p>
-<p><a href="http://sunnyzx.me/2016/08/06/%E5%88%9D%E8%AF%86%20Objective-C%20%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%EF%BC%88%E4%B8%AD%EF%BC%89/" target="_blank" rel="external"><strong>初识 Objective-C 中的内存管理（中）</strong></a></p>
-<p><a href="http://sunnyzx.me/2016/08/07/%E5%88%9D%E8%AF%86%20Objective-C-%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%EF%BC%88%E4%B8%8B%EF%BC%89/" target="_blank" rel="external"><strong>初识 Objective-C 中的内存管理（下）</strong></a></p>
-<h2 id="property"><a href="#property" class="headerlink" title="@property"></a>@property</h2><p>在上篇介绍内存管理中的set时，你可能会想到，两个对象还行，如果5个呢？10个呢？是不是都要管理set里面的代码呢？恩是的，所以为了代码的简洁我们以后要采取 <code>@property</code> 来管理。</p>
+        <p>在上篇介绍内存管理中的set时，你可能会想到，两个对象还行，如果5个呢？10个呢？是不是都要管理set里面的代码呢？恩是的，所以为了代码的简洁我们以后要采取 <code>@property</code> 来管理。</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">- (void)setHome:(Home) *home &#123;</div><div class="line">    if(home != _home) &#123;</div><div class="line">        [_home release];</div><div class="line">        _home = [home retain];</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <a id="more"></a>
 <p>等等，我们不是说好的用 <code>@property</code> 在管理嘛，上面怎么用写set里注意的问题了？恩，写它主要是让你在加强一下影响和用 <code>@property</code> 实现所上代码相同的功能。</p>
@@ -556,7 +543,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#property"><span class="nav-number">1.</span> <span class="nav-text">@property</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#autorelease"><span class="nav-number">2.</span> <span class="nav-text">@autorelease</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#autorelease"><span class="nav-number">1.</span> <span class="nav-text">@autorelease</span></a></li></ol></div>
             
           </div>
         </section>

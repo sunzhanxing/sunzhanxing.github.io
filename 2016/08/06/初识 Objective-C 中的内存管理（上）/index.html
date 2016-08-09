@@ -101,9 +101,7 @@
 <meta name="description" content="鄙人抱着初学者的态度来介绍内存管理，还望看官多担待（首先关闭Xcode中的Automatic Referencing Counting）问：什么是内存？
 答：程序运行时在计算机内存中进行资源的分配和使用，因此内存的性能对计算机的影响非常大。
 问：为什么要管理内存？
-答：提高程序效率，在合理的时刻分配和回收内存。
-本文是我 初识 Objective-C 中的内存管理 中的一篇，涉及的相关文章有：
-初">
+答：提高程序效率，在合理的时刻分配和回收内存。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="初识 Objective-C 中的内存管理（上）">
 <meta property="og:url" content="http://yoursite.com/2016/08/06/初识 Objective-C 中的内存管理（上）/index.html">
@@ -111,20 +109,16 @@
 <meta property="og:description" content="鄙人抱着初学者的态度来介绍内存管理，还望看官多担待（首先关闭Xcode中的Automatic Referencing Counting）问：什么是内存？
 答：程序运行时在计算机内存中进行资源的分配和使用，因此内存的性能对计算机的影响非常大。
 问：为什么要管理内存？
-答：提高程序效率，在合理的时刻分配和回收内存。
-本文是我 初识 Objective-C 中的内存管理 中的一篇，涉及的相关文章有：
-初">
+答：提高程序效率，在合理的时刻分配和回收内存。">
 <meta property="og:image" content="http://obcwlc71a.bkt.clouddn.com/2016080602.png">
 <meta property="og:image" content="http://obcwlc71a.bkt.clouddn.com/2016080602.png">
-<meta property="og:updated_time" content="2016-08-07T02:37:39.057Z">
+<meta property="og:updated_time" content="2016-08-09T23:05:26.698Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="初识 Objective-C 中的内存管理（上）">
 <meta name="twitter:description" content="鄙人抱着初学者的态度来介绍内存管理，还望看官多担待（首先关闭Xcode中的Automatic Referencing Counting）问：什么是内存？
 答：程序运行时在计算机内存中进行资源的分配和使用，因此内存的性能对计算机的影响非常大。
 问：为什么要管理内存？
-答：提高程序效率，在合理的时刻分配和回收内存。
-本文是我 初识 Objective-C 中的内存管理 中的一篇，涉及的相关文章有：
-初">
+答：提高程序效率，在合理的时刻分配和回收内存。">
 <meta name="twitter:image" content="http://obcwlc71a.bkt.clouddn.com/2016080602.png">
 
 
@@ -348,10 +342,6 @@
 <p>答：程序运行时在计算机内存中进行资源的分配和使用，因此内存的性能对计算机的影响非常大。</p>
 <p>问：为什么要管理内存？</p>
 <p>答：提高程序效率，在合理的时刻分配和回收内存。</p>
-<p>本文是我 初识 Objective-C 中的内存管理 中的一篇，涉及的相关文章有：</p>
-<p><a href="http://sunnyzx.me/2016/08/06/%E5%88%9D%E8%AF%86%20Objective-C%20%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%EF%BC%88%E4%B8%8A%EF%BC%89/" target="_blank" rel="external"><strong>初识 Objective-C 中的内存管理（上）</strong></a></p>
-<p><a href="http://sunnyzx.me/2016/08/06/%E5%88%9D%E8%AF%86%20Objective-C%20%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%EF%BC%88%E4%B8%AD%EF%BC%89/" target="_blank" rel="external"><strong>初识 Objective-C 中的内存管理（中）</strong></a></p>
-<p><a href="http://sunnyzx.me/2016/08/07/%E5%88%9D%E8%AF%86%20Objective-C-%E4%B8%AD%E7%9A%84%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86%EF%BC%88%E4%B8%8B%EF%BC%89/" target="_blank" rel="external"><strong>初识 Objective-C 中的内存管理（下）</strong></a></p>
 <a id="more"></a>
 <h2 id="引用计数器"><a href="#引用计数器" class="headerlink" title="引用计数器"></a>引用计数器</h2><h3 id="retainCount、retain、release、野指针、空指针"><a href="#retainCount、retain、release、野指针、空指针" class="headerlink" title="retainCount、retain、release、野指针、空指针"></a><code>retainCount</code>、<code>retain</code>、<code>release</code>、野指针、空指针</h3><p><strong>retainCount</strong>：当使用alloc、new、copy（目前不会用2333）时，对象引用记数器加1，获取当前计数器的次数。</p>
 <p><code>－ (void)dealloc;</code>：当计数器为0时，系统会自动调用回收方法。<br>注：<code>在- (void)dealloc;</code>中，<code>[super dealloc];</code>要放在最后面。</p>
