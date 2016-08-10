@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-08-10T00:51:12.642Z</updated>
+  <updated>2016-08-10T13:27:16.827Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,72 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>揭开 iOS 中多线程的神秘面纱 （一）</title>
+    <link href="http://yoursite.com/2016/08/10/%E6%8F%AD%E5%BC%80%20iOS%20%E4%B8%AD%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%A5%9E%E7%A7%98%E9%9D%A2%E7%BA%B1%EF%BC%88%E4%B8%80%EF%BC%89/"/>
+    <id>http://yoursite.com/2016/08/10/揭开 iOS 中多线程的神秘面纱（一）/</id>
+    <published>2016-08-10T13:19:02.000Z</published>
+    <updated>2016-08-10T13:27:16.827Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="进程和线程"><a href="#进程和线程" class="headerlink" title="进程和线程"></a>进程和线程</h2><p>进程：是应用程序实例，每个进程都有独立的私有空间，进程间相互独立。</p>
+<p>如在电脑中打开快播和乐视的客户端，模拟进程将如图所示：</p>
+<p><img src="http://obcwlc71a.bkt.clouddn.com/2016081001.png" alt="图片来源于截图"></p>
+<a id="more"></a>
+<p>线程：指进程内部中的一个执行单元。当系统创建进程后，实际上就启动该（进程）程序的主线程，每一个进程至少有一个主执行线程。</p>
+<p>如在刚刚打开的快播和乐视的客户端中下载懂你的电影，模拟线程将如图所示：</p>
+<p><img src="http://obcwlc71a.bkt.clouddn.com/2016081002.png" alt="图片来源于截图"></p>
+<p>线程中的任务的执行是遵循(先进先出)的原则，比如用快播下载两个电影，模拟如图所示：</p>
+<p><img src="http://obcwlc71a.bkt.clouddn.com/2016081003.png" alt="图片来源于截图"></p>
+<h2 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h2><p>当（进程）程序有几个任务要同时运行时，此刻利用多线程的特性，开启多个线程，在不同的线程中执行任务。</p>
+<p>如在快播的进程中，开启两条线程让每条线程做不同的事情，模拟如图所示：</p>
+<p><img src="http://obcwlc71a.bkt.clouddn.com/2016081004.png" alt="图片来源于截图"></p>
+<h3 id="多线程的优缺点"><a href="#多线程的优缺点" class="headerlink" title="多线程的优缺点"></a>多线程的优缺点</h3><h4 id="优点："><a href="#优点：" class="headerlink" title="优点："></a>优点：</h4><p>1.提高程序的执行效率，使程序的响应速度更快。<br>2.可指定设置各个任务执行的优先级，方便操作。</p>
+<h4 id="缺点："><a href="#缺点：" class="headerlink" title="缺点："></a>缺点：</h4><p>1.开启线程需要额外的 CPU 开销，线程开启越多，CPU在调度线程上的开销就越大，从而导致程序的性能大大折扣。</p>
+<h3 id="多线程使用注意情况"><a href="#多线程使用注意情况" class="headerlink" title="多线程使用注意情况"></a>多线程使用注意情况</h3><p>一条线程只能做一件事情，比如我在内存中开启了一个快播这个应用，然后我在下载电影的同时又想让它去欧美区下载电影，这是将会出现如中的这种情况：</p>
+<p><img src="http://obcwlc71a.bkt.clouddn.com/2016081005.gif" alt="图片来源于截图"></p>
+<p>这是我们平时需要注意的问题，因为在下载电影日本区的电影时，已经将任务放进了主进程（UI进程）中去执行，当再去欧美区的时候，我模拟需要下载日本区的1000部（毕竟热衷岛国片），此时线程要遵守串行规则，所以会看到上图的效果。</p>
+<p>虽然1000部电影很多，但是也满足不了正值青春的我们呀，所以我们还需要去欧美区在下载1000部电影来满足我们日后所需，但是我们怎么办呢？别急，下面告诉你怎么做！</p>
+<h3 id="NSThread"><a href="#NSThread" class="headerlink" title="NSThread"></a>NSThread</h3><p>NSThread：相对轻量级的多线程开发，需要自己管理线程。</p>
+<p>在通过上面的问题，应明确两个操作需要在不同的线程中执行，需要创建两条线程来执行我们的任务。</p>
+<p>我们要解决的问题中需要使用下面的方法。</p>
+<figure class="highlight obj-c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment">/* 创建新线程，需要调用 start 方法开启 */</span> </div><div class="line">- (<span class="keyword">instancetype</span>)initWithTarget:(<span class="keyword">id</span>)target selector:(SEL)selector </div><div class="line">object:(<span class="keyword">id</span>)argument;</div><div class="line"></div><div class="line">target <span class="comment">/* 调用对象 */</span></div><div class="line">selector <span class="comment">/* 调用方法名 */</span> </div><div class="line">argument <span class="comment">/* 参数对象 */</span></div></pre></td></tr></table></figure>
+<p>只拿其中一个日本电影为例，欧美的和日本的意义，毕竟深爱岛国片这么多年！只是为了演示，就直接在SB中拖的空间，没有用纯代码写，也没什么必要。</p>
+<p>利用 [NSThread currentThread] 来获取当前的线程，观察是否是主线程（UI线程）</p>
+<figure class="highlight obj-c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">IBAction</span>) japanButtonClick:(<span class="built_in">UIButton</span> *)sender &#123;   </div><div class="line"></div><div class="line">    <span class="built_in">NSThread</span> *threadJapan = [[<span class="built_in">NSThread</span> alloc]initWithTarget:<span class="keyword">self</span> selector:<span class="keyword">@selector</span>(getJapanButton) object:<span class="string">@"Sunnyzx"</span>];</div><div class="line">    <span class="comment">/* 开启线程 */</span></div><div class="line">    [threadJapan start];</div><div class="line">&#125;</div><div class="line">- (<span class="keyword">void</span>)getJapanButton &#123;</div><div class="line">    <span class="comment">/* 遍历下载次数 */</span></div><div class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> index = <span class="number">0</span>; index &lt; <span class="number">1000</span>; index++) &#123;</div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"日本电影已下载%d部 - %@"</span>,index, [<span class="built_in">NSThread</span> currentThread]);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="http://obcwlc71a.bkt.clouddn.com/2016081006.gif" alt="图片来源于截图"></p>
+<p>观察上图的打印结果，可以看出已经达到我们所需要的需求。</p>
+<p>好了不说了，资源下载好了，去撸了！</p>
+<p>等等，这是小B（线程）和我说最近网警严打，网盘上的资源别人下载一次就会自动删除，所以他下载下来的大片显示的数量和实际的不匹配！然后他还和我说了无图无真相，不但贴了代码还特意带来此图：</p>
+<figure class="highlight obj-c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">@property</span>(<span class="keyword">strong</span>, <span class="keyword">nonatomic</span>) <span class="built_in">NSThread</span> *smallA; <span class="comment">/* 小A */</span></div><div class="line"><span class="keyword">@property</span>(<span class="keyword">strong</span>, <span class="keyword">nonatomic</span>) <span class="built_in">NSThread</span> *smallB;</div><div class="line"><span class="comment">/* 小B */</span></div><div class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>, <span class="keyword">assign</span>) <span class="built_in">NSInteger</span> *avCount; <span class="comment">/* 岛国资源 */</span></div></pre></td></tr></table></figure>
+<p>在 - (void)viewDidLoad 方法中复制10，方便观察数据的变化。在下面代码就只贴小A的了，小B和小A内容相同，只是方法名不同，并绑定同一个按钮，代码如下：</p>
+<figure class="highlight obj-c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">IBAction</span>)smallAClick:(<span class="built_in">UIButton</span> *)sender &#123;</div><div class="line">    <span class="keyword">self</span>.smallA = [[<span class="built_in">NSThread</span> alloc]initWithTarget:<span class="keyword">self</span> selector:<span class="keyword">@selector</span>(getUsaButton) object:<span class="string">@"Sunnyzx"</span>];</div><div class="line">    <span class="keyword">self</span>.smallA.name = <span class="string">@"小A"</span>;</div><div class="line">    [<span class="keyword">self</span>.smallA start];</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (<span class="keyword">void</span>)getUsaButton &#123;</div><div class="line">    <span class="keyword">while</span> (<span class="number">1</span>) &#123;</div><div class="line">        <span class="built_in">NSInteger</span> count = <span class="keyword">self</span>.avCount;</div><div class="line">        <span class="keyword">if</span> (count &gt; <span class="number">0</span>) &#123;</div><div class="line">            <span class="keyword">self</span>.avCount = count - <span class="number">1</span>;</div><div class="line">            <span class="built_in">NSLog</span>(<span class="string">@"%@下载了一个岛国资源，还剩下%zd部"</span>, [<span class="built_in">NSThread</span> currentThread].name,<span class="keyword">self</span>.avCount );</div><div class="line">        &#125;</div><div class="line">            <span class="keyword">else</span> &#123;</div><div class="line">                <span class="built_in">NSLog</span>(<span class="string">@"小撸怡情，大撸伤身，强撸灰飞烟灭!!!"</span>);</div><div class="line">                <span class="keyword">break</span>;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="http://obcwlc71a.bkt.clouddn.com/2016081007.gif" alt="图片来源于截图"></p>
+<p>看了这图的确有些头疼，毕竟煮熟的鸭子飞了。想想这问题一定要解决，不然发生在我身上呢？于是开始就开始跳坑了。</p>
+<p>资源现在被小A和小B共享，就是他们两个执行会访问同一块资源，系统并不能确定谁先开始，当他下载完成资源删除时，另一个可能已经读区到之前的数据，但是没有下载，所以产生了数据混乱，如图所示：</p>
+<p><img src="http://obcwlc71a.bkt.clouddn.com/2016081008.png" alt="图片来源于截图"></p>
+<h3 id="互斥锁"><a href="#互斥锁" class="headerlink" title="互斥锁"></a>互斥锁</h3><p>互斥锁：防止多个线程共用一块资源从而导致数据换乱。</p>
+<figure class="highlight obj-c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">@synchronized</span>(<span class="keyword">self</span>) &#123;</div><div class="line">    <span class="comment">/* 需要锁定的代码 */</span> </div><div class="line">    <span class="built_in">NSInteger</span> count = <span class="keyword">self</span>.avCount;</div><div class="line">    <span class="keyword">if</span> (count &gt; <span class="number">0</span>) &#123;</div><div class="line">        <span class="keyword">self</span>.avCount = count - <span class="number">1</span>;</div><div class="line">        <span class="built_in">NSLog</span>(<span class="string">@"%@下载了一个岛国资源，还剩下%zd部"</span>, [<span class="built_in">NSThread</span> currentThread].name,<span class="keyword">self</span>.avCount );</div><div class="line">    &#125;</div><div class="line">        <span class="keyword">else</span> &#123;</div><div class="line">            <span class="built_in">NSLog</span>(<span class="string">@"小撸怡情，大撸伤身，强撸灰飞烟灭!!!"</span>);</div><div class="line">            <span class="keyword">break</span>;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><img src="http://obcwlc71a.bkt.clouddn.com/2016081009.gif" alt="图片来源于截图"></p>
+<p>观看代码和运行得出的数据可知，当我们多个线程同时访问一块数据时需要给代码块加锁，告诉他此资源有人访问，此时他将会在锁外等待访问资源结束后在进入访问。</p>
+<h3 id="线程之间的通信"><a href="#线程之间的通信" class="headerlink" title="线程之间的通信"></a>线程之间的通信</h3><p>继上次小A和小B学习如何资源共享下载“大片”之后，小A也遇到了一些头疼的事情，</p>
+<p>那就是小A的好基友小V苦苦央求小A，让小A给他一些“大片”资源，于是小A只好把他收藏的“传家宝”拿了出来。</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line">- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event &#123;</div><div class="line">    /* 创建一个线程 */</div><div class="line">    [self performSelectorInBackground:@selector(downloadPicture) withObject:nil];</div><div class="line">    /* 打印当前所在线程 */</div><div class="line">    NSLog(@"--- touchesBegan ---%@",[NSThread currentThread]);</div><div class="line">&#125;</div><div class="line"></div><div class="line">- (void)downloadPicture &#123;</div><div class="line">    /* 图片的网络路径 */</div><div class="line">    NSURL *url = [NSURL URLWithString:@"http://b163.photo.store.</div><div class="line">qq.com/psb?/V11l6T5W2PpU4m/K97X*P0VYZ98F</div><div class="line">G3drjWxWOEfdga1FQyZVe1IbKnNvHY!/b/dK</div><div class="line">MAAAAAAAAA&amp;bo=0AIsAdACLAEBByA!&amp;rf=viewer_4"];</div><div class="line">    /* 获取图片数据 */</div><div class="line">    NSData *data = [NSData dataWithContentsOfURL:url];</div><div class="line">    /* 获取网络图片 */</div><div class="line">    UIImage *image = [UIImage imageWithData:data];</div><div class="line">    /* 返回主线程，并显示图片 */</div><div class="line">    [self.imageView performSelector:@selector(setImage:) </div><div class="line">                      onThread:[NSThreadmainThread]            </div><div class="line">                      withObject:image </div><div class="line">                      waitUntilDone:YES];</div><div class="line">    </div><div class="line">    /* 打印当前所在线程 */</div><div class="line">    NSLog(@"--- downloadPicture ---%@",[NSThread currentThread]);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>小A先在某云盘给小V创建一个分享链接，然后小V就在里面进行了他所需要的操作，等操作完后，小A看到他分享给小V的资源显示已经被下载了一次(因为是私密分享，小A并没有告诉除小V以外的任何人，所以下次的那一次就是小V)，就知道小V已经下载了资源。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;进程和线程&quot;&gt;&lt;a href=&quot;#进程和线程&quot; class=&quot;headerlink&quot; title=&quot;进程和线程&quot;&gt;&lt;/a&gt;进程和线程&lt;/h2&gt;&lt;p&gt;进程：是应用程序实例，每个进程都有独立的私有空间，进程间相互独立。&lt;/p&gt;
+&lt;p&gt;如在电脑中打开快播和乐视的客户端，模拟进程将如图所示：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;http://obcwlc71a.bkt.clouddn.com/2016081001.png&quot; alt=&quot;图片来源于截图&quot;&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Objective-C" scheme="http://yoursite.com/tags/Objective-C/"/>
+    
+  </entry>
   
   <entry>
     <title>利用 Quartz2D 画一个简单的猪</title>
