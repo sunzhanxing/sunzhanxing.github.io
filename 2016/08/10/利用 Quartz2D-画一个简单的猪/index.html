@@ -80,7 +80,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="青春校园," />
+  <meta name="keywords" content="Objective-C," />
 
 
 
@@ -98,24 +98,25 @@
 
 
 
-<meta name="description" content="文｜孙占兴
-
-转眼间，一年的悠悠岁月已如同手中紧抓的沙子，无声无息的流失。然而，沙子流失，可以再抓一把；花儿凋零，可以等到来年春天重绽芳颜；童年流逝，却永远无法回头再来。">
+<meta name="description" content="因为后面用到的地方比较多，所以为了方便设置两个宏，一个是半径，一个是颜色的设置。
+12#define radius 40#define colour(r,g,b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]">
 <meta property="og:type" content="article">
-<meta property="og:title" content="没有什么过不去，只是再也回不去">
-<meta property="og:url" content="http://yoursite.com/2016/08/09/没有什么过不去，只是再也回不去/index.html">
+<meta property="og:title" content="利用 Quartz2D 画一个简单的猪">
+<meta property="og:url" content="http://yoursite.com/2016/08/10/利用 Quartz2D-画一个简单的猪/index.html">
 <meta property="og:site_name" content="Sunnyzx's Notes">
-<meta property="og:description" content="文｜孙占兴
-
-转眼间，一年的悠悠岁月已如同手中紧抓的沙子，无声无息的流失。然而，沙子流失，可以再抓一把；花儿凋零，可以等到来年春天重绽芳颜；童年流逝，却永远无法回头再来。">
-<meta property="og:image" content="http://obcwlc71a.bkt.clouddn.com/20160809.jpeg">
-<meta property="og:updated_time" content="2016-08-09T14:05:13.376Z">
+<meta property="og:description" content="因为后面用到的地方比较多，所以为了方便设置两个宏，一个是半径，一个是颜色的设置。
+12#define radius 40#define colour(r,g,b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]">
+<meta property="og:image" content="http://obcwlc71a.bkt.clouddn.com/20160810.png">
+<meta property="og:image" content="https://www.teilim.com/content/images/photo/Quartz2D1.jpg">
+<meta property="og:image" content="https://www.teilim.com/content/images/photo/Quartz2D2.jpg">
+<meta property="og:image" content="https://www.teilim.com/content/images/photo/Quartz2D3.jpg">
+<meta property="og:image" content="https://www.teilim.com/content/images/photo/Quartz2D4.jpg">
+<meta property="og:updated_time" content="2016-08-10T00:51:12.642Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="没有什么过不去，只是再也回不去">
-<meta name="twitter:description" content="文｜孙占兴
-
-转眼间，一年的悠悠岁月已如同手中紧抓的沙子，无声无息的流失。然而，沙子流失，可以再抓一把；花儿凋零，可以等到来年春天重绽芳颜；童年流逝，却永远无法回头再来。">
-<meta name="twitter:image" content="http://obcwlc71a.bkt.clouddn.com/20160809.jpeg">
+<meta name="twitter:title" content="利用 Quartz2D 画一个简单的猪">
+<meta name="twitter:description" content="因为后面用到的地方比较多，所以为了方便设置两个宏，一个是半径，一个是颜色的设置。
+12#define radius 40#define colour(r,g,b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]">
+<meta name="twitter:image" content="http://obcwlc71a.bkt.clouddn.com/20160810.png">
 
 
 
@@ -136,9 +137,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/08/09/没有什么过不去，只是再也回不去/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/08/10/利用 Quartz2D-画一个简单的猪/"/>
 
-  <title> 没有什么过不去，只是再也回不去 | Sunnyzx's Notes </title>
+  <title> 利用 Quartz2D 画一个简单的猪 | Sunnyzx's Notes </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -278,7 +279,7 @@
             
             
               
-                没有什么过不去，只是再也回不去
+                利用 Quartz2D 画一个简单的猪
               
             
           </h1>
@@ -290,8 +291,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-08-09T21:54:07+08:00" content="2016-08-09">
-              2016-08-09
+            <time itemprop="dateCreated" datetime="2016-08-10T08:04:10+08:00" content="2016-08-10">
+              2016-08-10
             </time>
           </span>
 
@@ -301,8 +302,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/08/09/没有什么过不去，只是再也回不去/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/09/没有什么过不去，只是再也回不去/" itemprop="commentsCount"></span>
+                <a href="/2016/08/10/利用 Quartz2D-画一个简单的猪/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/10/利用 Quartz2D-画一个简单的猪/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -312,7 +313,7 @@
 
           
           
-             <span id="/2016/08/09/没有什么过不去，只是再也回不去/" class="leancloud_visitors" data-flag-title="没有什么过不去，只是再也回不去">
+             <span id="/2016/08/10/利用 Quartz2D-画一个简单的猪/" class="leancloud_visitors" data-flag-title="利用 Quartz2D 画一个简单的猪">
                &nbsp; | &nbsp;
                <span class="post-meta-item-icon">
                  <i class="fa fa-eye"></i>
@@ -334,69 +335,26 @@
       
 
       
-        <p><img src="http://obcwlc71a.bkt.clouddn.com/20160809.jpeg" alt="图片来源与网络"></p>
-<p>文｜孙占兴</p>
-<blockquote>
-<p>转眼间，一年的悠悠岁月已如同手中紧抓的沙子，无声无息的流失。然而，沙子流失，可以再抓一把；花儿凋零，可以等到来年春天重绽芳颜；童年流逝，却永远无法回头再来。</p>
-</blockquote>
+        <p><img src="http://obcwlc71a.bkt.clouddn.com/20160810.png" alt="图片来源于网络"></p>
+<p>因为后面用到的地方比较多，所以为了方便设置两个宏，一个是半径，一个是颜色的设置。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#define radius 40</div><div class="line">#define colour(r,g,b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]</div></pre></td></tr></table></figure>
 <a id="more"></a>
-<p>师父给我推荐了网易云音乐，用起来很不错，今天无意中发现，有时候不光是听歌，看评论往往更多的都是故事，看了简书一位作者发了篇文章，特摘抄了一些用户的评论，写成了这篇，其实每一条评论都是一段深情。</p>
-<blockquote>
-<p>回忆起曾深爱的ta，是否一些记忆涌上心头？</p>
-</blockquote>
-<p>@啊汐: <strong>我能遇见你已经很不可思议了</strong></p>
-<p>@Delete-026: <strong>人来人往，最放不下的还是你</strong></p>
-<p>@北羚：<strong>我想重新认识你，从你叫什么名字开始</strong></p>
-<p>@黑白照过: <strong>从来没有忽然想起你，只是一直在心底</strong></p>
-<p>@青春是个不可回头的梦：<strong>我把你遗忘在我们曾经相识的地方</strong></p>
-<blockquote>
-<p>为ta做过疯狂的事，是否还历历在目？</p>
-</blockquote>
-<p>@youyue0822：<strong>离开生活和工作了8年的城市去西藏跟他一起，只是现在他已离开，我却留在了这里</strong></p>
-<p>@清水巷: <strong>那个看起来毫不在乎你的人在聊天窗口里写满了要对你说的话，可是却一直没按发送键。那个决绝果断拖你进黑名单的人，在别的地方悄悄关注着你的喜怒哀乐。那些你以为与你再无瓜葛的人在那么多个容易脆弱的夜里，却是忍住了一万次想要联系你的冲动</strong></p>
-<p>@伪文艺女青年：<strong>去过他家，去过他的学校，呆过他们宿舍，吃过他们食堂。这几年，我一直觉得，我努力走近你，我们的关系就能不一样，可是我错了。哪怕你给我一个肯定的眼神，我也可以再义无反顾。我一直以为喜欢你喜欢的很辛苦，可是现在我彻底离开你的世界了，才发现，要做到不喜欢你，更痛苦</strong></p>
-<p>@知乎用户：<strong>上着课，想得不行，就溜了。直奔火车站，买了票，坐了一天的火车，旷了一个礼拜课。回来后终于能安心读书了。还有几次，莫名跑到火车站，在出站口等那趟车，看尽所有出站的人，自然是没有，连看了几天。知道她不可能来，但每跑一趟，心里就能舒服一些。唉，恋爱中人就是半个精神病，一点不假</strong></p>
-<p>@矫情如我：<strong>她在北京。我在美国。学习西班牙语，考到驾照，攒到钱。春假来到阿根廷Río Negro。租一辆车，买一张当地电话卡。打开Find Friends, 确定她的地理位置。算出对应地点。纬度南北互换，经度东西互换后用180度减。GPS定位。驱车前往，是一片荒野。她那是晚上，和她聊天，她说刚下课，正在回宿舍的路上。叫她打开Find Friends看我在哪。过了会她回复 “！！你在阿根廷？”遂给她打电话。一接通她就冲我大骂一通说你丫背着我去阿根廷玩。。！！？我对她说，我现在在阿根廷Río Negro省高速公路旁一处荒野。我在你的脚下。我在这个星球上离你最远的地方。但我还是好想好想你</strong></p>
-<blockquote>
-<p>你曾遍体鳞伤，但为ta却还是义无反顾</p>
-</blockquote>
-<p>@icccy: <strong>什么叫多余，心冷之后，你的殷勤</strong> </p>
-<p>@逝暧i：<strong>无论以后发生什么事情，我都会在的</strong></p>
-<p>@墨哈淳灵：<strong>有时真心话往往都藏在玩笑中，只是说者有心，听者无心罢了</strong></p>
-<p>@青春集结号2015：<strong>知不知道，有时你不经意的一句话，会影响我一天的心情</strong></p>
-<p>@拥友c：<strong>我每天笑的没心没肺,　装的很无所谓,　只是为了不让别人看出我像个傻瓜似的天天想着迩</strong></p>
-<blockquote>
-<p>为了ta你明明知道结局，却还是抱有希望</p>
-</blockquote>
-<p>foreve永恒的守护: <strong>没有关系，我们只是朋友</strong></p>
-<p>@月海浪花：<strong>多少人以朋友的名义默默的爱着</strong></p>
-<p>@Mr_HysteriA: <strong>我结婚的时候你一定要来，不然没有新娘我会很尴尬</strong></p>
-<p>@冷月镜水：<strong>我们的爱情就像是多米诺骨牌，我倒向你，你却倒向别人</strong></p>
-<p>@岁月无痕：<strong>虽然我知道我要找的并不是这样的他，我曾爱过的也并不是这样的他，可是我也没有办法，三年来，我甘愿守着他……”</strong></p>
-<blockquote>
-<p>你抵不住其他因素和时间，最终还是放下了ta</p>
-</blockquote>
-<p>@过往：<strong>敬往事一杯酒，再爱也不回头</strong></p>
-<p>@林林lili：<strong>我做过最勇敢的事情，就是放弃你</strong></p>
-<p>@33al：<strong>我们终于可以用陌生人的关系，一辈子在一起了</strong></p>
-<p>@或忘：<strong>那些以前说着永不分离的人，早已经散落在天涯了</strong></p>
-<p>@其声悠然：<strong>我爱你十年如一日沉淀，放手给你自由和碧海蓝天</strong></p>
-<blockquote>
-<p>感叹曾经与ta相关的那些过往</p>
-</blockquote>
-<p>@帐号已注销：<strong>我喜欢的样子，你都有</strong></p>
-<p>@蓦然回首：<strong>爱对了是爱情，爱错了是青春</strong></p>
-<p>@Lyra_sunshine：<strong>不悔梦归处，只怪太匆匆</strong></p>
-<p>@北郊：<strong>这辈子总会为一个人那么执着一次，我爱你，仅此而已</strong></p>
-<p>@花开半夏_27230: <strong>总有一些话，来不及说了，总有一个人，是心口的朱砂</strong></p>
-<blockquote>
-<p>感谢ta，曾经出现在你的生命中</p>
-</blockquote>
-<p>@我回敬崩溃：<strong>愿你能被这个世界温柔以待</strong></p>
-<p>@雨天：<strong>愿你我安好，感谢你出现在我生命里</strong></p>
-<p>@qq表情：<strong>愿爱你的人更爱你，你爱的人更懂你</strong></p>
-<p>@浪花的手：<strong>愿你梦里有喝不完的酒，醒来后能酩酊大醉的过完这一生。你要照顾好你黑色的头发，和你挑剔的胃</strong></p>
-<p>@binbinbinbinbinbin: <strong>高中的时候跟女朋友不是一个学校，我们都喜欢杰伦的歌，有时候晚上寝室熄灯了，捂着被子对着手机唱歌给她听，转眼五年过去了  她就要结婚了，祝她幸福</strong> </p>
+<p>根据自己的需求设置好坐标，长和宽，用园的方式来画猪的头部。代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">CGFloat headX = 60; // 起始范围x坐标</div><div class="line">CGFloat headY = 100; // 起始范围y坐标</div><div class="line">CGFloat headW = 200; // 范围的宽度</div><div class="line">CGFloat headH = 200; // 范围的长度</div><div class="line">CGContextRef head = UIGraphicsGetCurrentContext(); // 获取上下文</div><div class="line">CGContextAddEllipseInRect(head, CGRectMake(headX, headY, headW, headH)); // 画圆</div><div class="line">[colour(252, 183, 196) set]; // 设置颜色</div></pre></td></tr></table></figure>
+<p>效果图如下：</p>
+<p><img src="https://www.teilim.com/content/images/photo/Quartz2D1.jpg" alt="alt"></p>
+<p>根据头部的位置来确定眼睛的位置，眼睛分两步，外框和内框，先把外框画好，在根据外框调整一下坐标和大小就好，保证尽可能的左右对称，代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">// 左眼睛－外框</div><div class="line">CGFloat eyeSideLeftX = 95; // 起始范围x坐标</div><div class="line">CGFloat eyeSideLeftY = 170; // 起始范围y坐标</div><div class="line">CGFloat eyeSideLeftW = radius; // 起始范围的宽度</div><div class="line">CGFloat eyeSideLeftH = radius; // 起始范围的长度   </div><div class="line">CGContextRef eyeSideLeft = UIGraphicsGetCurrentContext(); // 获取上下文   </div><div class="line">CGContextAddEllipseInRect(eyeSideLeft, CGRectMake(eyeSideLeftX, eyeSideLeftY, eyeSideLeftW, eyeSideLeftH)); // 画圆   </div><div class="line">[[UIColor whiteColor] set]; // 设置颜色   </div><div class="line">CGContextFillPath(eyeSideLeft); // 渲染   </div><div class="line"> </div><div class="line">// 左眼睛－内框</div><div class="line">CGFloat eyeInsideLeftX = 100; // 起始范围x坐标</div><div class="line">CGFloat eyeInsideLeftY = 182;  // 起始范围y坐标</div><div class="line">CGFloat eyeInsideLeftW = radius * 0.6;  // 起始范围的宽度</div><div class="line">CGFloat eyeInsideLeftH = radius * 0.6;  // 起始范围的长度</div><div class="line">CGContextRef eyeInsideLeft = UIGraphicsGetCurrentContext();  // 获取上下文      </div><div class="line">CGContextAddEllipseInRect(eyeInsideLeft, CGRectMake(eyeInsideLeftX, eyeInsideLeftY, eyeInsideLeftW, eyeInsideLeftH)); // 画圆  </div><div class="line">[colour(74, 25, 4) set]; // 设置颜色   </div><div class="line">CGContextFillPath(eyeInsideLeft); // 渲染</div></pre></td></tr></table></figure>
+<p>效果图：</p>
+<p><img src="https://www.teilim.com/content/images/photo/Quartz2D2.jpg" alt="alt"></p>
+<p>鼻子也分两部，先把外框画好，再根据外框画鼻孔，尽可能的将它们对称。代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">// 鼻子外框－上半圆    </div><div class="line">CGFloat noseX = 125; // 起始范围x坐标</div><div class="line">CGFloat noseY = 210; // 起始范围y坐标</div><div class="line">CGFloat noseW = 70; // 起始范围的宽度</div><div class="line">CGFloat noseH = 50; // 起始范围的长度</div><div class="line">CGContextRef nose = UIGraphicsGetCurrentContext(); // 获取上下文   </div><div class="line">CGContextAddEllipseInRect(nose, CGRectMake(noseX, noseY, noseW, noseH)); // 画圆 </div><div class="line">[colour(163, 61, 11)set]; // 设置颜色   </div><div class="line">CGContextSetLineWidth(nose, 2); // 设置宽度</div><div class="line">CGContextStrokePath(nose); // 渲染</div><div class="line">    </div><div class="line">// 鼻子－左半圆    </div><div class="line">CGFloat noseLeftX = 135; // 起始范围x坐标</div><div class="line">CGFloat noseLeftY = 220; // 起始范围y坐标</div><div class="line">CGFloat noseLeftW = 20; // 起始范围宽度</div><div class="line">CGFloat noseLeftH = 30; // 起始范围长度</div><div class="line">CGContextRef noseLeft = UIGraphicsGetCurrentContext(); // 获取上下文    </div><div class="line">CGContextAddEllipseInRect(noseLeft, CGRectMake(noseLeftX, noseLeftY, noseLeftW, noseLeftH)); // 画圆    </div><div class="line">[colour(163, 61, 11)set]; // 设置颜色  </div><div class="line">CGContextFillPath(noseLeft); // 渲染</div><div class="line">    </div><div class="line">// 鼻子－右半圆</div><div class="line">CGFloat noseRightX = 165; // 起始范围x坐标</div><div class="line">CGFloat noseRightY = 220; // 起始范围y坐标</div><div class="line">CGFloat noseRightW = 20; // 起始范围的宽度</div><div class="line">CGFloat noseRightH = 30; // 起始范围的长度</div><div class="line">CGContextRef noseRight = UIGraphicsGetCurrentContext(); // 获取上下文</div><div class="line">CGContextAddEllipseInRect(noseRight, CGRectMake(noseRightX, noseRightY, noseRightW, noseRightH)); // 画圆   </div><div class="line">[colour(163, 61, 11)set]; // 设置颜色</div><div class="line">CGContextFillPath(noseRight);// 渲染</div></pre></td></tr></table></figure>
+<p>效果图如下：</p>
+<p><img src="https://www.teilim.com/content/images/photo/Quartz2D3.jpg" alt="alt"></p>
+<p>最后是画耳朵，这个应该算是这里面最不好掌握的，酸的要比较细，使用线段去画。代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">// 耳朵－左</div><div class="line">CGContextRef earsLeft = UIGraphicsGetCurrentContext(); // 获取上下文   </div><div class="line">CGContextMoveToPoint(earsLeft, 90, 130); // 画线   </div><div class="line">CGContextAddLineToPoint(earsLeft, 50, 140); // 画线   </div><div class="line">CGContextAddLineToPoint(earsLeft, 70, 160); // 画线   </div><div class="line">CGContextSetLineCap(earsLeft, kCGLineCapRound);    </div><div class="line">CGContextSetLineJoin(earsLeft, kCGLineJoinRound);    </div><div class="line">[colour(252, 183, 196) set];    </div><div class="line">CGContextFillPath(earsLeft); // 渲染</div><div class="line">    </div><div class="line">// 耳朵－右</div><div class="line">CGContextRef earsRight = UIGraphicsGetCurrentContext(); // 获取上下文    </div><div class="line">CGContextMoveToPoint(earsRight, 230, 130); // 画线   </div><div class="line">CGContextAddLineToPoint(earsRight, 270, 140); // 画线    </div><div class="line">CGContextAddLineToPoint(earsRight, 250, 160); // 画线    </div><div class="line">CGContextSetLineCap(earsRight, kCGLineCapRound);    </div><div class="line">CGContextSetLineJoin(earsRight, kCGLineJoinRound);    </div><div class="line">[colour(252, 183, 196) set];    </div><div class="line">CGContextFillPath(earsRight); // 渲染</div></pre></td></tr></table></figure>
+<p>效果图如下：</p>
+<p><img src="https://www.teilim.com/content/images/photo/Quartz2D4.jpg" alt="alt"></p>
 
       
     </div>
@@ -419,7 +377,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/青春校园/" rel="tag">#青春校园</a>
+            <a href="/tags/Objective-C/" rel="tag">#Objective-C</a>
           
         </div>
       
@@ -428,17 +386,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/08/08/有一段时光我从未忘记，不是不舍而是太深/" rel="next" title="有一段时光我从未忘记，不是不舍而是太深">
-                <i class="fa fa-chevron-left"></i> 有一段时光我从未忘记，不是不舍而是太深
+              <a href="/2016/08/09/没有什么过不去，只是再也回不去/" rel="next" title="没有什么过不去，只是再也回不去">
+                <i class="fa fa-chevron-left"></i> 没有什么过不去，只是再也回不去
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/08/10/利用 Quartz2D-画一个简单的猪/" rel="prev" title="利用 Quartz2D 画一个简单的猪">
-                利用 Quartz2D 画一个简单的猪 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -464,8 +418,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/08/09/没有什么过不去，只是再也回不去/"
-           data-title="没有什么过不去，只是再也回不去" data-url="http://yoursite.com/2016/08/09/没有什么过不去，只是再也回不去/">
+      <div class="ds-thread" data-thread-key="2016/08/10/利用 Quartz2D-画一个简单的猪/"
+           data-title="利用 Quartz2D 画一个简单的猪" data-url="http://yoursite.com/2016/08/10/利用 Quartz2D-画一个简单的猪/">
       </div>
     
   </div>

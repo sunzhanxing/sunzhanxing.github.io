@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-08-09T14:05:13.376Z</updated>
+  <updated>2016-08-10T00:51:12.642Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -14,6 +14,48 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>利用 Quartz2D 画一个简单的猪</title>
+    <link href="http://yoursite.com/2016/08/10/%E5%88%A9%E7%94%A8%20Quartz2D-%E7%94%BB%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E7%8C%AA/"/>
+    <id>http://yoursite.com/2016/08/10/利用 Quartz2D-画一个简单的猪/</id>
+    <published>2016-08-10T00:04:10.000Z</published>
+    <updated>2016-08-10T00:51:12.642Z</updated>
+    
+    <content type="html"><![CDATA[<p><img src="http://obcwlc71a.bkt.clouddn.com/20160810.png" alt="图片来源于网络"></p>
+<p>因为后面用到的地方比较多，所以为了方便设置两个宏，一个是半径，一个是颜色的设置。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">#define radius 40</div><div class="line">#define colour(r,g,b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]</div></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>根据自己的需求设置好坐标，长和宽，用园的方式来画猪的头部。代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">CGFloat headX = 60; // 起始范围x坐标</div><div class="line">CGFloat headY = 100; // 起始范围y坐标</div><div class="line">CGFloat headW = 200; // 范围的宽度</div><div class="line">CGFloat headH = 200; // 范围的长度</div><div class="line">CGContextRef head = UIGraphicsGetCurrentContext(); // 获取上下文</div><div class="line">CGContextAddEllipseInRect(head, CGRectMake(headX, headY, headW, headH)); // 画圆</div><div class="line">[colour(252, 183, 196) set]; // 设置颜色</div></pre></td></tr></table></figure>
+<p>效果图如下：</p>
+<p><img src="https://www.teilim.com/content/images/photo/Quartz2D1.jpg" alt="alt"></p>
+<p>根据头部的位置来确定眼睛的位置，眼睛分两步，外框和内框，先把外框画好，在根据外框调整一下坐标和大小就好，保证尽可能的左右对称，代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">// 左眼睛－外框</div><div class="line">CGFloat eyeSideLeftX = 95; // 起始范围x坐标</div><div class="line">CGFloat eyeSideLeftY = 170; // 起始范围y坐标</div><div class="line">CGFloat eyeSideLeftW = radius; // 起始范围的宽度</div><div class="line">CGFloat eyeSideLeftH = radius; // 起始范围的长度   </div><div class="line">CGContextRef eyeSideLeft = UIGraphicsGetCurrentContext(); // 获取上下文   </div><div class="line">CGContextAddEllipseInRect(eyeSideLeft, CGRectMake(eyeSideLeftX, eyeSideLeftY, eyeSideLeftW, eyeSideLeftH)); // 画圆   </div><div class="line">[[UIColor whiteColor] set]; // 设置颜色   </div><div class="line">CGContextFillPath(eyeSideLeft); // 渲染   </div><div class="line"> </div><div class="line">// 左眼睛－内框</div><div class="line">CGFloat eyeInsideLeftX = 100; // 起始范围x坐标</div><div class="line">CGFloat eyeInsideLeftY = 182;  // 起始范围y坐标</div><div class="line">CGFloat eyeInsideLeftW = radius * 0.6;  // 起始范围的宽度</div><div class="line">CGFloat eyeInsideLeftH = radius * 0.6;  // 起始范围的长度</div><div class="line">CGContextRef eyeInsideLeft = UIGraphicsGetCurrentContext();  // 获取上下文      </div><div class="line">CGContextAddEllipseInRect(eyeInsideLeft, CGRectMake(eyeInsideLeftX, eyeInsideLeftY, eyeInsideLeftW, eyeInsideLeftH)); // 画圆  </div><div class="line">[colour(74, 25, 4) set]; // 设置颜色   </div><div class="line">CGContextFillPath(eyeInsideLeft); // 渲染</div></pre></td></tr></table></figure>
+<p>效果图：</p>
+<p><img src="https://www.teilim.com/content/images/photo/Quartz2D2.jpg" alt="alt"></p>
+<p>鼻子也分两部，先把外框画好，再根据外框画鼻孔，尽可能的将它们对称。代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div></pre></td><td class="code"><pre><div class="line">// 鼻子外框－上半圆    </div><div class="line">CGFloat noseX = 125; // 起始范围x坐标</div><div class="line">CGFloat noseY = 210; // 起始范围y坐标</div><div class="line">CGFloat noseW = 70; // 起始范围的宽度</div><div class="line">CGFloat noseH = 50; // 起始范围的长度</div><div class="line">CGContextRef nose = UIGraphicsGetCurrentContext(); // 获取上下文   </div><div class="line">CGContextAddEllipseInRect(nose, CGRectMake(noseX, noseY, noseW, noseH)); // 画圆 </div><div class="line">[colour(163, 61, 11)set]; // 设置颜色   </div><div class="line">CGContextSetLineWidth(nose, 2); // 设置宽度</div><div class="line">CGContextStrokePath(nose); // 渲染</div><div class="line">    </div><div class="line">// 鼻子－左半圆    </div><div class="line">CGFloat noseLeftX = 135; // 起始范围x坐标</div><div class="line">CGFloat noseLeftY = 220; // 起始范围y坐标</div><div class="line">CGFloat noseLeftW = 20; // 起始范围宽度</div><div class="line">CGFloat noseLeftH = 30; // 起始范围长度</div><div class="line">CGContextRef noseLeft = UIGraphicsGetCurrentContext(); // 获取上下文    </div><div class="line">CGContextAddEllipseInRect(noseLeft, CGRectMake(noseLeftX, noseLeftY, noseLeftW, noseLeftH)); // 画圆    </div><div class="line">[colour(163, 61, 11)set]; // 设置颜色  </div><div class="line">CGContextFillPath(noseLeft); // 渲染</div><div class="line">    </div><div class="line">// 鼻子－右半圆</div><div class="line">CGFloat noseRightX = 165; // 起始范围x坐标</div><div class="line">CGFloat noseRightY = 220; // 起始范围y坐标</div><div class="line">CGFloat noseRightW = 20; // 起始范围的宽度</div><div class="line">CGFloat noseRightH = 30; // 起始范围的长度</div><div class="line">CGContextRef noseRight = UIGraphicsGetCurrentContext(); // 获取上下文</div><div class="line">CGContextAddEllipseInRect(noseRight, CGRectMake(noseRightX, noseRightY, noseRightW, noseRightH)); // 画圆   </div><div class="line">[colour(163, 61, 11)set]; // 设置颜色</div><div class="line">CGContextFillPath(noseRight);// 渲染</div></pre></td></tr></table></figure>
+<p>效果图如下：</p>
+<p><img src="https://www.teilim.com/content/images/photo/Quartz2D3.jpg" alt="alt"></p>
+<p>最后是画耳朵，这个应该算是这里面最不好掌握的，酸的要比较细，使用线段去画。代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">// 耳朵－左</div><div class="line">CGContextRef earsLeft = UIGraphicsGetCurrentContext(); // 获取上下文   </div><div class="line">CGContextMoveToPoint(earsLeft, 90, 130); // 画线   </div><div class="line">CGContextAddLineToPoint(earsLeft, 50, 140); // 画线   </div><div class="line">CGContextAddLineToPoint(earsLeft, 70, 160); // 画线   </div><div class="line">CGContextSetLineCap(earsLeft, kCGLineCapRound);    </div><div class="line">CGContextSetLineJoin(earsLeft, kCGLineJoinRound);    </div><div class="line">[colour(252, 183, 196) set];    </div><div class="line">CGContextFillPath(earsLeft); // 渲染</div><div class="line">    </div><div class="line">// 耳朵－右</div><div class="line">CGContextRef earsRight = UIGraphicsGetCurrentContext(); // 获取上下文    </div><div class="line">CGContextMoveToPoint(earsRight, 230, 130); // 画线   </div><div class="line">CGContextAddLineToPoint(earsRight, 270, 140); // 画线    </div><div class="line">CGContextAddLineToPoint(earsRight, 250, 160); // 画线    </div><div class="line">CGContextSetLineCap(earsRight, kCGLineCapRound);    </div><div class="line">CGContextSetLineJoin(earsRight, kCGLineJoinRound);    </div><div class="line">[colour(252, 183, 196) set];    </div><div class="line">CGContextFillPath(earsRight); // 渲染</div></pre></td></tr></table></figure>
+<p>效果图如下：</p>
+<p><img src="https://www.teilim.com/content/images/photo/Quartz2D4.jpg" alt="alt"></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;&lt;img src=&quot;http://obcwlc71a.bkt.clouddn.com/20160810.png&quot; alt=&quot;图片来源于网络&quot;&gt;&lt;/p&gt;
+&lt;p&gt;因为后面用到的地方比较多，所以为了方便设置两个宏，一个是半径，一个是颜色的设置。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;#define radius 40&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;#define colour(r,g,b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/255.0 alpha:1.0]&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+    
+    </summary>
+    
+    
+      <category term="Objective-C" scheme="http://yoursite.com/tags/Objective-C/"/>
+    
+  </entry>
   
   <entry>
     <title>没有什么过不去，只是再也回不去</title>
