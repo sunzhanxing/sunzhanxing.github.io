@@ -98,24 +98,24 @@
 
 
 
-<meta name="description" content="GCD (Grand Central Dispatch)GCD概念：纯C语言，提供非常多强大的函数，是目前苹果官网推荐的多线程开发方法，NSOperation便是基于GCD的封装。
+<meta name="description" content="GCDGCD概念：纯C语言，提供非常多强大的函数，是目前苹果官网推荐的多线程开发方法，NSOperation便是基于GCD的封装。
 GCD优势： GCD自动管理线程，提高CPU效率，操作起来更加简便、快捷。
 GCD中的的两个核心：任务、队列 (在第一篇中的时候略有提到，遵守先进先出的原则)">
 <meta property="og:type" content="article">
 <meta property="og:title" content="揭开 iOS 中多线程的神秘面纱 （二）">
 <meta property="og:url" content="http://yoursite.com/2016/08/11/揭开 iOS 中多线程的神秘面纱（二）/index.html">
 <meta property="og:site_name" content="Sunnyzx's Notes">
-<meta property="og:description" content="GCD (Grand Central Dispatch)GCD概念：纯C语言，提供非常多强大的函数，是目前苹果官网推荐的多线程开发方法，NSOperation便是基于GCD的封装。
+<meta property="og:description" content="GCDGCD概念：纯C语言，提供非常多强大的函数，是目前苹果官网推荐的多线程开发方法，NSOperation便是基于GCD的封装。
 GCD优势： GCD自动管理线程，提高CPU效率，操作起来更加简便、快捷。
 GCD中的的两个核心：任务、队列 (在第一篇中的时候略有提到，遵守先进先出的原则)">
 <meta property="og:image" content="http://obcwlc71a.bkt.clouddn.com/2016081101.jpg">
 <meta property="og:image" content="http://obcwlc71a.bkt.clouddn.com/2016081102.jpg">
 <meta property="og:image" content="http://obcwlc71a.bkt.clouddn.com/2016081103.png">
 <meta property="og:image" content="http://obcwlc71a.bkt.clouddn.com/2016081104.png">
-<meta property="og:updated_time" content="2016-08-11T09:19:26.399Z">
+<meta property="og:updated_time" content="2016-08-11T13:43:37.532Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="揭开 iOS 中多线程的神秘面纱 （二）">
-<meta name="twitter:description" content="GCD (Grand Central Dispatch)GCD概念：纯C语言，提供非常多强大的函数，是目前苹果官网推荐的多线程开发方法，NSOperation便是基于GCD的封装。
+<meta name="twitter:description" content="GCDGCD概念：纯C语言，提供非常多强大的函数，是目前苹果官网推荐的多线程开发方法，NSOperation便是基于GCD的封装。
 GCD优势： GCD自动管理线程，提高CPU效率，操作起来更加简便、快捷。
 GCD中的的两个核心：任务、队列 (在第一篇中的时候略有提到，遵守先进先出的原则)">
 <meta name="twitter:image" content="http://obcwlc71a.bkt.clouddn.com/2016081101.jpg">
@@ -337,7 +337,7 @@ GCD中的的两个核心：任务、队列 (在第一篇中的时候略有提到
       
 
       
-        <h2 id="GCD-Grand-Central-Dispatch"><a href="#GCD-Grand-Central-Dispatch" class="headerlink" title="GCD (Grand Central Dispatch)"></a>GCD (Grand Central Dispatch)</h2><p><strong>GCD概念</strong>：纯C语言，提供非常多强大的函数，是目前苹果官网推荐的多线程开发方法，NSOperation便是基于GCD的封装。</p>
+        <h2 id="GCD"><a href="#GCD" class="headerlink" title="GCD"></a>GCD</h2><p><strong>GCD概念</strong>：纯C语言，提供非常多强大的函数，是目前苹果官网推荐的多线程开发方法，NSOperation便是基于GCD的封装。</p>
 <p><strong>GCD优势</strong>： GCD自动管理线程，提高CPU效率，操作起来更加简便、快捷。</p>
 <p><strong>GCD中的的两个核心</strong>：任务、队列 (在第一篇中的时候略有提到，遵守先进先出的原则)</p>
 <a id="more"></a>
@@ -562,7 +562,7 @@ GCD中的的两个核心：任务、队列 (在第一篇中的时候略有提到
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#GCD-Grand-Central-Dispatch"><span class="nav-number">1.</span> <span class="nav-text">GCD (Grand Central Dispatch)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务"><span class="nav-number">1.1.</span> <span class="nav-text">任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#队列"><span class="nav-number">1.2.</span> <span class="nav-text">队列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#各队列执行任务效果"><span class="nav-number">1.3.</span> <span class="nav-text">各队列执行任务效果</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#同步函数-串行队列"><span class="nav-number">1.3.1.</span> <span class="nav-text">同步函数 + 串行队列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#同步函数-并发队列"><span class="nav-number">1.3.2.</span> <span class="nav-text">同步函数 + 并发队列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#异步函数-串行队列"><span class="nav-number">1.3.3.</span> <span class="nav-text">异步函数 + 串行队列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#异步函数-并发队列"><span class="nav-number">1.3.4.</span> <span class="nav-text">异步函数 + 并发队列</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#GCD"><span class="nav-number">1.</span> <span class="nav-text">GCD</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务"><span class="nav-number">1.1.</span> <span class="nav-text">任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#队列"><span class="nav-number">1.2.</span> <span class="nav-text">队列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#各队列执行任务效果"><span class="nav-number">1.3.</span> <span class="nav-text">各队列执行任务效果</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#同步函数-串行队列"><span class="nav-number">1.3.1.</span> <span class="nav-text">同步函数 + 串行队列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#同步函数-并发队列"><span class="nav-number">1.3.2.</span> <span class="nav-text">同步函数 + 并发队列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#异步函数-串行队列"><span class="nav-number">1.3.3.</span> <span class="nav-text">异步函数 + 串行队列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#异步函数-并发队列"><span class="nav-number">1.3.4.</span> <span class="nav-text">异步函数 + 并发队列</span></a></li></ol></li></ol></li></ol></div>
             
           </div>
         </section>

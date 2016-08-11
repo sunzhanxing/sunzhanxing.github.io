@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-08-11T09:19:26.399Z</updated>
+  <updated>2016-08-11T13:43:37.532Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,9 +20,9 @@
     <link href="http://yoursite.com/2016/08/11/%E6%8F%AD%E5%BC%80%20iOS%20%E4%B8%AD%E5%A4%9A%E7%BA%BF%E7%A8%8B%E7%9A%84%E7%A5%9E%E7%A7%98%E9%9D%A2%E7%BA%B1%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
     <id>http://yoursite.com/2016/08/11/揭开 iOS 中多线程的神秘面纱（二）/</id>
     <published>2016-08-11T09:13:57.000Z</published>
-    <updated>2016-08-11T09:19:26.399Z</updated>
+    <updated>2016-08-11T13:43:37.532Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="GCD-Grand-Central-Dispatch"><a href="#GCD-Grand-Central-Dispatch" class="headerlink" title="GCD (Grand Central Dispatch)"></a>GCD (Grand Central Dispatch)</h2><p><strong>GCD概念</strong>：纯C语言，提供非常多强大的函数，是目前苹果官网推荐的多线程开发方法，NSOperation便是基于GCD的封装。</p>
+    <content type="html"><![CDATA[<h2 id="GCD"><a href="#GCD" class="headerlink" title="GCD"></a>GCD</h2><p><strong>GCD概念</strong>：纯C语言，提供非常多强大的函数，是目前苹果官网推荐的多线程开发方法，NSOperation便是基于GCD的封装。</p>
 <p><strong>GCD优势</strong>： GCD自动管理线程，提高CPU效率，操作起来更加简便、快捷。</p>
 <p><strong>GCD中的的两个核心</strong>：任务、队列 (在第一篇中的时候略有提到，遵守先进先出的原则)</p>
 <a id="more"></a>
@@ -62,7 +62,7 @@
     
     <summary type="html">
     
-      &lt;h2 id=&quot;GCD-Grand-Central-Dispatch&quot;&gt;&lt;a href=&quot;#GCD-Grand-Central-Dispatch&quot; class=&quot;headerlink&quot; title=&quot;GCD (Grand Central Dispatch)&quot;&gt;&lt;/a&gt;GCD (Grand Central Dispatch)&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;GCD概念&lt;/strong&gt;：纯C语言，提供非常多强大的函数，是目前苹果官网推荐的多线程开发方法，NSOperation便是基于GCD的封装。&lt;/p&gt;
+      &lt;h2 id=&quot;GCD&quot;&gt;&lt;a href=&quot;#GCD&quot; class=&quot;headerlink&quot; title=&quot;GCD&quot;&gt;&lt;/a&gt;GCD&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;GCD概念&lt;/strong&gt;：纯C语言，提供非常多强大的函数，是目前苹果官网推荐的多线程开发方法，NSOperation便是基于GCD的封装。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;GCD优势&lt;/strong&gt;： GCD自动管理线程，提高CPU效率，操作起来更加简便、快捷。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;GCD中的的两个核心&lt;/strong&gt;：任务、队列 (在第一篇中的时候略有提到，遵守先进先出的原则)&lt;/p&gt;
     
