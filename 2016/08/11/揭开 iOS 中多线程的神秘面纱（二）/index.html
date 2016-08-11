@@ -1,0 +1,831 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Objective-C," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Sunnyzx's Notes" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="GCD (Grand Central Dispatch)GCD概念：纯C语言，提供非常多强大的函数，是目前苹果官网推荐的多线程开发方法，NSOperation便是基于GCD的封装。
+GCD优势： GCD自动管理线程，提高CPU效率，操作起来更加简便、快捷。
+GCD中的的两个核心：任务、队列 (在第一篇中的时候略有提到，遵守先进先出的原则)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="揭开 iOS 中多线程的神秘面纱 （二）">
+<meta property="og:url" content="http://yoursite.com/2016/08/11/揭开 iOS 中多线程的神秘面纱（二）/index.html">
+<meta property="og:site_name" content="Sunnyzx's Notes">
+<meta property="og:description" content="GCD (Grand Central Dispatch)GCD概念：纯C语言，提供非常多强大的函数，是目前苹果官网推荐的多线程开发方法，NSOperation便是基于GCD的封装。
+GCD优势： GCD自动管理线程，提高CPU效率，操作起来更加简便、快捷。
+GCD中的的两个核心：任务、队列 (在第一篇中的时候略有提到，遵守先进先出的原则)">
+<meta property="og:image" content="http://obcwlc71a.bkt.clouddn.com/2016081101.jpg">
+<meta property="og:image" content="http://obcwlc71a.bkt.clouddn.com/2016081102.jpg">
+<meta property="og:image" content="http://obcwlc71a.bkt.clouddn.com/2016081103.png">
+<meta property="og:image" content="http://obcwlc71a.bkt.clouddn.com/2016081104.png">
+<meta property="og:updated_time" content="2016-08-11T09:19:26.399Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="揭开 iOS 中多线程的神秘面纱 （二）">
+<meta name="twitter:description" content="GCD (Grand Central Dispatch)GCD概念：纯C语言，提供非常多强大的函数，是目前苹果官网推荐的多线程开发方法，NSOperation便是基于GCD的封装。
+GCD优势： GCD自动管理线程，提高CPU效率，操作起来更加简便、快捷。
+GCD中的的两个核心：任务、队列 (在第一篇中的时候略有提到，遵守先进先出的原则)">
+<meta name="twitter:image" content="http://obcwlc71a.bkt.clouddn.com/2016081101.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/08/11/揭开 iOS 中多线程的神秘面纱（二）/"/>
+
+  <title> 揭开 iOS 中多线程的神秘面纱 （二） | Sunnyzx's Notes </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Sunnyzx's Notes</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Coding your future</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-shoot">
+          <a href="/shoot" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            摄影
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                揭开 iOS 中多线程的神秘面纱 （二）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-11T17:13:57+08:00" content="2016-08-11">
+              2016-08-11
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/11/揭开 iOS 中多线程的神秘面纱（二）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/11/揭开 iOS 中多线程的神秘面纱（二）/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/08/11/揭开 iOS 中多线程的神秘面纱（二）/" class="leancloud_visitors" data-flag-title="揭开 iOS 中多线程的神秘面纱 （二）">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="GCD-Grand-Central-Dispatch"><a href="#GCD-Grand-Central-Dispatch" class="headerlink" title="GCD (Grand Central Dispatch)"></a>GCD (Grand Central Dispatch)</h2><p><strong>GCD概念</strong>：纯C语言，提供非常多强大的函数，是目前苹果官网推荐的多线程开发方法，NSOperation便是基于GCD的封装。</p>
+<p><strong>GCD优势</strong>： GCD自动管理线程，提高CPU效率，操作起来更加简便、快捷。</p>
+<p><strong>GCD中的的两个核心</strong>：任务、队列 (在第一篇中的时候略有提到，遵守先进先出的原则)</p>
+<a id="more"></a>
+<h3 id="任务"><a href="#任务" class="headerlink" title="任务"></a>任务</h3><p><strong>任务的类型分为两种</strong>：同步任务和异步任务 (决定是否开启新的线程)</p>
+<p><strong>同步任务</strong>：只能在当前线程中执行任务，不能开启新的线程。</p>
+<p><strong>同步任务代码</strong>：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">dispatch_sync</span>(<span class="built_in">dispatch_queue_t</span> queue, dispatch_block_t block);</div></pre></td></tr></table></figure>
+<p><strong>异步任务</strong>：能在新的线程中执行任务，能开启新的线程。</p>
+<p><strong>异步任务代码</strong>：</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">dispatch_async</span>(<span class="built_in">dispatch_queue_t</span> queue, dispatch_block_t block);</div></pre></td></tr></table></figure>
+<h3 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h3><p>队列的类型分为两种：串行队列和并发队列 (主要决定任务的执行方式)</p>
+<p><strong>串行队列</strong>：按照任务的先后顺序执行 (比如你用迅雷下载 “大片” 一样，想先下载一个下来看其余的边看边下，这时需要把迅雷<br> 的最多下载任务数设置成1，其余的任务都处在等在中，但当前的任务下载完，等待的任务在按照先后顺序执行)</p>
+<p><strong>获取串行队列的两种途径</strong>：</p>
+<p>使用 <strong>dispatch_queue_create()</strong> 函数创建串行队列</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">dispatch_queue_t</span> queue = dispatch_queue_create(“队列的名称：https:<span class="comment">//teilim.com”, “队列的属性：DISPATCH_QUEUE_SERIAL”); </span></div><div class="line"></div><div class="line"><span class="comment">/* 非ARC在不需要时手动需要释放其队列 */</span></div><div class="line">dispatch_release(queue);</div></pre></td></tr></table></figure>
+<p>使用 <strong>dispatch_get_main_queue()</strong> 函数获得主队列 (是GCD自带的一种串行队列，在其队列执行的任务，都会放到主线程中执行)</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">dispatch_queue_t</span> queue = dispatch_get_main_queue();</div></pre></td></tr></table></figure>
+<p><strong>并发队列</strong>：可以让多个任务同时执行 (上次因为 “特殊时期”所以比较着急下载，这就一边写博客一边下载，反正时间也是很充裕，就干脆把最多下载任务数设置成了5，让五个任务一起执行下载，就是网速稍微的慢一点)</p>
+<p>1.使用 <strong>dispatch_queue_create()</strong> 函数创建串行队列</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">dispatch_queue_t</span> queue = dispatch_queue_create(“队列的名称：https:<span class="comment">//teilim.com”, “队列的属性：DISPATCH_QUEUE_CONCURRENT”); </span></div><div class="line"></div><div class="line"><span class="comment">/* 非ARC在不需要时手动需要释放其队列 */</span></div><div class="line">dispatch_release(queue);</div></pre></td></tr></table></figure>
+<p>2.使用 <strong>dispatch_get_global_queue()</strong> 函数获得全局的并发队列</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">dispatch_queue_t</span> dispatch_get_global_queue( dispatch_queue_priority_t priority： 队列的优先级，<span class="keyword">unsigned</span> <span class="keyword">long</span> flags：<span class="number">0</span>); </div><div class="line"></div><div class="line"><span class="comment">/* 获得全局并发队列 */</span></div><div class="line"><span class="built_in">dispatch_queue_t</span> queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, <span class="number">0</span>); </div><div class="line"></div><div class="line"><span class="meta">#define DISPATCH_QUEUE_PRIORITY_HIGH /* 高 */</span></div><div class="line"><span class="meta">#define DISPATCH_QUEUE_PRIORITY_DEFAULT /* 默认 */</span></div><div class="line"><span class="meta">#define DISPATCH_QUEUE_PRIORITY_LOW (-2) /* 低 */</span></div><div class="line"><span class="meta">#define DISPATCH_QUEUE_PRIORITY_BACKGROUND INT16_MIN /* 后台 */</span></div></pre></td></tr></table></figure>
+<h3 id="各队列执行任务效果"><a href="#各队列执行任务效果" class="headerlink" title="各队列执行任务效果"></a>各队列执行任务效果</h3><p>将同步函数、异步函数，串行队列、并发队列相互组合，观察其在个个情况下的执行效果。</p>
+<h4 id="同步函数-串行队列"><a href="#同步函数-串行队列" class="headerlink" title="同步函数 + 串行队列"></a>同步函数 + 串行队列</h4><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)syncSerial &#123;</div><div class="line">    <span class="comment">/* 创建串行队列 */</span></div><div class="line">    <span class="built_in">dispatch_queue_t</span> queue = dispatch_queue_create(<span class="string">"https://teilim.com"</span>, DISPATCH_QUEUE_SERIAL);</div><div class="line">    </div><div class="line">    <span class="comment">/* 将执行任务加入队列 */</span></div><div class="line"> <span class="built_in">dispatch_sync</span>(queue, ^&#123;</div><div class="line">        <span class="keyword">for</span> (<span class="built_in">NSInteger</span> i = <span class="number">0</span>; i&lt;<span class="number">5</span>; i++) &#123;</div><div class="line">            <span class="built_in">NSLog</span>(<span class="string">@"已经下载欧美大片%lo次-----%@"</span>, i,[<span class="built_in">NSThread</span> currentThread]);</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">    <span class="built_in">dispatch_sync</span>(queue, ^&#123;</div><div class="line">        <span class="keyword">for</span> (<span class="built_in">NSInteger</span> i = <span class="number">0</span>; i&lt;<span class="number">5</span>; i++) &#123;</div><div class="line">            <span class="built_in">NSLog</span>(<span class="string">@"已经下载岛国大片%lo次-----%@"</span>, i,[<span class="built_in">NSThread</span> currentThread]);</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>效果</strong>：只能当前线程执行任务，一个任务执行完毕，在执行下一个任务，按任务的排列顺序执行。</p>
+<p><strong>效果图如下</strong>：<br><img src="http://obcwlc71a.bkt.clouddn.com/2016081101.jpg" alt="图片来源于截图"></p>
+<h4 id="同步函数-并发队列"><a href="#同步函数-并发队列" class="headerlink" title="同步函数 + 并发队列"></a>同步函数 + 并发队列</h4><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)syncConcurrent &#123;</div><div class="line">    <span class="comment">/* 创建并发队列 */</span></div><div class="line">    <span class="built_in">dispatch_queue_t</span> queue = dispatch_queue_create(<span class="string">"https://teilim.com"</span>, DISPATCH_QUEUE_CONCURRENT);</div><div class="line"></div><div class="line">    <span class="comment">/* 将执行任务加入队列 */</span></div><div class="line">    <span class="built_in">dispatch_sync</span>(queue, ^&#123;</div><div class="line">        <span class="keyword">for</span> (<span class="built_in">NSInteger</span> i = <span class="number">0</span>; i&lt;<span class="number">5</span>; i++) &#123;</div><div class="line">            <span class="built_in">NSLog</span>(<span class="string">@"已经下载欧美大片%lo次-----%@"</span>, i,[<span class="built_in">NSThread</span> currentThread]);</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">    <span class="built_in">dispatch_sync</span>(queue, ^&#123;</div><div class="line">        <span class="keyword">for</span> (<span class="built_in">NSInteger</span> i = <span class="number">0</span>; i&lt;<span class="number">5</span>; i++) &#123;</div><div class="line">            <span class="built_in">NSLog</span>(<span class="string">@"已经下载岛国大片%lo次-----%@"</span>, i,[<span class="built_in">NSThread</span> currentThread]);</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>效果</strong>：只能当前线程执行任务，一个任务执行完毕，在执行下一个任务，按任务的排列顺序执行。</p>
+<p><strong>效果图如下</strong>：<br><img src="http://obcwlc71a.bkt.clouddn.com/2016081102.jpg" alt="图片来源于截图"></p>
+<h4 id="异步函数-串行队列"><a href="#异步函数-串行队列" class="headerlink" title="异步函数 + 串行队列"></a>异步函数 + 串行队列</h4><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)asyncSerial &#123;</div><div class="line">    <span class="comment">/* 创建串行队列 */</span></div><div class="line">    <span class="built_in">dispatch_queue_t</span> queue = dispatch_queue_create(<span class="string">"https://teilim.com"</span>, DISPATCH_QUEUE_SERIAL);</div><div class="line"></div><div class="line">    <span class="comment">/* 将任务加入队列 */</span></div><div class="line">    <span class="built_in">dispatch_async</span>(queue, ^&#123;</div><div class="line">        <span class="keyword">for</span> (<span class="built_in">NSInteger</span> i = <span class="number">0</span>; i&lt;<span class="number">5</span>; i++) &#123;</div><div class="line">            <span class="built_in">NSLog</span>(<span class="string">@"已经下载欧美大片%lo次-----%@"</span>, i,[<span class="built_in">NSThread</span> currentThread]);</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">    <span class="built_in">dispatch_async</span>(queue, ^&#123;</div><div class="line">        <span class="keyword">for</span> (<span class="built_in">NSInteger</span> i = <span class="number">0</span>; i&lt;<span class="number">5</span>; i++) &#123;</div><div class="line">            <span class="built_in">NSLog</span>(<span class="string">@"已经下载岛国大片%lo次-----%@"</span>, i,[<span class="built_in">NSThread</span> currentThread]);</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>效果</strong>：能开启新的线程，但是在串行队列中执行任务，按任务的排列顺序执行。</p>
+<p><strong>效果图如下</strong>：<br><img src="http://obcwlc71a.bkt.clouddn.com/2016081103.png" alt="图片来源于截图"></p>
+<h4 id="异步函数-并发队列"><a href="#异步函数-并发队列" class="headerlink" title="异步函数 + 并发队列"></a>异步函数 + 并发队列</h4><figure class="highlight objc"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">- (<span class="keyword">void</span>)asyncConcurrent &#123;</div><div class="line">    <span class="comment">/* 创建并发队列 */</span></div><div class="line">    <span class="built_in">dispatch_queue_t</span> queue = dispatch_queue_create(<span class="string">"com.520it.queue"</span>, DISPATCH_QUEUE_CONCURRENT);</div><div class="line">     </div><div class="line">    <span class="comment">/* 将任务加入队列 */</span></div><div class="line">    <span class="built_in">dispatch_async</span>(queue, ^&#123;</div><div class="line">        <span class="keyword">for</span> (<span class="built_in">NSInteger</span> i = <span class="number">0</span>; i&lt;<span class="number">5</span>; i++) &#123;</div><div class="line">            <span class="built_in">NSLog</span>(<span class="string">@"已经下载欧美大片%lo次-----%@"</span>, i,[<span class="built_in">NSThread</span> currentThread]);</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">    <span class="built_in">dispatch_async</span>(queue, ^&#123;</div><div class="line">        <span class="keyword">for</span> (<span class="built_in">NSInteger</span> i = <span class="number">0</span>; i&lt;<span class="number">6</span>; i++) &#123;</div><div class="line">            <span class="built_in">NSLog</span>(<span class="string">@"已经下载岛国大片%lo次-----%@"</span>, i,[<span class="built_in">NSThread</span> currentThread]);</div><div class="line">        &#125;</div><div class="line">    &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>效果</strong>：可以开启多个线程，多个线程中相互执行。</p>
+<p><strong>效果图如下</strong>：<br><img src="http://obcwlc71a.bkt.clouddn.com/2016081104.png" alt="图片来源于截图"></p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Objective-C/" rel="tag">#Objective-C</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/10/揭开 iOS 中多线程的神秘面纱（一）/" rel="next" title="揭开 iOS 中多线程的神秘面纱 （一）">
+                <i class="fa fa-chevron-left"></i> 揭开 iOS 中多线程的神秘面纱 （一）
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/11/揭开 iOS 中多线程的神秘面纱（二）/"
+           data-title="揭开 iOS 中多线程的神秘面纱 （二）" data-url="http://yoursite.com/2016/08/11/揭开 iOS 中多线程的神秘面纱（二）/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/user_icon.jpg"
+               alt="sunnyzx" />
+          <p class="site-author-name" itemprop="name">sunnyzx</p>
+          <p class="site-description motion-element" itemprop="description">不忘初心，方得始终</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">14</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/sunzhanxing" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/309016033" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://sendya.me/" title="重点保护对象" target="_blank">重点保护对象</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#GCD-Grand-Central-Dispatch"><span class="nav-number">1.</span> <span class="nav-text">GCD (Grand Central Dispatch)</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#任务"><span class="nav-number">1.1.</span> <span class="nav-text">任务</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#队列"><span class="nav-number">1.2.</span> <span class="nav-text">队列</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#各队列执行任务效果"><span class="nav-number">1.3.</span> <span class="nav-text">各队列执行任务效果</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#同步函数-串行队列"><span class="nav-number">1.3.1.</span> <span class="nav-text">同步函数 + 串行队列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#同步函数-并发队列"><span class="nav-number">1.3.2.</span> <span class="nav-text">同步函数 + 并发队列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#异步函数-串行队列"><span class="nav-number">1.3.3.</span> <span class="nav-text">异步函数 + 串行队列</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#异步函数-并发队列"><span class="nav-number">1.3.4.</span> <span class="nav-text">异步函数 + 并发队列</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">sunnyzx</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"sunnyzx"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/vendors/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("LMGBAGP6FAi2LMf6Ge0deFTx-gzGzoHsz", "haGtoWpxJ8hwVKoCnfsjGXk5");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>
