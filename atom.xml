@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2016-11-26T15:35:15.104Z</updated>
+  <updated>2016-11-27T00:31:15.072Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://yoursite.com/2016/09/27/%E7%BD%91%E6%98%93%E4%BA%91%E9%9F%B3%E4%B9%90%E4%BA%A7%E5%93%81%E4%BD%93%E9%AA%8C%E5%88%86%E6%9E%90%EF%BC%9A%E9%9F%B3%E4%B9%90%E4%B8%96%E7%95%8C%E4%B8%AD%E7%9A%84%E5%8F%A6%E4%B8%80%E5%8D%8A/"/>
     <id>http://yoursite.com/2016/09/27/网易云音乐产品体验分析：音乐世界中的另一半/</id>
     <published>2016-09-27T15:12:17.000Z</published>
-    <updated>2016-11-26T15:35:15.104Z</updated>
+    <updated>2016-11-27T00:31:15.072Z</updated>
     
     <content type="html"><![CDATA[<p><img src="http://upload-images.jianshu.io/upload_images/695086-28ee0aa2718c59a5.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="网易云音乐"></p>
 <blockquote>
@@ -93,7 +93,7 @@
     </summary>
     
     
-      <category term="随记" scheme="http://yoursite.com/tags/%E9%9A%8F%E8%AE%B0/"/>
+      <category term="产品体验分析" scheme="http://yoursite.com/tags/%E4%BA%A7%E5%93%81%E4%BD%93%E9%AA%8C%E5%88%86%E6%9E%90/"/>
     
   </entry>
   
