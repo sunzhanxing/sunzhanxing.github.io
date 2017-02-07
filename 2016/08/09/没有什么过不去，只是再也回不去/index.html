@@ -1,19 +1,869 @@
-extends partial/layout
+<!doctype html>
 
-block site_title
-    != page.title + " · " + config.title
 
-block description
-    - var desc = page.desc || page.title + ' - ' + config.author;
-    meta(name="description", content=desc)
 
-block container
-    include mixins/post
-    +post(page)
+  
 
-//- block pagination
-//-     include mixins/paginator
-//-     +post()
-//-     if page.comments !== false
-//-         include partial/comment
 
+<html class="theme-next pisces use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+      
+    
+
+    
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic|Lobster Two:300,300italic,400,400italic,700,700italic|PT Mono:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="青春校园," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Sunnyzx's Notes" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="文｜孙占兴
+
+转眼间，一年的悠悠岁月已如同手中紧抓的沙子，无声无息的流失。然而，沙子流失，可以再抓一把；花儿凋零，可以等到来年春天重绽芳颜；童年流逝，却永远无法回头再来。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="没有什么过不去，只是再也回不去">
+<meta property="og:url" content="http://yoursite.com/2016/08/09/没有什么过不去，只是再也回不去/index.html">
+<meta property="og:site_name" content="Sunnyzx's Notes">
+<meta property="og:description" content="文｜孙占兴
+
+转眼间，一年的悠悠岁月已如同手中紧抓的沙子，无声无息的流失。然而，沙子流失，可以再抓一把；花儿凋零，可以等到来年春天重绽芳颜；童年流逝，却永远无法回头再来。">
+<meta property="og:image" content="http://obcwlc71a.bkt.clouddn.com/20160809.jpeg">
+<meta property="og:updated_time" content="2016-08-14T23:54:39.217Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="没有什么过不去，只是再也回不去">
+<meta name="twitter:description" content="文｜孙占兴
+
+转眼间，一年的悠悠岁月已如同手中紧抓的沙子，无声无息的流失。然而，沙子流失，可以再抓一把；花儿凋零，可以等到来年春天重绽芳颜；童年流逝，却永远无法回头再来。">
+<meta name="twitter:image" content="http://obcwlc71a.bkt.clouddn.com/20160809.jpeg">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/08/09/没有什么过不去，只是再也回不去/"/>
+
+  <title> 没有什么过不去，只是再也回不去 | Sunnyzx's Notes </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Sunnyzx's Notes</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle">Coding your future</p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-shoot">
+          <a href="/shoot" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            摄影
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-commonweal">
+          <a href="/404.html" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-heartbeat"></i> <br />
+            
+            公益404
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                没有什么过不去，只是再也回不去
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-08-09T21:54:07+08:00" content="2016-08-09">
+              2016-08-09
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/08/09/没有什么过不去，只是再也回不去/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/08/09/没有什么过不去，只是再也回不去/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+             <span id="/2016/08/09/没有什么过不去，只是再也回不去/" class="leancloud_visitors" data-flag-title="没有什么过不去，只是再也回不去">
+               &nbsp; | &nbsp;
+               <span class="post-meta-item-icon">
+                 <i class="fa fa-eye"></i>
+               </span>
+               <span class="post-meta-item-text">阅读次数 </span>
+               <span class="leancloud-visitors-count"></span>
+              </span>
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="http://obcwlc71a.bkt.clouddn.com/20160809.jpeg" alt="图片来源与网络"></p>
+<p>文｜孙占兴</p>
+<blockquote>
+<p>转眼间，一年的悠悠岁月已如同手中紧抓的沙子，无声无息的流失。然而，沙子流失，可以再抓一把；花儿凋零，可以等到来年春天重绽芳颜；童年流逝，却永远无法回头再来。</p>
+</blockquote>
+<a id="more"></a>
+<p>师父给我推荐了网易云音乐，用起来很不错，今天无意中发现，有时候不光是听歌，看评论往往更多的都是故事，看了简书一位作者发了篇文章，特摘抄了一些用户的评论，写成了这篇，其实每一条评论都是一段深情。</p>
+<blockquote>
+<p>回忆起曾深爱的ta，是否一些记忆涌上心头？</p>
+</blockquote>
+<p>@啊汐: <strong>我能遇见你已经很不可思议了</strong></p>
+<p>@Delete-026: <strong>人来人往，最放不下的还是你</strong></p>
+<p>@北羚：<strong>我想重新认识你，从你叫什么名字开始</strong></p>
+<p>@黑白照过: <strong>从来没有忽然想起你，只是一直在心底</strong></p>
+<p>@青春是个不可回头的梦：<strong>我把你遗忘在我们曾经相识的地方</strong></p>
+<blockquote>
+<p>为ta做过疯狂的事，是否还历历在目？</p>
+</blockquote>
+<p>@youyue0822：<strong>离开生活和工作了8年的城市去西藏跟他一起，只是现在他已离开，我却留在了这里</strong></p>
+<p>@清水巷: <strong>那个看起来毫不在乎你的人在聊天窗口里写满了要对你说的话，可是却一直没按发送键。那个决绝果断拖你进黑名单的人，在别的地方悄悄关注着你的喜怒哀乐。那些你以为与你再无瓜葛的人在那么多个容易脆弱的夜里，却是忍住了一万次想要联系你的冲动</strong></p>
+<p>@伪文艺女青年：<strong>去过他家，去过他的学校，呆过他们宿舍，吃过他们食堂。这几年，我一直觉得，我努力走近你，我们的关系就能不一样，可是我错了。哪怕你给我一个肯定的眼神，我也可以再义无反顾。我一直以为喜欢你喜欢的很辛苦，可是现在我彻底离开你的世界了，才发现，要做到不喜欢你，更痛苦</strong></p>
+<p>@知乎用户：<strong>上着课，想得不行，就溜了。直奔火车站，买了票，坐了一天的火车，旷了一个礼拜课。回来后终于能安心读书了。还有几次，莫名跑到火车站，在出站口等那趟车，看尽所有出站的人，自然是没有，连看了几天。知道她不可能来，但每跑一趟，心里就能舒服一些。唉，恋爱中人就是半个精神病，一点不假</strong></p>
+<p>@矫情如我：<strong>她在北京。我在美国。学习西班牙语，考到驾照，攒到钱。春假来到阿根廷Río Negro。租一辆车，买一张当地电话卡。打开Find Friends, 确定她的地理位置。算出对应地点。纬度南北互换，经度东西互换后用180度减。GPS定位。驱车前往，是一片荒野。她那是晚上，和她聊天，她说刚下课，正在回宿舍的路上。叫她打开Find Friends看我在哪。过了会她回复 “！！你在阿根廷？”遂给她打电话。一接通她就冲我大骂一通说你丫背着我去阿根廷玩。。！！？我对她说，我现在在阿根廷Río Negro省高速公路旁一处荒野。我在你的脚下。我在这个星球上离你最远的地方。但我还是好想好想你</strong></p>
+<blockquote>
+<p>你曾遍体鳞伤，但为ta却还是义无反顾</p>
+</blockquote>
+<p>@icccy: <strong>什么叫多余，心冷之后，你的殷勤</strong> </p>
+<p>@逝暧i：<strong>无论以后发生什么事情，我都会在的</strong></p>
+<p>@墨哈淳灵：<strong>有时真心话往往都藏在玩笑中，只是说者有心，听者无心罢了</strong></p>
+<p>@青春集结号2015：<strong>知不知道，有时你不经意的一句话，会影响我一天的心情</strong></p>
+<p>@拥友c：<strong>我每天笑的没心没肺,　装的很无所谓,　只是为了不让别人看出我像个傻瓜似的天天想着迩</strong></p>
+<blockquote>
+<p>为了ta你明明知道结局，却还是抱有希望</p>
+</blockquote>
+<p>foreve永恒的守护: <strong>没有关系，我们只是朋友</strong></p>
+<p>@月海浪花：<strong>多少人以朋友的名义默默的爱着</strong></p>
+<p>@Mr_HysteriA: <strong>我结婚的时候你一定要来，不然没有新娘我会很尴尬</strong></p>
+<p>@冷月镜水：<strong>我们的爱情就像是多米诺骨牌，我倒向你，你却倒向别人</strong></p>
+<p>@岁月无痕：<strong>虽然我知道我要找的并不是这样的他，我曾爱过的也并不是这样的他，可是我也没有办法，三年来，我甘愿守着他……”</strong></p>
+<blockquote>
+<p>你抵不住其他因素和时间，最终还是放下了ta</p>
+</blockquote>
+<p>@过往：<strong>敬往事一杯酒，再爱也不回头</strong></p>
+<p>@林林lili：<strong>我做过最勇敢的事情，就是放弃你</strong></p>
+<p>@33al：<strong>我们终于可以用陌生人的关系，一辈子在一起了</strong></p>
+<p>@或忘：<strong>那些以前说着永不分离的人，早已经散落在天涯了</strong></p>
+<p>@其声悠然：<strong>我爱你十年如一日沉淀，放手给你自由和碧海蓝天</strong></p>
+<blockquote>
+<p>感叹曾经与ta相关的那些过往</p>
+</blockquote>
+<p>@帐号已注销：<strong>我喜欢的样子，你都有</strong></p>
+<p>@蓦然回首：<strong>爱对了是爱情，爱错了是青春</strong></p>
+<p>@Lyra_sunshine：<strong>不悔梦归处，只怪太匆匆</strong></p>
+<p>@北郊：<strong>这辈子总会为一个人那么执着一次，我爱你，仅此而已</strong></p>
+<p>@花开半夏_27230: <strong>总有一些话，来不及说了，总有一个人，是心口的朱砂</strong></p>
+<blockquote>
+<p>感谢ta，曾经出现在你的生命中</p>
+</blockquote>
+<p>@我回敬崩溃：<strong>愿你能被这个世界温柔以待</strong></p>
+<p>@雨天：<strong>愿你我安好，感谢你出现在我生命里</strong></p>
+<p>@qq表情：<strong>愿爱你的人更爱你，你爱的人更懂你</strong></p>
+<p>@浪花的手：<strong>愿你梦里有喝不完的酒，醒来后能酩酊大醉的过完这一生。你要照顾好你黑色的头发，和你挑剔的胃</strong></p>
+<p>@binbinbinbinbinbin: <strong>高中的时候跟女朋友不是一个学校，我们都喜欢杰伦的歌，有时候晚上寝室熄灯了，捂着被子对着手机唱歌给她听，转眼五年过去了  她就要结婚了，祝她幸福</strong> </p>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width="330" height="86" src="http://music.163.com/outchain/player?type=2&id=132940&auto=1&height=66"></iframe>
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/青春校园/" rel="tag">#青春校园</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/08/有一段时光我从未忘记，不是不舍而是太深/" rel="next" title="有一段时光我从未忘记，不是不舍而是太深">
+                <i class="fa fa-chevron-left"></i> 有一段时光我从未忘记，不是不舍而是太深
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/08/12/小时候，过年是一年中最幸福的日子/" rel="prev" title="小时候，过年是一年中最幸福的日子">
+                小时候，过年是一年中最幸福的日子 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2016/08/09/没有什么过不去，只是再也回不去/"
+           data-title="没有什么过不去，只是再也回不去" data-url="http://yoursite.com/2016/08/09/没有什么过不去，只是再也回不去/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/user_icon.jpg"
+               alt="sunnyzx" />
+          <p class="site-author-name" itemprop="name">sunnyzx</p>
+          <p class="site-description motion-element" itemprop="description">不忘初心，方得始终</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">10</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">5</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/sunzhanxing" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/309016033" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="https://sendya.me/" title="重点保护对象" target="_blank">重点保护对象</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <p class="post-toc-empty">此文章未包含目录</p>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">sunnyzx</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"sunnyzx"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+  <script src="https://cdn1.lncld.net/static/js/av-core-mini-0.6.1.js"></script>
+  <script>AV.initialize("LMGBAGP6FAi2LMf6Ge0deFTx-gzGzoHsz", "haGtoWpxJ8hwVKoCnfsjGXk5");</script>
+  <script>
+    function showTime(Counter) {
+      var query = new AV.Query(Counter);
+      var entries = [];
+      var $visitors = $(".leancloud_visitors");
+
+      $visitors.each(function () {
+        entries.push( $(this).attr("id").trim() );
+      });
+
+      query.containedIn('url', entries);
+      query.find()
+        .done(function (results) {
+          var COUNT_CONTAINER_REF = '.leancloud-visitors-count';
+
+          if (results.length === 0) {
+            $visitors.find(COUNT_CONTAINER_REF).text(0);
+            return;
+          }
+
+          for (var i = 0; i < results.length; i++) {
+            var item = results[i];
+            var url = item.get('url');
+            var time = item.get('time');
+            var element = document.getElementById(url);
+
+            $(element).find(COUNT_CONTAINER_REF).text(time);
+          }
+          for(var i = 0; i < entries.length; i++) {
+            var url = entries[i];
+            var element = document.getElementById(url);
+            var countSpan = $(element).find(COUNT_CONTAINER_REF);
+            if( countSpan.text() == '') {
+              countSpan.text(0);
+            }
+          }
+        })
+        .fail(function (object, error) {
+          console.log("Error: " + error.code + " " + error.message);
+        });
+    }
+
+    function addCount(Counter) {
+      var $visitors = $(".leancloud_visitors");
+      var url = $visitors.attr('id').trim();
+      var title = $visitors.attr('data-flag-title').trim();
+      var query = new AV.Query(Counter);
+
+      query.equalTo("url", url);
+      query.find({
+        success: function(results) {
+          if (results.length > 0) {
+            var counter = results[0];
+            counter.fetchWhenSave(true);
+            counter.increment("time");
+            counter.save(null, {
+              success: function(counter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(counter.get('time'));
+              },
+              error: function(counter, error) {
+                console.log('Failed to save Visitor num, with error message: ' + error.message);
+              }
+            });
+          } else {
+            var newcounter = new Counter();
+            /* Set ACL */
+            var acl = new AV.ACL();
+            acl.setPublicReadAccess(true);
+            acl.setPublicWriteAccess(true);
+            newcounter.setACL(acl);
+            /* End Set ACL */
+            newcounter.set("title", title);
+            newcounter.set("url", url);
+            newcounter.set("time", 1);
+            newcounter.save(null, {
+              success: function(newcounter) {
+                var $element = $(document.getElementById(url));
+                $element.find('.leancloud-visitors-count').text(newcounter.get('time'));
+              },
+              error: function(newcounter, error) {
+                console.log('Failed to create');
+              }
+            });
+          }
+        },
+        error: function(error) {
+          console.log('Error:' + error.code + " " + error.message);
+        }
+      });
+    }
+
+    $(function() {
+      var Counter = AV.Object.extend("Counter");
+      if ($('.leancloud_visitors').length == 1) {
+        addCount(Counter);
+      } else if ($('.post-title-link').length > 1) {
+        showTime(Counter);
+      }
+    });
+  </script>
+
+
+
+  
+
+</body>
+</html>
