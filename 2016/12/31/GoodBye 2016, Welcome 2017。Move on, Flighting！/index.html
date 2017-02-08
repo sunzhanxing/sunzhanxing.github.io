@@ -1,19 +1,32 @@
-extends partial/layout
-
-block site_title
-    != page.title + " · " + config.title
-
-block description
-    - var desc = page.desc || page.title + ' - ' + config.author;
-    meta(name="description", content=desc)
-
-block container
-    include mixins/post
-    +post(page)
-
-//- block pagination
-//-     include mixins/paginator
-//-     +post()
-//-     if page.comments !== false
-//-         include partial/comment
-
+<!DOCTYPE html><html lang="zh-Hans" prefix="og: http://ogp.me/ns#"><head><meta charset="utf-8"><meta name="X-UA-Compatible" content="IE=edge"><title>GoodBye 2016, Welcome 2017。Move on, Flighting！ · Sunnyzx's Notes</title><meta name="description" content="GoodBye 2016, Welcome 2017。Move on, Flighting！ - sunnyzx"><meta name="viewport" content="width=device-width, initial-scale=1"><link rel="short icon" href="/favicon.ico"><link rel="stylesheet" href="//at.alicdn.com/t/font_1472710214_6648843.css"><link rel="stylesheet" href="//raw.githack.com/xwartz/hexo-theme-nuna/next/source/style/main.css?v=1.0.3"></head><body class="pupa"><div class="loading-bar"></div><main><div class="post post"><article itemscope itemtype="http://schema.org/Article" class="hentry"><div class="container"><div class="entry-header"><h1 class="entry-title">GoodBye 2016, Welcome 2017。Move on, Flighting！</h1><div class="entry-description"><p><img src="http://upload-images.jianshu.io/upload_images/695086-70a0a9e46b5cea43.jpg?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="图片拍摄于2016.12.28"></p>
+<blockquote>
+<p>距离 2016 年结束还有不足一周的时间，抽出时间写一下 2016 年的过往，发现这一年无论是生活还是工作以及个人方面变化都是蛮大的。回顾 2016 的年初制定的目标，不免有些觉得时间如流水。今年于我来说，注定是不平凡的一年。随着距离毕业的日子将至，那种想记录的东西也日渐暴露出来。于是乎就有了这份“2016年终总结”。</p>
+</blockquote></div><div class="entry-meta"><time itemprop="datePublished" datetime="Saturday, December 31st 2016, 5:43:02 pm" class="updated">Dec 31, 2016</time><em class="post-count">1,845 words</em></div></div><div itemprop="articleBody" class="entry-content"><h3 id="凡事预立，不预则废"><a href="#凡事预立，不预则废" class="headerlink" title="凡事预立，不预则废"></a>凡事预立，不预则废</h3><p>今年年初的时候，自己也是踌躇满志的指定了一些目标。现在回想起来，除了自身的一些原因没交女朋友外，其余也都是实现了。读了几本书、考了一个驾照、开源了一个项目、从摄影小白到目前的初级阶段、从发传单看到的创业公司实习到和创始人聊项目，独自开发APP，最后由于一些原因还是没能成功，找到了知名公司去哪儿网实习。</p>
+<p>机会也都是留给等待和忍耐的人的，投了阿里巴巴某部门的岗位，有幸的收到面试，不心动是假的，托付同学帮我提交最后的论文，中午抢票回北京，已经做好站回去的准备，但是幸运又再一次的降临到我的头上，用老东家的抢票插件抢了700多次就抢到了一个卧铺而且还是中铺，还是幸运的拿到了offer，但是被通知论文没过去，还要修改提交，好在是不用回去。这周五将入职到互联网巨头阿里巴巴，总是想让时间过的快点。总之，从完成目标的情况来看还是很乐观。</p>
+<h3 id="无论何时，健康是福"><a href="#无论何时，健康是福" class="headerlink" title="无论何时，健康是福"></a>无论何时，健康是福</h3><p>随着年龄大了，再加上计算机专业长时间的面对电脑，身体也不大如以前了。2015年生日喝酒喝的去了医院，后来因为饮食和作息不规律在加上洗澡浴室过热心率过速。导致心跳一快就紧张到阴影。随着时间的流失和去了北京协和医院的国际知名专家检查，造成了神经组织疼，加上了合理的作息、锻炼身体和各种活动，导致无论身体的精神上对压力和心态有了更好的调解方法。2106年7月份的时候脖子总是有睡落枕的感觉，去了北京协和医院检查，发现颈椎略反弓，有轻微增生。也是在家里一下带矫正器，规范日常的坐姿和久坐的习惯。我总是觉得无论发生什么事，都不应该是坏事，它让我们更好的了解自己目前的处境，是为了完善更好自己的前提。</p>
+<p>最近看新闻也是看到了宋小宝老师说，2017年要好好休息休息，的确是这样，即使有再多的钱，没有一个好的身体也是无福消受。也有乔任梁的抑郁自杀。所以，多抽一些时间关心一下家人和朋友，无论何时，无论你事业和爱情是否成功或失败，请记住，健康是福！</p>
+<h3 id="不忘初心，方得始终"><a href="#不忘初心，方得始终" class="headerlink" title="不忘初心，方得始终"></a>不忘初心，方得始终</h3><p>做人不能忘本，这也是我一直在对自己强调的原则之一。不想给予传统新浪、网易、CSDN博客的我一心想要搭建一个属于自己的博客。就这样我和亮亮酱结识了，是一个地地道道的二次元宅男。一直提供我最初的 ghost blog 的维护和 SSCat 的免费试用。希望 2017年找个女朋友，不然今年我只能给你寄哈尔滨的特产了…</p>
+<p>说起来还是和顺丰公司有着不解之缘。田总，也是你们说的开源大神维尼的小熊了，可以说是我 iOS 开发的启蒙老师。2016.12.31也是我和田总认识的520天，美好的数字不由得让我浮想联翩。后来认识了现在的基友木木，也是简书 iOS 开源的大神，你们一定记得他的项目－半糖。还有经常聊天的涛涛，一个比较羞涩低调的男孩。感谢互联网的时代，让我们从陌生的网友变成了现实中的好基友。</p>
+<p>去哪儿网是我离开校园后的第一家实习公司，也是一个互联网知名公司。在实习的日子中，每天充满的欢乐，并不是想象的那么枯燥。认识了一群有想法的小伙伴，我的师父、和东哥～ 吃杂小分队的故事还会时常回想起来，最终因岗位没有 HC 还是离开了。感谢去哪儿网以及我的领导和前同事，你们让我学习到了很多知识，是我步入社会前的基石。</p>
+<p>阿里巴巴是我梦寐以求的公司，没想到在今年年底居然还是很幸运的加入了这个大家庭。期间要感谢的人有很多，JX姐、RW姐、YS哥。昨天第一天入职中午带我们两个实习生吃了一顿饭，晚上因为饭卡发放的晚同事又带着搓了一顿，其实我是很不好意思的。工作的氛围和部门人与人之间的交流很融洽也很快乐，要学习的地方还有很多，总之，加油！</p>
+<h3 id="确立目标，展望未来"><a href="#确立目标，展望未来" class="headerlink" title="确立目标，展望未来"></a>确立目标，展望未来</h3><p>随着目标也都是越来越大，挑战的难度也会增加，指定下来，等到明年的这个时候，回顾下，看看脸打的到底有多疼。</p>
+<p><strong>1. 读12本书，并以文章的形式写读后感，每月一篇。</strong><br><strong>2. 烹饪的技术要提高一个新的阶段，写成文章的形式。</strong><br><strong>3. 购买单反，提高使用单反摄影的能力，定期输出作品。</strong><br><strong>4. 使用 PhotoShop 的基础能力需要巩固，便于处理图片。</strong><br><strong>5. 提高视频的制作能力，去旅游一下，尝试拍摄记几部游记作品。</strong><br><strong>6. 对球鞋的了解程度、个人穿衣风格、室内搭配需要研究。</strong><br><strong>7. 共同建立 CodeInventor 小组，在考虑部署网站以及后续事情。</strong><br><strong>8. 找到合适的女朋友～</strong></p>
+<iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=33789421&auto=1&height=66"></iframe></div><div class="entry-extra"><div class="entry-tags"><a href="/tags/随笔/" class="tag">随笔</a></div></div></div></article></div></main><footer><div class="copyright container"><p>© Copyright 2017 by <a href="http://yoursite.com">sunnyzx</a>.</p></div></footer><script async src="//cdn.bootcss.com/mathjax/2.7.0-beta.0/MathJax.js"></script><script>(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;e=o.createElement(i);r=o.getElementsByTagName(i)[0];e.src='//www.google-analytics.com/analytics.js';r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));ga('create',"UA-69822347-1",'auto');
+ga('set', 'appName',"Sunnyzx's Notes");
+ga('send','pageview');</script><script>(function () { var sid =500303098;cid =500303108;var hm = document.createElement('script');
+hm.src = 'http://pingjs.qq.com/h5/stats.js';
+hm.setAttribute('name', 'MTAH5'); hm.setAttribute('sid', sid); hm.setAttribute('cid', cid);
+var s = document.getElementsByTagName("script")[0]; s.parentNode.insertBefore(hm, s);
+}())</script><script>var _vds = _vds || [];
+window._vds = _vds;
+(function(){
+  ;_vds.push(['setAccountId',"90b580e047dd0007"  ]);
+  (function() {
+      var vds = document.createElement('script');
+      vds.type='text/javascript';
+      vds.async = true;
+      vds.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'dn-growing.qbox.me/vds.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(vds, s);
+  })();
+})();</script><script async src="//raw.githack.com/Easyfood/pageAccelerator/master/dist/page-accelerator.min.js"></script><script async src="/script/loading.js"></script><script async src="/script/photo.js"></script></body></html>
