@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Pidan">
+
+
+
+
+
+<title>Objc-三大特性 | Pidan</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Pidan&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Pidan&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Objc-三大特性</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Pidan</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">September 8, 2015&nbsp;&nbsp;18:21:00</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <p>初学面向对象程序设计中的类有三大特性：继承，封装，多态，这个也是介绍类的时候，必须掌握的前提，所以今天来讲解下Objective－C中类的三大特性：</p>
+<h4 id="封装"><a href="#封装" class="headerlink" title="封装"></a>封装</h4><p><strong>封装</strong>：隐藏内部（定义类、定义属性、定义方法。）实现，稳定外部接口。<br><code>@propert</code>和@<code>synthesize</code>（只是封装问题，@property详细后续会介绍）@propert声明类的setter、getter方法。（内部封装）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">Car.h#import</span><br><span class="line"> &lt;Foundation/Foundation.h&gt;</span><br><span class="line">@interface Car : NSObject</span><br><span class="line">&#123; </span><br><span class="line">    int _wheels; //Car轮子属性 </span><br><span class="line">    int _speed; //Car速度属性</span><br><span class="line">&#125;</span><br><span class="line">@property int wheels,speed;</span><br><span class="line">- (void) print;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+<p><code>@property int wheels,speed; ``setter</code>方法本身是返回void类型，并且是对象调用，所以会先出现 -(void)，而后，系统将在int类型wheels中w大写，并且参数是int wheels。生成的详细代码如下。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">- (void) setWheels:(int) wheels</span><br><span class="line">&#123; </span><br><span class="line">    _wheels = wheels;</span><br><span class="line">&#125;</span><br><span class="line">    - (int)wheels</span><br><span class="line">&#123; </span><br><span class="line">    return _wheels;</span><br><span class="line">&#125;</span><br><span class="line">- (void) setSpeed:(int) speed</span><br><span class="line">&#123; </span><br><span class="line">    _speed = speed;</span><br><span class="line">&#125;</span><br><span class="line">    - (int)speed</span><br><span class="line">&#123; </span><br><span class="line">    return _speed;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>@synthesize</code>实现类的<code>setter</code>、<code>getter</code>方法。代码如下。（在现在的Xcode中，可以省略，但不建议这样操作。）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#import &quot;Car.h&quot;</span><br><span class="line">@implementation Car</span><br><span class="line">@synthesize wheels =_wheels ,speed = _speed;</span><br><span class="line">- (void) print</span><br><span class="line">&#123;</span><br><span class="line">     NSLog(@&quot;bike的轮子数量为%i, 速度为%i !!!&quot;,_wheels,_speed);</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+
+<p><code>@synthesize wheels =_wheels ,speed = _speed;代码必须写@implementation和@end之间</code>，此代码的的意思是将@property wheels,speed,进行实现，而wheels =_wheels ,speed = _speed是将访问方法实现里面_wheels和_speed的成员变量并进行给赋值。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#import &quot;Car.h&quot;</span><br><span class="line">#import &lt;Foundation/Foundation.h&gt;</span><br><span class="line">int main(int argc, const char * argv[]) </span><br><span class="line">&#123; </span><br><span class="line">     Car *bike = [[Car alloc]init]; </span><br><span class="line">     [bike setWheels:100];</span><br><span class="line">     [bike setSpeed:50]; </span><br><span class="line">     [bike print];</span><br><span class="line">     return 0 ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>手动运行，获取答案。</p>
+<h4 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h4><p>概念：继承是指一个对象直接使用另一对象的属性(非私有成员)和方法，使得子类具有父类的属性和方法。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@interface Car : NSObject</span><br><span class="line">&#123; </span><br><span class="line">     int _wheels; //Car轮子属性</span><br><span class="line">     int _speed; //Car速度属性</span><br><span class="line">&#125;</span><br><span class="line">@property int wheels,speed;</span><br><span class="line">- (void) print;@end</span><br></pre></td></tr></table></figure>
+
+<p>以上代码中，Car表示子类，NSObject表示夫类（超类或根类，它们没有夫类）。而我重新创建Bike和Bus类，继承Car类，也就是说，它们将拥有Car类的对象属性和行为，代码如下：<br>Car类：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@interface Bus : Car</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+
+<p>Bus类：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">@interface Bus : Car</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+
+<p>在图中的反应：</p>
+<img src="http://upload-images.jianshu.io/upload_images/695086-cbc47e16442f75da.png?imageMogr2/auto-orient/strip|imageView2/2/w/1240" alt="alt" style="zoom:50%;" />
+
+
+
+<p>上面的Bike和Bus只是简单的声明和实现，并没有具体的代码，给出主函数，放到你的Xcode跑一下，看看有什么效果。</p>
+<p><strong>Car.m</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#import &quot;Car.h&quot;</span><br><span class="line">@implementation Car</span><br><span class="line">@synthesize wheels =_wheels ,speed = _speed;</span><br><span class="line">    - (void) print&#123; NSLog(@&quot;Car的轮子数量为%i, 速度为%i !!!&quot;,_wheels,_speed);</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+
+<p>主函数：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">#import &quot;Car.h&quot;</span><br><span class="line">#import &quot;Bus.h&quot;</span><br><span class="line">#import &quot;Bike.h&quot;</span><br><span class="line">#import &lt;Foundation/Foundation.h&gt;</span><br><span class="line">int main(int argc, const char * argv[])</span><br><span class="line">&#123; </span><br><span class="line">    Bike *bike = [[Bike alloc]init];</span><br><span class="line">    [bike setWheels:2]; </span><br><span class="line">    [bike setSpeed:10];</span><br><span class="line">    [bike wheels]; </span><br><span class="line">    [bike print]; </span><br><span class="line">    [bike retain]; </span><br><span class="line">    return 0 ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>继承中对问题的分析：</strong></p>
+<ul>
+<li><p>1.在继承中，子类对象如何正确发送方法的机制每一个Objective－C对象都有一个隐藏的指针（isa）指向类的代码，当对象发送消息的时，当前的对象会首先在当前类里去查找对应的方法，如果找到的话，直接执行代码；如没有找到，则去父类里找对应的方法，如果找到的话，就会执行。如果找不到继续按照这样的原则，沿着继承链向上查找，直到根类NSObject（这个类是Objective - C所有类的根类 ），如果在这个NSObject类中仍找不到相应的方法，那么程序直接崩溃掉。</p>
+</li>
+<li><p>2.如何在子类里面，直接调用父类方法或者父类的实例变量。（后续会特意开一章介绍Super与self）采用Super关键字，需要注意的是，Super是一个关键字，当你使用Super的时候，编译器知道，你现在的目的只是访问父类的一些元素。（这里的Super与self并不是一个概念：super是一个关键字，而self只是一种调用机制，并不是关键字）</p>
+</li>
+</ul>
+<h4 id="多态"><a href="#多态" class="headerlink" title="多态"></a>多态</h4><p><strong>多态</strong>：不同对象对同一消息的不同响应，子类可以重写父类的方法（父类指针指向子类对象）<br>重写的概念:重写的概念，只存在于继承语法中。是指：父类声明一个方法，但是父类并没有真正意义的去实现这个方法（或者说实现了，向按照自己的想法再去实现下），而是在子类中真正的实现方法的功能，这种形式就叫做对这个方法的重写。（重写方法的目的是为了实现面向对象编程里的多态）</p>
+<p>例如：假设车类（Car）都用有一个相同的 方法<code>-(void)print;</code>那Bus属于车类，Bike也属于车类，都继承了Car类后，实现各自的print，但是调用时我们只需调用各自的 print 方法。 也就是不同的对象以自己的方式响应了相同的消息（响应了print这个方法）。<br>.m</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#import &quot;Bus.h&quot;</span><br><span class="line">@implementation Bus</span><br><span class="line">- (void) print</span><br><span class="line">&#123; </span><br><span class="line">    NSLog(@&quot;Bus的轮子数量为%i, 速度为%i的车子跑起来 了!!!&quot;,_wheels,_speed);</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+
+<p>.h</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">#import &quot;Car.h&quot;</span><br><span class="line">@interface Bus : Car</span><br><span class="line">- (void) print;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+
+<p>主函数：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">#import &quot;Bus.h&quot;</span><br><span class="line">#import &lt;Foundation/Foundation.h&gt;</span><br><span class="line">int main(int argc, const char * argv[])</span><br><span class="line">&#123;</span><br><span class="line">    Car *bus = [[Bus alloc]init]; </span><br><span class="line">    [bus setWheels:4]; </span><br><span class="line">    [bus setSpeed:100]; </span><br><span class="line">    [bus wheels];</span><br><span class="line">    [bus print]; </span><br><span class="line">    [Bus retain];</span><br><span class="line">    return 0 ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>自行运行，获取答案。</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2015/10/01/Objc%20%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%861/">浅谈Objc-内存管理（上）</a>
+            
+            
+            <a class="next" rel="next" href="/2015/08/03/Objc%20%E5%AF%B9%E8%B1%A1%E5%92%8C%E7%B1%BB/">Objc-对象和类</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Pidan | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>

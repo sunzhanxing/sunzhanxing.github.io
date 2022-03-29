@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Pidan">
+
+
+
+
+
+<title>Objc-对象和类 | Pidan</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Pidan&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Pidan&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Objc-对象和类</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Pidan</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">August 3, 2015&nbsp;&nbsp;18:21:00</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h4 id="对象和类的介绍"><a href="#对象和类的介绍" class="headerlink" title="对象和类的介绍"></a>对象和类的介绍</h4><p><strong>对象</strong>：是对客观事物的抽象，对象是类的实例。</p>
+<p><strong>类</strong>：则是对象的抽象，类是一种抽象的数据类型（类似int、double、float等基本数据类型）。打个比方，现实生活中的车分为很多种，（如汽车、卡车、自行车、bus等），他们是存在的，而车则是它们总体的抽象的概述，他们统称都可以称作为车。</p>
+<h4 id="类的声明和实现"><a href="#类的声明和实现" class="headerlink" title="类的声明和实现"></a>类的声明和实现</h4><p><strong>类的声明</strong>：用来声明对象的属性和行为。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">@interface Car </span><br><span class="line">&#123;</span><br><span class="line">    @public int _wheels; //Car轮子属性</span><br><span class="line">    int _speed; //Car速度属性</span><br><span class="line">    NSString *_color; //Car颜色属性</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+
+<p>在以上代码中，<code>@interface</code>代表Car类的声明，而<code>@end</code>则表示Car类声明的结束，而在括号中的代码为类声明对象的属性(成员变量)。</p>
+<p><strong>类的实现</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@implementer Car: NSObject@end</span><br></pre></td></tr></table></figure>
+
+<p>在以上代码中，<code>@implementer Car</code>代表Car类的实现，而<code>@end</code>则表示Car类实现的结束。<code>Car: NSObject</code>是Car继承NSObject，在后面的博文中会介绍。</p>
+<h4 id="对象的创建"><a href="#对象的创建" class="headerlink" title="对象的创建"></a>对象的创建</h4><p>首先，我先说一下对象和类在下Xcode中的声明和实现，现在代码演示一下。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">#import &quot;Car.h&quot;</span><br><span class="line">#import &lt;Foundation/Foundation.h&gt;</span><br><span class="line">int main ()</span><br><span class="line">&#123; </span><br><span class="line">    Car *bike = [[Car alloc]init];</span><br><span class="line">    Car *bus = [[Car alloc]init]; </span><br><span class="line">    Car *taix = [[Car alloc]init];</span><br><span class="line">    return 0 ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在这三行代码中的alloc为在Car类型中分别给（bike、bus、taix）指针所指向的对象各分配一块内存空间，并创建_ wheels，_ speed， *_color属性。而init将为（bike、bus、taix）所指向的对象的属性进行初始化。（也可以理解bike等是Car的对象）。</p>
+<h4 id="成员变量的直接赋值"><a href="#成员变量的直接赋值" class="headerlink" title="成员变量的直接赋值"></a>成员变量的直接赋值</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">#import &quot;Car.h&quot;</span><br><span class="line">#import &lt;Foundation/Foundation.h&gt;</span><br><span class="line">int main ()</span><br><span class="line">&#123; </span><br><span class="line">    Car *bike = [[Car alloc]init];</span><br><span class="line">    bike-&gt;_wheels = 2; </span><br><span class="line">    bike-&gt;_speed = 20;</span><br><span class="line">    bike-&gt;_colour = @&quot;红色&quot;; </span><br><span class="line">    NSlog(@&quot;自行车的轮子有%d个,</span><br><span class="line">          自行车的速度为%d km/h,</span><br><span class="line">          自行车的颜色为%@&quot;,</span><br><span class="line">          bike-&gt;_wheels,</span><br><span class="line">          bike-&gt;_speed,</span><br><span class="line">          bike-&gt;_colour); </span><br><span class="line">    return 0;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在<code>（bike-&gt;_ wheels = 2; bike-&gt;_ speed = 20; bike-&gt;_ colour = @&quot;红色&quot;;）</code>代码中，我让bike对象，间接的访问Car类型中对对象声明的属性并把它们复制（需要在声明代码中➕@pubilc，因为他们的成员变量是被保护的，在后期学类的三大属性的封装后，便不再这样去操作）。所以NSlog(@”自行车的轮子有%d个,自行车的速度为%d km/h,自行车的颜色 为%@”,bike-&gt;_wheels,bike-&gt;_speed,bike-&gt;_colour);将为系统打印出你在代码中所设置的属性，此处需要用手操作，方可得出结论。</p>
+<h4 id="对象的方法声明、实现和调用。"><a href="#对象的方法声明、实现和调用。" class="headerlink" title="对象的方法声明、实现和调用。"></a>对象的方法声明、实现和调用。</h4><p><strong>方法声明</strong><br>Objective－C中的方法类大体似函数，同样具有：<strong>方法名、参数、返回值类型。</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">@interface Car</span><br><span class="line">&#123; </span><br><span class="line">    @public int _wheels; //Car轮子属性</span><br><span class="line">    int _speed; //Car速度属性 </span><br><span class="line">    NSString *_color; //Car颜色属性</span><br><span class="line">&#125;</span><br><span class="line">- (void) run;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+
+<p>上面代码中的<code>- (void) run;</code>是Objective－C中对象方法必须以”－”开头，(void)必须用括号括住。</p>
+<p><strong>方法实现</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">@implementer Car: NSObject</span><br><span class="line">- (void) run</span><br><span class="line">&#123; </span><br><span class="line">    NSlog(@“速度为%d的bike跑起来了!!!&quot;,_speed);</span><br><span class="line">&#125;</span><br><span class="line">@end</span><br></pre></td></tr></table></figure>
+
+<p><strong>方法调用</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#import &quot;Car.h&quot;</span><br><span class="line">#import &lt;Foundation/Foundation.h&gt;</span><br><span class="line">int main ()</span><br><span class="line">&#123; </span><br><span class="line">    Car *bike = [[Car alloc]init]; </span><br><span class="line">    [bike run];</span><br><span class="line">    return 0 ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>代码中<code>[bike run];</code>[A B] A方法执行者，B方法。所以此代码理解为：bike指针对象中发送run消息（消息机制）。运行一下，看看会输出什么东西 ^_^。</p>
+<h4 id="匿名对象"><a href="#匿名对象" class="headerlink" title="匿名对象"></a>匿名对象</h4><p><strong>个人理解：没有名字的对象</strong>。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#import &quot;Car.h</span><br><span class="line">#import &lt;Foundation/Foundation.h&gt;</span><br><span class="line">int main ()</span><br><span class="line">&#123; </span><br><span class="line">    [[Car alloc]init]-&gt;_spped = 100;</span><br><span class="line">    [[[Car alloc]init]run]; </span><br><span class="line">    return 0 ;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在上述代码<code>[[Car alloc]init]-&gt;_spped = 100;</code>中在Car类中创建并初始化一个对象，并且直接访问该对象中的 <code>_ speed</code>成员变量，并直接复制为100。而并没有指定某一个对象来进行此操作,<code>[[[Car alloc]init]run];</code>而此代码，给我们直观的角度时调用run方法，<strong>其实却不是我们的想要的结果300，而是0!</strong></p>
+<p>原因是此时我们又重新创建并且初始化另一个对象，而这个对象的本身的_ speed的成员变量为0，和之前的我们所复制的300没有关系，原因很简单，它们两个并不是同一个对象，所以互不影响，所以第二个代码中调用的run方法，输出的结果会是0</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2015/09/08/Objc%20%E4%B8%89%E5%A4%A7%E7%89%B9%E6%80%A7/">Objc-三大特性</a>
+            
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Pidan | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>

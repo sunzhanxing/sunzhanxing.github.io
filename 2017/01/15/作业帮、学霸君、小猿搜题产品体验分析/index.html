@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Pidan">
+
+
+
+
+
+<title>作业帮、学霸君、小猿搜题产品体验分析 | Pidan</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Pidan&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Pidan&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">作业帮、学霸君、小猿搜题产品体验分析</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Pidan</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">January 15, 2017&nbsp;&nbsp;14:50:00</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h3 id="一、行业背景"><a href="#一、行业背景" class="headerlink" title="一、行业背景"></a>一、行业背景</h3><p>随着网络移动化的不断完善和移动端教育产品的日渐成熟，K12教育（小学一年级到高中三年级的12年中小学教育）,移动教育市场的用户群体也日渐庞大，也是未来在线教育的爆发点。</p>
+<h3 id="二、体验环境"><a href="#二、体验环境" class="headerlink" title="二、体验环境"></a>二、体验环境</h3><p>1.体验设备：魅蓝3S，版本号：Flyme 5.1.11.1A2.<br>2.软件名称：作业帮，版本号：7.7.0</p>
+<h3 id="三、需求分析"><a href="#三、需求分析" class="headerlink" title="三、需求分析"></a>三、需求分析</h3><h4 id="3-1-用户需求"><a href="#3-1-用户需求" class="headerlink" title="3.1 用户需求"></a>3.1 用户需求</h4><h5 id="3-1-1-学生角度（水平偏低）"><a href="#3-1-1-学生角度（水平偏低）" class="headerlink" title="3.1.1 学生角度（水平偏低）"></a>3.1.1 学生角度（水平偏低）</h5><p>学生在校期间功课较多，课间问老师和同学的时间不充裕。回到家中后自己又不会写。身边没有同学和老师，没有交流的群体。</p>
+<h5 id="3-1-2-学生角度（水平偏高）"><a href="#3-1-2-学生角度（水平偏高）" class="headerlink" title="3.1.2 学生角度（水平偏高）"></a>3.1.2 学生角度（水平偏高）</h5><p>学霸空余时间较多，愿意分享自己的知识和学习方法，体现个人的价值，获得一定声望或者称号。</p>
+<h5 id="3-1-3-家长角度"><a href="#3-1-3-家长角度" class="headerlink" title="3.1.3 家长角度"></a>3.1.3 家长角度</h5><p>农村家庭中的家长受教育文化水平偏低，对于辅导孩子的功课可能会力不从心。城市家庭中的家长出于高工作时间强度，辅导孩子功课时间上远远少于农村家长。很多家长给孩子报补习班，但补习班短时间内起到的效果不明显，而且费用高。</p>
+<h5 id="3-1-4-教师角度"><a href="#3-1-4-教师角度" class="headerlink" title="3.1.4 教师角度"></a>3.1.4 教师角度</h5><p>通过互联网将自己知识传播出去教书育人，分享自建多年的学习技巧和方法。赚取一些补贴的同时也收获了一些学生。</p>
+<h3 id="3-2-用户分析"><a href="#3-2-用户分析" class="headerlink" title="3.2 用户分析"></a>3.2 用户分析</h3><h5 id="3-2-1-人群属性：2013-09-至-2016-11-全国-PC-端年龄分布图"><a href="#3-2-1-人群属性：2013-09-至-2016-11-全国-PC-端年龄分布图" class="headerlink" title="3.2.1 人群属性：2013-09 至 2016-11 全国 PC 端年龄分布图"></a>3.2.1 人群属性：2013-09 至 2016-11 全国 PC 端年龄分布图</h5><p>从图中可以看出，作业帮用户年龄分布从19岁～50岁，学霸君用户年龄大多数分布在19～49岁之间，而和小猿搜题的用户年龄出于19～39岁之间，相对作业帮和学霸君的用户年龄分布范围小。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sunzhanxing/CoverImage/PicGo/1240-20220123174626161-20220123174631816.jpeg" alt="图片来源于百度指数"></p>
+<h5 id="3-2-2-人群属性：2013-09-至-2016-11-全国-PC-端年龄分布图"><a href="#3-2-2-人群属性：2013-09-至-2016-11-全国-PC-端年龄分布图" class="headerlink" title="3.2.2 人群属性：2013-09 至 2016-11 全国 PC 端年龄分布图"></a>3.2.2 人群属性：2013-09 至 2016-11 全国 PC 端年龄分布图</h5><p>三款软件使用用户男性均比女性要多，男性用户均高于50%。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sunzhanxing/CoverImage/PicGo/1240-20220123174638062.jpeg" alt="图片来源于百度指数"></p>
+<h5 id="3-2-3-指数趋势：APP上线～至今，整体指数趋势（PC趋势＋移动趋势）："><a href="#3-2-3-指数趋势：APP上线～至今，整体指数趋势（PC趋势＋移动趋势）：" class="headerlink" title="3.2.3 指数趋势：APP上线～至今，整体指数趋势（PC趋势＋移动趋势）："></a>3.2.3 指数趋势：APP上线～至今，整体指数趋势（PC趋势＋移动趋势）：</h5><p>从作业帮、学霸君、小猿搜题三款产品从上线开始至今整体指数趋势情况来看，作业帮居于首位，其中有三处指数明显下降趋势，整体趋势为持续上升。小猿搜题、学霸君分列第二、三位，在产品初期指数均为上升阶段，在后半段处于缓慢下滑到趋势。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sunzhanxing/CoverImage/PicGo/1240-20220123174643435.jpeg" alt="图片来源于百度指数"></p>
+<h3 id="四、产品分析"><a href="#四、产品分析" class="headerlink" title="四、产品分析"></a>四、产品分析</h3><h4 id="4-1-产品功能结构图："><a href="#4-1-产品功能结构图：" class="headerlink" title="4.1 产品功能结构图："></a>4.1 产品功能结构图：</h4><h6 id="4-1-1-作业帮"><a href="#4-1-1-作业帮" class="headerlink" title="4.1.1 作业帮"></a>4.1.1 作业帮</h6><p>作业帮的功能结构相对比学霸君与小猿搜题的功能要多一些，里面百宝箱的功能有一些比较实用的小工具，对于使用的用户来说都是很方便的功能。在学习时，可以随时随地的记录一些自己的错误和重要的知识点，以便日后回顾。作业帮功能结构图如下图所示：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sunzhanxing/CoverImage/PicGo/1240-20220123174648254.png" alt="作业帮功能结构图.png"></p>
+<h6 id="4-1-2-学霸君"><a href="#4-1-2-学霸君" class="headerlink" title="4.1.2 学霸君"></a>4.1.2 学霸君</h6><p>学霸君的功能相对作业帮少了许多，并没有辅导和直播的这项功能。学霸君的题库较大，主要以练习题为主。学霸君功能结构图如下图所示：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sunzhanxing/CoverImage/PicGo/1240-20220123174658497.png" alt="学霸君功能结构图.png"></p>
+<h6 id="4-1-3-小猿搜题"><a href="#4-1-3-小猿搜题" class="headerlink" title="4.1.3 小猿搜题"></a>4.1.3 小猿搜题</h6><p>小猿搜题的功能处于作业帮与学霸君之间，在老师辅导和发现模块中的一些功能也比较使用。小猿搜题功能结构图如下图所示：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sunzhanxing/CoverImage/PicGo/1240-20220123174704887.png" alt="小猿搜题功能结构图.png"></p>
+<p><strong>小结总结：</strong>从作业帮、学霸君、小猿搜题这三款产品的功能结构图我们可以看出：作业帮的产品功能最多、其次猿题库和学霸君，作业帮中百宝箱模块中的一些小应用也大大提高了用户在搜题、做题后对小工具的依赖。</p>
+<h4 id="4-2-产品功能分析："><a href="#4-2-产品功能分析：" class="headerlink" title="4.2 产品功能分析："></a>4.2 产品功能分析：</h4><h6 id="4-2-1-首页"><a href="#4-2-1-首页" class="headerlink" title="4.2.1 首页"></a>4.2.1 首页</h6><p><img src="https://cdn.jsdelivr.net/gh/sunzhanxing/CoverImage/PicGo/1240-20220123174712297.jpeg" alt="作业帮、学霸君、小猿搜题－首页"></p>
+<p>作业帮、学霸君、小猿搜题三款产品的首页均把拍照搜题放在首页，目标明确，直对用户的使用对需求。三款产品都有搜题的记录、拍照搜题、广告等功能，在基于拍照搜题的基础上，作业帮还具备语音读题搜索的功能，对于一些文字性的题目来说比较方便。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sunzhanxing/CoverImage/PicGo/1240-20220123174728912.jpeg" alt="作业帮、学霸君、小猿搜题－搜题记录"></p>
+<p>作业帮的搜题记录是搜索题目的图片并且在下方写着显示搜索到答案的数量。学霸君的历史记录左边是搜索题目的照片，搜索的题目会显示题目属于哪一门的科目，右边是曾经向老师的提问的答疑。小猿搜题也是显示搜索题目的图片，下方是题目所在的科目和搜索的时间。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sunzhanxing/CoverImage/PicGo/1240-20220123174739417.jpeg" alt="作业帮、学霸君、小猿搜题－搜题结果"></p>
+<p>题目搜索成功后，三款产品的最上方都是展示当时搜题的内容，下方是搜索的题目结果，三款产品搜索的结果都没有出现错误，以题目和题目解析相结合展示。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sunzhanxing/CoverImage/PicGo/1240-20220123174749636.jpeg" alt="作业帮、学霸君、小猿搜题－题目解析"></p>
+<p>在下方均有答案的解析，小猿搜题更有视频的解析。如果对题目中解析的答案看不懂可以想老师提问，小猿搜题做了模拟的训练题。学霸君还针对搜索的题目进行了考点的归纳，形成以题带点的学习模式，加强学生对改知识点的理解。相对学霸君的对搜索题目的收藏，作业帮和小猿搜题添加了题目的分享，同学分享同学，形成了很好的社交传递。</p>
+<h6 id="4-2-2-辅导"><a href="#4-2-2-辅导" class="headerlink" title="4.2.2 辅导"></a>4.2.2 辅导</h6><p><img src="https://cdn.jsdelivr.net/gh/sunzhanxing/CoverImage/PicGo/1240-20220123174759641-20220123174810004.jpeg" alt="作业帮、学霸君、小猿搜题－辅导"></p>
+<p>学霸君是根据自己选取的学校而针对章节题目的练习，主要是做题练习。题库较少，没有套题的功能。而作业帮、小猿搜题都是采取当下火热的直播技术进行视频直播辅导。两款产品的界面构造大体相同，顶部导航条的最左端是选择年级、直播课程、搜索自己的课程、作业帮的课表在搜索的最右端，小猿搜题则是放在了中间，相对比较醒目。在导航栏对下方紧接着，科目的选项卡，更加吸引用户的目光。作业帮将一些辅导课程放在banner中，更加醒目。两款产品都是将授课时间长的放在最高的优先级上，下方跟进的课程都是费用很小的，让用户自觉形成看直播的习惯。</p>
+<p>作业帮更加把一对一做成了子集放在tabber中，更加重视其直播的优势，让学生做功课和知识的学习更加有针对性。</p>
+<h6 id="4-2-3-小应用"><a href="#4-2-3-小应用" class="headerlink" title="4.2.3 小应用"></a>4.2.3 小应用</h6><p><img src="https://cdn.jsdelivr.net/gh/sunzhanxing/CoverImage/PicGo/1240-20220123174812909.jpeg" alt="作业帮、学霸君、小猿搜题－小应用"></p>
+<p>三款产品都有着类似的小功能，英语、语文作文、单词、人言文，作业帮和小猿搜题还特有同步练习、真是诊断。作业帮则是还有错题本，方便同学记录题目。计算器、单位换算等小工具帮助同学解决一些学习计算问题，特有的历史上的今天对脑洞大，好奇心重的学生来说也有一定的吸引力。小猿搜题则是推荐了猿辅导，起到引流的作用。</p>
+<h3 id="五、盈利模式"><a href="#五、盈利模式" class="headerlink" title="五、盈利模式"></a>五、盈利模式</h3><p>作业帮和小猿搜题都是通过在线直播授课的方式进行盈利。盈利方式：一对多直播、一对一直播两种。一对多的多价格相对便宜，相比而言没有一对一辅导答疑的针对性。</p>
+<p>学霸君主攻作业答疑，盈利方式：按课时收费。课时收费单价比较便宜，面对范围广。在老师答疑的选项中，我当前的地区没有开放，但是提示窗有我要优先使用，点击了缺并不出现任何情况，不是很合理。</p>
+<h3 id="六、建议与优化"><a href="#六、建议与优化" class="headerlink" title="六、建议与优化"></a>六、建议与优化</h3><p><strong>（1）抛开填鸭式教育，加强方法论思想</strong><br>当前K12在线教育目前还处于初始阶段，不应该应付作业而去做作业。K12教育产品的题库和音乐产品的版权一样重要。让用户在搜索题目的时候不单单是提供答案，更多的是提供一套知识点的题目，让学生掌握其方法。</p>
+<p><strong>（2）合理的沟通，促进彼此的认知</strong><br>在传统教育家长可以与老师进行电话沟通，但是在K12在线教育下，关注度可能会大大降低。要站在彼此的感观上去分析问题。让老师和家长更多的了解学生目前的知识水平、作业完成质量，分析问题的方法。让三方进行合理的意见交流与分享。</p>
+<p><strong>（3）人性化教育，关注学生身体健康</strong><br>互联网的全民化，颈椎病和腰椎病成为了程序员的职业病。在近几年移动端的高速发展下，导致了众多的低头族的诞生。手机已经成为了生活必需品。K12产品应对用户身体健康起到监督程度。在长时间使用产品时，用户的视力、颈椎，腰椎等都会产生影响。需要根据用户的使用时间长短进行合理的提醒，必要时要强制暂停等功能。</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2017/03/03/%E9%9D%9E%E6%9A%B4%E5%8A%9B%E6%B2%9F%E9%80%9A/">非暴力沟通-读书笔记</a>
+            
+            
+            <a class="next" rel="next" href="/2016/12/15/%E7%BD%91%E6%98%93%E4%BA%91%E9%9F%B3%E4%B9%90%E4%BA%A7%E5%93%81%E4%BD%93%E9%AA%8C%E5%88%86%E6%9E%90/">网易云音乐产品体验分析</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Pidan | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Pidan">
+
+
+
+
+
+<title>Scratch：京剧变脸03 | Pidan</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Pidan&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Pidan&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">Scratch：京剧变脸03</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Pidan</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">March 15, 2020&nbsp;&nbsp;14:50:00</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h2 id="一．-教学目标"><a href="#一．-教学目标" class="headerlink" title="一． 教学目标"></a>一． 教学目标</h2><p>1.理解一个角色可以拥有多个造型。 </p>
+<p>2.角色造型之间的切换。</p>
+<p>3.掌握控制模块中的：重复执行。</p>
+<h2 id="二．-教学过程"><a href="#二．-教学过程" class="headerlink" title="二． 教学过程"></a>二． 教学过程</h2><p>同学们，大家好，欢迎来到，今天的编程课堂，今天我们课程的主题是京剧变脸。变脸是我们国家的国粹</p>
+<p>教师：我们可以看到的猫精灵是Scratch吉祥物呈现在我们眼前。但是呢，我们这次课程的主角是一个演奏家，所以不需要它，因此可以通过在工作区找到小花猫，单击小花猫右上角的X来删除它。如图所示：</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sunzhanxing/CoverImage/PicGo/image-20220123175839386.png" alt="image-20220123175839386"></p>
+<p>教师：接下来，小朋友们将鼠标指针移动到旁边的小猫的图标上后，很神奇的发现弹出了一个对话框！上面分别是：上传角色，绘制，随机，选择，上传角色是指：让我们上传一个我们电脑上的图片，来作为我们本次游戏的角色。绘制呢，是指我们亲手画出来一个物体，来作为我们的角色，随机是指从系统自带的所有角色中随机选出一个，而选择呢，是我们在系统自带的角色中，选择我们喜欢的，来作为本次的主角。</p>
+<p>本节课，我们用到的是京剧人物，是角色库中没有的角色，同学们需要点击上传，选择老师给同学们的素材包，选择里面的第一个图片上传，这样就上传好了。</p>
+<p> <img src="https://cdn.jsdelivr.net/gh/sunzhanxing/CoverImage/PicGo/image-20220123175903804.png" alt="image-20220123175903804"></p>
+<p>但是我们发现，除了我们刚才添加的之外，舞台区的是空白的，我们想让的变脸大师在屋子里面演出，同学们想一下，我们如何能添加场景呢？</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sunzhanxing/CoverImage/PicGo/image-20220123175929758.png" alt="image-20220123175929758"></p>
+<p><img src="https://cdn.jsdelivr.net/gh/sunzhanxing/CoverImage/PicGo/image-20220123175943016.png" alt="image-20220123175943016"></p>
+<p>有的同学已经做出来了，点击角色旁边的背景，看到出现了和我们选择角色时类似的选项卡，我们选择室内的标签，选择一个我们喜欢的背景，老师就选择这个场景，看起来很我们的变脸大师很符合。</p>
+<p><img src="https://cdn.jsdelivr.net/gh/sunzhanxing/CoverImage/PicGo/image-20220123175953012.png" alt="image-20220123175953012"></p>
+<p>接下来，将我们的变脸大师移动到舞台的中间位置，点击左侧的代码区，点击事件模块，拖出我们小旗子的指令，我们要让变脸大师说一句话，说，你看到我是怎么变的吗？这个要用到我们上节课学习到的指令了，点击外观模块，将说你好2秒拖出，修改成我们刚刚变脸大师要说的话，当说出这句话后，我们要让变脸大师开始变脸，点击外观模块，将下一个造型指令拖出，与其连接。我们要让大师每次变脸后休息一下，所以点击控制模块，拖出等待1秒指令，相连接，我们的这个程序过程不是指变一次就不变了，是一直持续的。点击控制模块，拖出重复执行，将刚才编写的代码拖入其中，将它们包围，这样在里面的指令便会一直重复执行。</p>
+<p>点击运行程序，发现我们的京剧大师没有变脸，这是怎么回事呢？</p>
+<p>因为我们京剧大师只有一个造型，也就是我们上传的那一个。</p>
+<p>在角色列表区点击一下我们刚上传的角色，点击上方的造型，我们可以看到左边是我们角色下面所有的造型，所有是可以做角色进行绘制的区域，可以给我们的小猫上色，添加文字、画图形等等，左下角也有一个小猫图案，这个小猫图案上传的是角色的造型，将鼠标指针移动到小猫图案上，也弹出一个选项卡，我们选择上传，我们刚刚上传角色的时候，只上传了图片1，现在我们上传图片2和图片3，这样我们的角色就有了三个造型。</p>
+<p> <img src="https://cdn.jsdelivr.net/gh/sunzhanxing/CoverImage/PicGo/image-20220123180029356.png" alt="image-20220123180029356"></p>
+<p>再次点击小旗子运行程序，这次我们看到京剧大师在舞台上开始表演变脸了，并且说这看我变成了什么。</p>
+<p>好了，同学们，今天我们的程序就做完了，下面我们做一个练习题，来回顾一下，我们今天学习的内容。</p>
+<h2 id="三、巩固提高："><a href="#三、巩固提高：" class="headerlink" title="三、巩固提高："></a>三、巩固提高：</h2><p>点击下面哪一个程序指令，可以让我们的程序一直重复执行呢？</p>
+<p> <img src="https://cdn.jsdelivr.net/gh/sunzhanxing/CoverImage/PicGo/image-20220123180049304.png" alt="image-20220123180049304"></p>
+<p>我们先看选项A，等待一秒，他的作用是让程序等待1秒后，在执行下面的指令。无法做到重复执行的作用，他是错误的。 </p>
+<p>选项B，重复执行，在它包围里面指令会重复执行，所以它是正确的。</p>
+<p>而选项C， 下一个造型，它的作用是将我们的角色切换成下一个造型，无法控制让程序重复执行的。</p>
+<p>这道题我们的正确答案是B，同学们，你们选对了吗？</p>
+<p>接下来，老师给大家布置一个小作业。</p>
+<h2 id="四、小结作业："><a href="#四、小结作业：" class="headerlink" title="四、小结作业："></a>四、小结作业：</h2><p>我们都知道西游记中的孙悟空拥有着72般变化，结合我们今天学习的内容，做一个孙悟空72变的小游戏，要求孙悟空至少可以变化3种，同学们，想一想，我们该如何实现呢？</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2021/10/03/OKR%E5%B7%A5%E4%BD%9C%E6%B3%95/">OKR工作法-读书笔记</a>
+            
+            
+            <a class="next" rel="next" href="/2020/03/01/Scratch%EF%BC%9A%E4%BC%9A%E8%AE%B2%E6%95%85%E4%BA%8B%E7%9A%84%E7%8C%AB02/">Scratch：会讲故事的猫02</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Pidan | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <meta name="author" content="Pidan">
+
+
+
+
+
+<title>浅谈Objc-多线程 | Pidan</title>
+
+
+
+    <link rel="icon" href="/favicon.ico">
+
+
+
+
+    <!-- stylesheets list from _config.yml -->
+    
+    <link rel="stylesheet" href="/css/style.css">
+    
+
+
+
+    <!-- scripts list from _config.yml -->
+    
+    <script src="/js/script.js"></script>
+    
+    <script src="/js/tocbot.min.js"></script>
+    
+
+
+
+    
+    
+        
+    
+
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+    <script>
+        // this function is used to check current theme before page loaded.
+        (() => {
+            const currentTheme = window.localStorage && window.localStorage.getItem('theme') || '';
+            const isDark = currentTheme === 'dark';
+            const pagebody = document.getElementsByTagName('body')[0]
+            if (isDark) {
+                pagebody.classList.add('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Dark"
+            } else {
+                pagebody.classList.remove('dark-theme');
+                // mobile
+                document.getElementById("mobile-toggle-theme").innerText = "· Light"
+            }
+        })();
+    </script>
+
+    <div class="wrapper">
+        <header>
+    <nav class="navbar">
+        <div class="container">
+            <div class="navbar-header header-logo"><a href="/">Pidan&#39;s Blog</a></div>
+            <div class="menu navbar-right">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+                <input id="switch_default" type="checkbox" class="switch_default">
+                <label for="switch_default" class="toggleBtn"></label>
+            </div>
+        </div>
+    </nav>
+
+    
+    <nav class="navbar-mobile" id="nav-mobile">
+        <div class="container">
+            <div class="navbar-header">
+                <div>
+                    <a href="/">Pidan&#39;s Blog</a><a id="mobile-toggle-theme">·&nbsp;Light</a>
+                </div>
+                <div class="menu-toggle" onclick="mobileBtn()">&#9776; Menu</div>
+            </div>
+            <div class="menu" id="mobile-menu">
+                
+                    <a class="menu-item" href="/archives">Posts</a>
+                
+                    <a class="menu-item" href="/category">Categories</a>
+                
+                    <a class="menu-item" href="/tag">Tags</a>
+                
+                    <a class="menu-item" href="/about">About</a>
+                
+            </div>
+        </div>
+    </nav>
+
+</header>
+<script>
+    var mobileBtn = function f() {
+        var toggleMenu = document.getElementsByClassName("menu-toggle")[0];
+        var mobileMenu = document.getElementById("mobile-menu");
+        if(toggleMenu.classList.contains("active")){
+           toggleMenu.classList.remove("active")
+            mobileMenu.classList.remove("active")
+        }else{
+            toggleMenu.classList.add("active")
+            mobileMenu.classList.add("active")
+        }
+    }
+</script>
+            <div class="main">
+                <div class="container">
+    
+    
+
+    
+    <article class="post-wrap">
+        <header class="post-header">
+            <h1 class="post-title">浅谈Objc-多线程</h1>
+            
+                <div class="post-meta">
+                    
+                        Author: <a itemprop="author" rel="author" href="/">Pidan</a>
+                    
+
+                    
+                        <span class="post-time">
+                        Date: <a href="#">February 3, 2016&nbsp;&nbsp;18:21:00</a>
+                        </span>
+                    
+                    
+                </div>
+            
+        </header>
+
+        <div class="post-content">
+            <h4 id="进程和线程"><a href="#进程和线程" class="headerlink" title="进程和线程"></a>进程和线程</h4><p>进程：是应用程序实例，每个进程都有独立的私有空间，进程间相互独立。</p>
+<p>线程：指进程内部中的一个执行单元。当系统创建进程后，实际上就启动该（进程）程序的主线程，每一个进程至少有一个主执行线程。</p>
+<p>线程中的任务的执行是遵循(先进先出)的原则。</p>
+<h4 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h4><p>当（进程）程序有几个任务要同时运行时，此刻利用多线程的特性，开启多个线程，在不同的线程中执行任务。</p>
+<h5 id="多线程的优缺点"><a href="#多线程的优缺点" class="headerlink" title="多线程的优缺点"></a>多线程的优缺点</h5><p>优点：</p>
+<ul>
+<li>1.提高程序的执行效率，使程序的响应速度更快。</li>
+<li>2.可指定设置各个任务执行的优先级，方便操作。</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>开启线程需要额外的 CPU 开销，线程开启越多，CPU在调度线程上的开销就越大，从而导致程序的性能大大折扣。</li>
+</ul>
+<h4 id="多线程使用注意情况："><a href="#多线程使用注意情况：" class="headerlink" title="多线程使用注意情况："></a>多线程使用注意情况：</h4><p>一条线程只能做一件事情，比如我在内存中开启了一个腾讯视频这个应用，然后我在下载电影的同时又想让它去韩剧区下载电影，这是将会出现如中的这种情况：</p>
+<p>这是我们平时需要注意的问题，因为在下载日剧电影时，已经将任务放进了主进程（UI进程）中去执行，当再去韩剧区的时候，我模拟需要下载日本区的1000部，此时线程要遵守串行规则，所以会看到上图的效果。</p>
+<p>我们还需要去韩剧区在下载1000部电影，但是我们怎么办呢？下面怎么做呢？</p>
+<p>###NSThread</p>
+<p>NSThread：相对轻量级的多线程开发，需要自己管理线程。</p>
+<p>在通过上面的问题，应明确两个操作需要在不同的线程中执行，需要创建两条线程来执行我们的任务。</p>
+<p>我们要解决的问题中需要使用下面的方法。</p>
+<figure class="highlight obj-c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* 创建新线程，需要调用 start 方法开启 */</span> </span><br><span class="line">- (<span class="keyword">instancetype</span>)initWithTarget:(<span class="keyword">id</span>)target selector:(SEL)selector </span><br><span class="line">object:(<span class="keyword">id</span>)argument;</span><br><span class="line"></span><br><span class="line">target <span class="comment">/* 调用对象 */</span></span><br><span class="line">selector <span class="comment">/* 调用方法名 */</span> </span><br><span class="line">argument <span class="comment">/* 参数对象 */</span></span><br></pre></td></tr></table></figure>
+
+<p>只拿其中一个韩剧电影为例，就直接在SB中拖的空间，没有用纯代码写，也没什么必要。</p>
+<p>利用 [NSThread currentThread] 来获取当前的线程，观察是否是主线程（UI线程）</p>
+<figure class="highlight obj-c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">IBAction</span>) japanButtonClick:(<span class="built_in">UIButton</span> *)sender &#123;   </span><br><span class="line"></span><br><span class="line">    <span class="built_in">NSThread</span> *threadJapan = [[<span class="built_in">NSThread</span> alloc]initWithTarget:<span class="keyword">self</span> selector:<span class="keyword">@selector</span>(getJapanButton) object:<span class="string">@&quot;Sunnyzx&quot;</span>];</span><br><span class="line">    <span class="comment">/* 开启线程 */</span></span><br><span class="line">    [threadJapan start];</span><br><span class="line">&#125;</span><br><span class="line">- (<span class="keyword">void</span>)getJapanButton &#123;</span><br><span class="line">    <span class="comment">/* 遍历下载次数 */</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> index = <span class="number">0</span>; index &lt; <span class="number">1000</span>; index++) &#123;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;美剧电影已下载%d部 - %@&quot;</span>,index, [<span class="built_in">NSThread</span> currentThread]);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
+<p>等等，这是小B（线程）和我说最近网警严打，网盘上的未授权资源别人下载一次就会自动删除，所以他下载下来的电影显示的数量和实际的不匹配。</p>
+<figure class="highlight obj-c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@property</span>(<span class="keyword">strong</span>, <span class="keyword">nonatomic</span>) <span class="built_in">NSThread</span> *smallA; <span class="comment">/* 小A */</span></span><br><span class="line"><span class="keyword">@property</span>(<span class="keyword">strong</span>, <span class="keyword">nonatomic</span>) <span class="built_in">NSThread</span> *smallB;</span><br><span class="line"><span class="comment">/* 小B */</span></span><br><span class="line"><span class="keyword">@property</span>(<span class="keyword">nonatomic</span>, <span class="keyword">assign</span>) <span class="built_in">NSInteger</span> *aiCount; <span class="comment">/* 资源 */</span></span><br></pre></td></tr></table></figure>
+
+<p>在 - (void)viewDidLoad 方法中复制10，方便观察数据的变化。在下面代码就只贴小A的了，小B和小A内容相同，只是方法名不同，并绑定同一个按钮，代码如下：</p>
+<figure class="highlight obj-c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">IBAction</span>)smallAClick:(<span class="built_in">UIButton</span> *)sender &#123;</span><br><span class="line">    <span class="keyword">self</span>.smallA = [[<span class="built_in">NSThread</span> alloc]initWithTarget:<span class="keyword">self</span> selector:<span class="keyword">@selector</span>(getUsaButton) object:<span class="string">@&quot;Sunnyzx&quot;</span>];</span><br><span class="line">    <span class="keyword">self</span>.smallA.name = <span class="string">@&quot;小A&quot;</span>;</span><br><span class="line">    [<span class="keyword">self</span>.smallA start];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">void</span>)getUsaButton &#123;</span><br><span class="line">    <span class="keyword">while</span> (<span class="number">1</span>) &#123;</span><br><span class="line">        <span class="built_in">NSInteger</span> count = <span class="keyword">self</span>.aiCount;</span><br><span class="line">        <span class="keyword">if</span> (count &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">self</span>.aiCount = count - <span class="number">1</span>;</span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@&quot;%@下载了一个资源，还剩下%zd部&quot;</span>, [<span class="built_in">NSThread</span> currentThread].name,<span class="keyword">self</span>.aiCount );</span><br><span class="line">        &#125;</span><br><span class="line">            <span class="keyword">else</span> &#123;</span><br><span class="line">                <span class="built_in">NSLog</span>(<span class="string">@&quot;成功下载&quot;</span>);</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>资源现在被小A和小B共享，就是他们两个执行会访问同一块资源，系统并不能确定谁先开始，当他下载完成资源删除时，另一个可能已经读区到之前的数据，但是没有下载，所以产生了数据混乱。</p>
+<h4 id="互斥锁"><a href="#互斥锁" class="headerlink" title="互斥锁"></a>互斥锁</h4><p><strong>互斥锁：</strong>防止多个线程共用一块资源从而导致数据换乱。</p>
+<figure class="highlight obj-c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">@synchronized</span>(<span class="keyword">self</span>) &#123;</span><br><span class="line">    <span class="comment">/* 需要锁定的代码 */</span> </span><br><span class="line">    <span class="built_in">NSInteger</span> count = <span class="keyword">self</span>.aiCount;</span><br><span class="line">    <span class="keyword">if</span> (count &gt; <span class="number">0</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.avCount = count - <span class="number">1</span>;</span><br><span class="line">        <span class="built_in">NSLog</span>(<span class="string">@&quot;%@下载了资源，还剩下%zd部&quot;</span>, [<span class="built_in">NSThread</span> currentThread].name,<span class="keyword">self</span>.aiCount );</span><br><span class="line">    &#125;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="built_in">NSLog</span>(<span class="string">@&quot;成功下载&quot;</span>);</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>观看代码和运行得出的数据可知，当我们多个线程同时访问一块数据时需要给代码块加锁，告诉他此资源有人访问，此时他将会在锁外等待访问资源结束后在进入访问。</p>
+
+        </div>
+
+        
+            <section class="post-copyright">
+                
+                
+                
+                
+
+            </section>
+        
+        <section class="post-tags">
+            <div>
+                <span>Tag(s):</span>
+                <span class="tag">
+                    
+                </span>
+            </div>
+            <div>
+                <a href="javascript:window.history.back();">back</a>
+                <span>· </span>
+                <a href="/">home</a>
+            </div>
+        </section>
+        <section class="post-nav">
+            
+                <a class="prev" rel="prev" href="/2016/12/15/%E7%BD%91%E6%98%93%E4%BA%91%E9%9F%B3%E4%B9%90%E4%BA%A7%E5%93%81%E4%BD%93%E9%AA%8C%E5%88%86%E6%9E%90/">网易云音乐产品体验分析</a>
+            
+            
+            <a class="next" rel="next" href="/2016/01/01/Objc%E7%B1%BB%E6%96%B9%E6%B3%95/">Objc-类方法</a>
+            
+        </section>
+
+
+    </article>
+</div>
+
+            </div>
+            <footer id="footer" class="footer">
+    <div class="copyright">
+        <span>© Pidan | Powered by <a href="https://hexo.io" target="_blank">Hexo</a> & <a href="https://github.com/Siricee/hexo-theme-Chic" target="_blank">Chic</a></span>
+    </div>
+</footer>
+
+    </div>
+</body>
+
+</html>
